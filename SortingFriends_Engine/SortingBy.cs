@@ -7,10 +7,10 @@ namespace eSortingByEnum
 {
      public enum eSortingBy
      {
-          DEFAULT,
-          FIRST_NAME,
-          LAST_NAME,
-          BIRTHDAY,
-          AGE,
+          Default,
+          FirstName,
+          LastName,
+          Birthday,
+          Age,
      }
 }
