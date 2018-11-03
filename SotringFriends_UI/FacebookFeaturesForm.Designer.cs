@@ -36,6 +36,7 @@
                this.LoginButton = new System.Windows.Forms.Button();
                this.Features = new System.Windows.Forms.TabControl();
                this.tabPage1 = new System.Windows.Forms.TabPage();
+               this.placeHolderLabel = new System.Windows.Forms.Label();
                this.SortByLabel = new System.Windows.Forms.Label();
                this.BirthdayEvent = new System.Windows.Forms.TabPage();
                this.CreateBirthdayEventButton = new System.Windows.Forms.Button();
@@ -126,6 +127,7 @@
                // 
                // tabPage1
                // 
+               this.tabPage1.Controls.Add(this.placeHolderLabel);
                this.tabPage1.Controls.Add(this.SortByLabel);
                this.tabPage1.Controls.Add(this.pictureBoxFriend);
                this.tabPage1.Controls.Add(this.FriendsLabel);
@@ -139,6 +141,19 @@
                this.tabPage1.TabIndex = 0;
                this.tabPage1.Text = "Sorting Friends";
                this.tabPage1.UseVisualStyleBackColor = true;
+               // 
+               // placeHolderLabel
+               // 
+               this.placeHolderLabel.AutoSize = true;
+               this.placeHolderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+               this.placeHolderLabel.Location = new System.Drawing.Point(522, 446);
+               this.placeHolderLabel.Name = "placeHolderLabel";
+               this.placeHolderLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+               this.placeHolderLabel.Size = new System.Drawing.Size(125, 24);
+               this.placeHolderLabel.TabIndex = 53;
+               this.placeHolderLabel.Text = "PlaceHolder";
+               this.placeHolderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+               this.placeHolderLabel.Visible = false;
                // 
                // SortByLabel
                // 
@@ -185,9 +200,10 @@
                // BirthdayDateLabel
                // 
                this.BirthdayDateLabel.AutoSize = true;
+               this.BirthdayDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
                this.BirthdayDateLabel.Location = new System.Drawing.Point(16, 310);
                this.BirthdayDateLabel.Name = "BirthdayDateLabel";
-               this.BirthdayDateLabel.Size = new System.Drawing.Size(68, 13);
+               this.BirthdayDateLabel.Size = new System.Drawing.Size(80, 13);
                this.BirthdayDateLabel.TabIndex = 61;
                this.BirthdayDateLabel.Text = "BirthdayDate";
                this.BirthdayDateLabel.Visible = false;
@@ -195,9 +211,10 @@
                // BestFriendNameLabel
                // 
                this.BestFriendNameLabel.AutoSize = true;
+               this.BestFriendNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
                this.BestFriendNameLabel.Location = new System.Drawing.Point(16, 286);
                this.BestFriendNameLabel.Name = "BestFriendNameLabel";
-               this.BestFriendNameLabel.Size = new System.Drawing.Size(91, 13);
+               this.BestFriendNameLabel.Size = new System.Drawing.Size(107, 13);
                this.BestFriendNameLabel.TabIndex = 60;
                this.BestFriendNameLabel.Text = "Best Friend Name";
                this.BestFriendNameLabel.Visible = false;
@@ -230,10 +247,10 @@
                // BestFriendLabel
                // 
                this.BestFriendLabel.AutoSize = true;
-               this.BestFriendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+               this.BestFriendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
                this.BestFriendLabel.Location = new System.Drawing.Point(16, 261);
                this.BestFriendLabel.Name = "BestFriendLabel";
-               this.BestFriendLabel.Size = new System.Drawing.Size(121, 15);
+               this.BestFriendLabel.Size = new System.Drawing.Size(144, 18);
                this.BestFriendLabel.TabIndex = 56;
                this.BestFriendLabel.Text = "Your Best Friend :";
                // 
@@ -335,6 +352,7 @@
           private System.Windows.Forms.Label BestFriendNameLabel;
           private System.Windows.Forms.Button CreateBirthdayEventButton;
         private System.Windows.Forms.Label SortByLabel;
-    }
+          private System.Windows.Forms.Label placeHolderLabel;
+     }
 }
 

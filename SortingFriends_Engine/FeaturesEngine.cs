@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Facebook;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
@@ -9,9 +7,9 @@ using eSortingByEnum;
 
 namespace SortingFriends_Engine
 {
-     public class SortingFriendsEngine
+     public class FeaturesEngine
      {
-          private const int k_ChangePositions = 1, k_NotChangePosition = -1, k_BestFriendNotFound = -1;
+          private const int k_ChangePositions = 1, k_NotChangePosition = -1, k_BestFriendNotFound = -1, k_IndexNotFound = -1;
           private const string k_AppId = "1027335734116799";
           private User m_LoggedInUser;
           private User m_BestFriend;
@@ -61,6 +59,31 @@ namespace SortingFriends_Engine
           public string GetFriendPicture(int i_FriendIndex)
           {
                return m_Friends[i_FriendIndex].PictureLargeURL;
+          }
+
+          public string GetFriendBirthdayOrAgeAttribute(int i_FriendIndex, int i_SortingBySelectedIndex)
+          {
+               eSortingBy sortingOption = (eSortingBy)i_SortingBySelectedIndex;
+               string returnValue = null;
+
+               if(i_FriendIndex != k_IndexNotFound)
+               {
+                    if (sortingOption == eSortingBy.Birthday)
+                    {
+                         returnValue = $"Birthday Date: {m_Friends[i_FriendIndex].Birthday}";
+                    }
+                    else if (sortingOption == eSortingBy.Age)
+                    {
+                         string birthday = m_Friends[i_FriendIndex].Birthday;
+                         DateTime birthdayDate = new DateTime(
+                              int.Parse(birthday.Substring(6, 4)),
+                              int.Parse(birthday.Substring(0, 2)),
+                              int.Parse(birthday.Substring(3, 2)));
+                         returnValue = $"Age: {calculateAge(birthdayDate)}";
+                    }
+               }
+
+               return returnValue;
           }
 
           public void SortFriends(int i_ComparisonIndex)
@@ -208,7 +231,7 @@ namespace SortingFriends_Engine
 
           private bool birthdayMonthInRange(DateTime i_FriendBirthdayDate)
           {
-               return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 130;
+               return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 60;
           }
 
           public string GetBestFriendFullName()

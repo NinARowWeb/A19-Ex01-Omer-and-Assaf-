@@ -5,9 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBBasicFacebookFeatures.2010", "..\..\..\..\..\Downloads\01_FB01_BasicFacebookFeatures.V6.8.0.17\FBBasicFacebookFeatures\FBBasicFacebookFeatures.2010.csproj", "{AF90A25E-B4FB-434C-9260-C02B56C2AA9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortingFriends_Engine", "SortingFriends_Engine\SortingFriends_Engine.csproj", "{04F50967-328C-42F2-9542-DC977E59E937}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookFeatures_Engine", "SortingFriends_Engine\FacebookFeatures_Engine.csproj", "{04F50967-328C-42F2-9542-DC977E59E937}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotringFriends_UI", "SotringFriends_UI\SotringFriends_UI.csproj", "{B207511B-3765-4EF8-8609-C5727B037ADE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacebookFeatures_UI", "SotringFriends_UI\FacebookFeatures_UI.csproj", "{B207511B-3765-4EF8-8609-C5727B037ADE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

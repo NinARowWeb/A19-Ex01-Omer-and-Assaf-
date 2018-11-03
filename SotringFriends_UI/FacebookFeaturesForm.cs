@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using SortingFriends_Engine;
 
@@ -13,7 +8,7 @@ namespace SotringFriends_UI
      public partial class FacebookFeatures : Form
      {
           private const int k_BestFriendNotFoundIndex = -1;
-          private SortingFriendsEngine m_SortingEngine = new SortingFriendsEngine();
+          private FeaturesEngine m_FeaturesEngine = new FeaturesEngine();
 
           public FacebookFeatures()
           {
@@ -23,13 +18,13 @@ namespace SotringFriends_UI
 
           private void formClosing_Click(object sender, FormClosingEventArgs e)
           {
-               m_SortingEngine.LogoutUser();
+               m_FeaturesEngine.LogoutUser();
           }
 
           private void buttonLogin_Click(object sender, EventArgs e)
           {
-               m_SortingEngine.LoginUser();
-               if (m_SortingEngine.UserConnected()) /// exception?
+               m_FeaturesEngine.LoginUser();
+               if (m_FeaturesEngine.UserConnected()) /// exception?
                {
                     fetchFriends();
                }
@@ -41,7 +36,7 @@ namespace SotringFriends_UI
 
           private void fetchFriends()
           {
-               List<string> friendsName = m_SortingEngine.GetFriends();
+               List<string> friendsName = m_FeaturesEngine.GetFriends();
 
                FriendsList.Items.Clear();
                foreach (string friendName in friendsName)
@@ -54,16 +49,19 @@ namespace SotringFriends_UI
           {
                if (FriendsList.SelectedItems.Count == 1)
                {
-                    string friendImageURL = m_SortingEngine.GetFriendPicture(FriendsList.SelectedIndex);
+                    string friendImageURL = m_FeaturesEngine.GetFriendPicture(FriendsList.SelectedIndex);
 
                     if (friendImageURL != null)
                     {
                          pictureBoxFriend.LoadAsync(friendImageURL);
+                         pictureBoxFriend.Visible = true;
                     }
                     else
                     {
                          pictureBoxFriend.Image = pictureBoxFriend.ErrorImage;
                     }
+
+                    setBirthdayOrAgeAttribute();
                }
                else
                {
@@ -71,12 +69,28 @@ namespace SotringFriends_UI
                }
           }
 
+          private void setBirthdayOrAgeAttribute()
+          {
+               string attribute = m_FeaturesEngine.GetFriendBirthdayOrAgeAttribute(FriendsList.SelectedIndex, ComboBoxSortingOptions.SelectedIndex);
+               if (attribute != null)
+               {
+                    placeHolderLabel.Text = attribute;
+                    placeHolderLabel.Visible = true;
+               }
+               else
+               {
+                    placeHolderLabel.Visible = false;
+               }
+          }
+
           private void comboBoxSortingOption_SelectedIndexChanged(object sender, EventArgs e)
           {
-               if (m_SortingEngine.UserConnected())
+               if (m_FeaturesEngine.UserConnected())
                {
-                    m_SortingEngine.SortFriends(ComboBoxSortingOptions.SelectedIndex);
+                    m_FeaturesEngine.SortFriends(ComboBoxSortingOptions.SelectedIndex);
                     fetchFriends();
+                    pictureBoxFriend.Visible = false;
+                    setBirthdayOrAgeAttribute();
                }
                else
                {
@@ -86,22 +100,22 @@ namespace SotringFriends_UI
 
           private void buttonFindBestFriend_Click(object sender, EventArgs e)
           {
-               if (m_SortingEngine.UserConnected())
+               if (m_FeaturesEngine.UserConnected())
                {
-                    int bestFriendIndex = m_SortingEngine.FindBestFriend();
+                    int bestFriendIndex = m_FeaturesEngine.FindBestFriend();
 
                     if (bestFriendIndex != k_BestFriendNotFoundIndex)
                     {
                          BestFriendNameLabel.Visible = true;
-                         BestFriendNameLabel.Text = m_SortingEngine.GetBestFriendFullName();
+                         BestFriendNameLabel.Text = m_FeaturesEngine.GetBestFriendFullName();
                          BestFriendPictureBox.Visible = true;
-                         BestFriendPictureBox.LoadAsync(m_SortingEngine.GetFriendPicture(bestFriendIndex));
+                         BestFriendPictureBox.LoadAsync(m_FeaturesEngine.GetFriendPicture(bestFriendIndex));
                          BirthdayDateLabel.Visible = true;
-                         BirthdayDateLabel.Text = m_SortingEngine.GetBestFriendBirthdayDate();
+                         BirthdayDateLabel.Text = m_FeaturesEngine.GetBestFriendBirthdayDate();
                     }
                     else
                     {
-                         MessageBox.Show("You don't have friends that have birthday in two months");
+                         MessageBox.Show("You don't have friends who have birthday in two months");
                     }
                }
                else
@@ -112,9 +126,9 @@ namespace SotringFriends_UI
 
           private void buttonCreateBirthdayEvent_Click(object sender, EventArgs e)
           {
-               if (m_SortingEngine.UserConnected())
+               if (m_FeaturesEngine.UserConnected())
                {
-                    if (m_SortingEngine.IsBestFriendExist())
+                    if (m_FeaturesEngine.IsBestFriendExist())
                     {
                          if (string.IsNullOrEmpty(DescirptionTextBox.Text))
                          {
@@ -126,7 +140,7 @@ namespace SotringFriends_UI
                          }
                          else
                          {
-                              if (!m_SortingEngine.CreateEvent(DescirptionTextBox.Text, LocationTextBox.Text))
+                              if (!m_FeaturesEngine.CreateEvent(DescirptionTextBox.Text, LocationTextBox.Text))
                               {
                                    MessageBox.Show("suprise party event should be created. the feature blocked from version 2.0");
                               }

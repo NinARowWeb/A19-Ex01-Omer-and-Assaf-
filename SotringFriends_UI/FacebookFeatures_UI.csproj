@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SortingFriendsForm.cs">
+    <Compile Include="FacebookFeaturesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SortingFriendsForm.Designer.cs">
-      <DependentUpon>SortingFriendsForm.cs</DependentUpon>
+    <Compile Include="FacebookFeaturesForm.Designer.cs">
+      <DependentUpon>FacebookFeaturesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,8 +61,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SortingFriendsForm.resx">
-      <DependentUpon>SortingFriendsForm.cs</DependentUpon>
+    <EmbeddedResource Include="FacebookFeaturesForm.resx">
+      <DependentUpon>FacebookFeaturesForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -75,9 +75,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SortingFriends_Engine\SortingFriends_Engine.csproj">
+    <ProjectReference Include="..\SortingFriends_Engine\FacebookFeatures_Engine.csproj">
       <Project>{04f50967-328c-42f2-9542-dc977e59e937}</Project>
-      <Name>SortingFriends_Engine</Name>
+      <Name>FacebookFeatures_Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
