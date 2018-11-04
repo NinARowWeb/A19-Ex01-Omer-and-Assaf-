@@ -17,12 +17,12 @@ namespace SortingFriends_Engine
 
           public void LoginUser()
           {
-               LoginResult result = FacebookService.Login(k_AppId, "public_profile", "user_friends", "user_birthday");
-               if (!string.IsNullOrEmpty(result.AccessToken))
-               {
+                LoginResult result = FacebookService.Login(k_AppId, "public_profile", "user_friends", "user_birthday");
+                if (!string.IsNullOrEmpty(result.AccessToken))
+                {
                     m_LoggedInUser = result.LoggedInUser;
                     fetchFriends();
-               }
+                }
           }
 
           public void LogoutUser()
@@ -231,7 +231,7 @@ namespace SortingFriends_Engine
 
           private bool birthdayMonthInRange(DateTime i_FriendBirthdayDate)
           {
-               return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 60;
+               return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 120;
           }
 
           public string GetBestFriendFullName()
@@ -274,5 +274,82 @@ namespace SortingFriends_Engine
 
                return createEventSuccessed;
           }
-     }
+
+        public string GetBestFriendTopTag()
+        {
+            User mostTagged = null;
+            Dictionary<User, int> taggedUsers = new Dictionary<User, int>();
+
+            foreach(Post currentPost in m_BestFriend.WallPosts)
+            {
+                foreach(User currentUser in currentPost.TaggedUsers)
+                {
+                    if (taggedUsers.ContainsKey(currentUser))
+                    {
+                        taggedUsers[currentUser]++;
+                    }
+                    else
+                    {
+                        taggedUsers.Add(currentUser, 1);
+                    }
+                }
+            }
+
+            foreach (User currentUser in taggedUsers.Keys)
+            {
+                if(mostTagged == null)
+                {
+                    mostTagged = currentUser;
+                }
+                else if(taggedUsers[currentUser] > taggedUsers[mostTagged])
+                {
+                    mostTagged = currentUser;
+                }
+            }
+
+            return mostTagged == null ? null : mostTagged.Name;
+        }
+
+        public string GetBestFriendTopCheckIn()
+        {
+            string mostTagged = null;
+            Dictionary<string, int> checkIns = new Dictionary<string, int>();
+
+            foreach (Checkin currentCheckIn in m_BestFriend.Checkins)
+            {
+                if (checkIns.ContainsKey(currentCheckIn.Place.Name))
+                {
+                    checkIns[currentCheckIn.Place.Name]++;
+                }
+                else
+                {
+                    checkIns.Add(currentCheckIn.Place.Name, 1);
+                }
+            }
+
+            foreach (string currentCheckIn in checkIns.Keys)
+            {
+                if (mostTagged == null)
+                {
+                    mostTagged = currentCheckIn;
+                }
+                else if (checkIns[currentCheckIn] > checkIns[mostTagged])
+                {
+                    mostTagged = currentCheckIn;
+                }
+            }
+
+            return mostTagged == null ? null : mostTagged;
+        }
+
+        public int GetBestFriendAmountOfAlbums()
+        {
+            return m_BestFriend.Albums.Count;
+        }
+
+        public string GetBestFriendGender()
+        {
+            return m_BestFriend.Gender.ToString();
+        }
+    }
 }
