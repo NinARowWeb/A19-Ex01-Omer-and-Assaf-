@@ -17,7 +17,8 @@ namespace SortingFriends_Engine
 
         public void LoginUser()
         {
-            LoginResult result = FacebookService.Login(k_AppId, "public_profile", "user_friends", "user_birthday");
+            LoginResult result = FacebookService.Login(k_AppId, "public_profile", "user_friends", "user_birthday",
+                "user_gender", "user_likes", "user_posts", "user_tagged_places");
             if (!string.IsNullOrEmpty(result.AccessToken))
             {
                 m_LoggedInUser = result.LoggedInUser;
@@ -239,25 +240,34 @@ namespace SortingFriends_Engine
             int index = 0;
             int bestFriendcommonFriendsAmount = 0;
             Dictionary<User, int> likedMyPosts = new Dictionary<User, int>();
-
-            foreach (Post currentPost in m_LoggedInUser.Posts)
+            foreach (User friend in m_Friends)
             {
-                foreach (User currentUser in currentPost.LikedBy)
+                foreach (Post currentPost in friend.Posts)
                 {
-                    if (likedMyPosts.ContainsKey(currentUser))
+                    try
                     {
-                        likedMyPosts[currentUser]++;
+                        foreach (User currentUser in currentPost.LikedBy)
+                        {
+                            if (likedMyPosts.ContainsKey(friend))
+                            {
+                                likedMyPosts[friend]++;
+                            }
+                            else if (currentUser.Name == m_LoggedInUser.Name)
+                            {
+                                likedMyPosts.Add(friend, 1);
+                            }
+                        }
                     }
-                    else if (currentUser == m_LoggedInUser)
+                    catch (FacebookOAuthException)
                     {
-                        likedMyPosts.Add(currentUser, 1);
+                        /// the likedByUsers can not be supplied in some posts
                     }
                 }
             }
 
-            foreach(User friend in m_Friends)
+            foreach (User friend in m_Friends)
             {
-                if(likedMyPosts.ContainsKey(friend))
+                if (likedMyPosts.ContainsKey(friend))
                 {
                     DateTime friendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(friend.Birthday.Substring(0, 2)), int.Parse(friend.Birthday.Substring(3, 2)));
                     if (birthdayMonthInRange(friendBirthdayDate))
@@ -278,11 +288,9 @@ namespace SortingFriends_Engine
                             }
                         }
                     }
-
-                    index++;
                 }
+                index++;
             }
-          
 
             return bestFriendIndex;
         }
@@ -348,29 +356,44 @@ namespace SortingFriends_Engine
 
             foreach (Post currentPost in m_BestFriend.WallPosts)
             {
-                foreach (User currentUser in currentPost.TaggedUsers)
+                try
                 {
-                    if (taggedUsers.ContainsKey(currentUser))
+                    foreach (User currentUser in currentPost.TaggedUsers)
                     {
-                        taggedUsers[currentUser]++;
+                        if (taggedUsers.ContainsKey(currentUser))
+                        {
+                            taggedUsers[currentUser]++;
+                        }
+                        else
+                        {
+                            taggedUsers.Add(currentUser, 1);
+                        }
                     }
-                    else
-                    {
-                        taggedUsers.Add(currentUser, 1);
-                    }
+                }
+                catch (Exception)
+                {
+                    /// the tagged users can not be supplied in some posts
                 }
             }
 
             foreach (User currentUser in taggedUsers.Keys)
             {
-                if (mostTagged == null)
+                try
                 {
-                    mostTagged = currentUser;
+                    if (mostTagged == null)
+                    {
+                        mostTagged = currentUser;
+                    }
+                    else if (taggedUsers[currentUser] > taggedUsers[mostTagged])
+                    {
+                        mostTagged = currentUser;
+                    }
                 }
-                else if (taggedUsers[currentUser] > taggedUsers[mostTagged])
+                catch (FacebookOAuthException)
                 {
-                    mostTagged = currentUser;
+                    /// the tagged users can not be supplied in some posts
                 }
+
             }
 
             return mostTagged == null ? null : mostTagged.Name;

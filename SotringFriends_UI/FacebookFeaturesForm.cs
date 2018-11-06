@@ -15,9 +15,12 @@ namespace SotringFriends_UI
             InitializeComponent();
         }
 
-        private void formClosing_Click(object sender, EventArgs e)
+        private void buttonLogout_Click(object sender, EventArgs e)
         {
             m_FeaturesEngine.LogoutUser();
+            changeButtonMeaning(ButtonFaceBookLogin,"Login",buttonLogin_Click,buttonLogout_Click);
+            changeButtonMeaning(LoginButton, "Login", buttonLogin_Click, buttonLogout_Click);
+
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -27,8 +30,8 @@ namespace SotringFriends_UI
             if (m_FeaturesEngine.UserConnected()) /// exception?
             {
                 fetchFriends();
-                changeToLogoutButton(ButtonFaceBookLogin);
-                changeToLogoutButton(LoginButton);
+                changeButtonMeaning(ButtonFaceBookLogin, "Logout", buttonLogout_Click, buttonLogin_Click);
+                changeButtonMeaning(LoginButton, "Logout", buttonLogout_Click, buttonLogin_Click);
             }
             else
             {
@@ -36,11 +39,11 @@ namespace SotringFriends_UI
             }
         }
 
-        private void changeToLogoutButton(Button i_Button)
+        private void changeButtonMeaning (Button i_Button, string i_TextButton, EventHandler i_EventToAdd, EventHandler i_EventToDelete)
         {
-            i_Button.Text = "Logout";
-            i_Button.Click -= buttonLogin_Click;
-            i_Button.Click += formClosing_Click;
+            i_Button.Text = i_TextButton;
+            i_Button.Click += i_EventToAdd;
+            i_Button.Click -= i_EventToDelete;
         }
 
         private void fetchFriends()
