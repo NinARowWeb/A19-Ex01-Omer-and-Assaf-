@@ -124,13 +124,30 @@ namespace SotringFriends_UI
                     BirthdayDateLabel.Visible = true;
                     BirthdayDateLabel.Text = m_FeaturesEngine.GetBestFriendBirthdayDate();
                     mostTaggedUser.Visible = true;
-                    mostTaggedUser.Text = m_FeaturesEngine.GetBestFriendTopTag();
+                    string bestFriendMostTaggedUser = m_FeaturesEngine.GetBestFriendTopTag();
+                    if(bestFriendMostTaggedUser != null)
+                    {
+                        mostTaggedUser.Text = bestFriendMostTaggedUser;
+                    }
+                    else
+                    {
+                        mostTaggedUser.Text = "No tags available";
+                    }
                     mostTaggedCheckin.Visible = true;
-                    mostTaggedCheckin.Text = m_FeaturesEngine.GetBestFriendTopCheckIn();
+                    string bestFriendMostTopCheckIn = m_FeaturesEngine.GetBestFriendTopCheckIn();
+                    if(bestFriendMostTopCheckIn != null)
+                    {
+                        mostTaggedCheckin.Text = bestFriendMostTopCheckIn;
+                    }
+                    else
+                    {
+                        mostTaggedCheckin.Text = "CheckIn data is not available";
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("You don't have friends who have birthday in two months");
+                    MessageBox.Show("You don't have friends who have birthday in four months");
                 }
             }
             else

@@ -39,6 +39,16 @@
             this.placeHolderLabel = new System.Windows.Forms.Label();
             this.SortByLabel = new System.Windows.Forms.Label();
             this.BirthdayEvent = new System.Windows.Forms.TabPage();
+            this.albumsText = new System.Windows.Forms.Label();
+            this.albumsLabel = new System.Windows.Forms.Label();
+            this.genderText = new System.Windows.Forms.Label();
+            this.genderLabel = new System.Windows.Forms.Label();
+            this.mostCommonCheckinLabel = new System.Windows.Forms.Label();
+            this.mostTaggedUserLabel = new System.Windows.Forms.Label();
+            this.birthdayDate = new System.Windows.Forms.Label();
+            this.fullNameLabel = new System.Windows.Forms.Label();
+            this.mostTaggedCheckin = new System.Windows.Forms.Label();
+            this.mostTaggedUser = new System.Windows.Forms.Label();
             this.CreateBirthdayEventButton = new System.Windows.Forms.Button();
             this.BirthdayDateLabel = new System.Windows.Forms.Label();
             this.BestFriendNameLabel = new System.Windows.Forms.Label();
@@ -53,16 +63,6 @@
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.ButtonFaceBookLogin = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.mostTaggedUser = new System.Windows.Forms.Label();
-            this.mostTaggedCheckin = new System.Windows.Forms.Label();
-            this.fullNameLabel = new System.Windows.Forms.Label();
-            this.birthdayDate = new System.Windows.Forms.Label();
-            this.mostTaggedUserLabel = new System.Windows.Forms.Label();
-            this.mostCommonCheckinLabel = new System.Windows.Forms.Label();
-            this.genderLabel = new System.Windows.Forms.Label();
-            this.genderText = new System.Windows.Forms.Label();
-            this.albumsLabel = new System.Windows.Forms.Label();
-            this.albumsText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             this.Features.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -88,7 +88,11 @@
             "First Name",
             "Last Name",
             "Birthday",
-            "Age"});
+            "Age",
+            "Most Posts Amount",
+            "Most Tagged Photos Amount",
+            "Most CheckIns Amount",
+            "Most Albums"});
             this.ComboBoxSortingOptions.Location = new System.Drawing.Point(19, 77);
             this.ComboBoxSortingOptions.Name = "ComboBoxSortingOptions";
             this.ComboBoxSortingOptions.Size = new System.Drawing.Size(121, 21);
@@ -205,6 +209,116 @@
             this.BirthdayEvent.TabIndex = 1;
             this.BirthdayEvent.Text = "Best Friend Birthday";
             this.BirthdayEvent.UseVisualStyleBackColor = true;
+            // 
+            // albumsText
+            // 
+            this.albumsText.AutoSize = true;
+            this.albumsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.albumsText.Location = new System.Drawing.Point(169, 236);
+            this.albumsText.Name = "albumsText";
+            this.albumsText.Size = new System.Drawing.Size(47, 13);
+            this.albumsText.TabIndex = 72;
+            this.albumsText.Text = "Albums";
+            this.albumsText.Visible = false;
+            // 
+            // albumsLabel
+            // 
+            this.albumsLabel.AutoSize = true;
+            this.albumsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.albumsLabel.Location = new System.Drawing.Point(24, 236);
+            this.albumsLabel.Name = "albumsLabel";
+            this.albumsLabel.Size = new System.Drawing.Size(51, 13);
+            this.albumsLabel.TabIndex = 71;
+            this.albumsLabel.Text = "Albums:";
+            this.albumsLabel.Visible = false;
+            // 
+            // genderText
+            // 
+            this.genderText.AutoSize = true;
+            this.genderText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.genderText.Location = new System.Drawing.Point(169, 159);
+            this.genderText.Name = "genderText";
+            this.genderText.Size = new System.Drawing.Size(48, 13);
+            this.genderText.TabIndex = 70;
+            this.genderText.Text = "Gender";
+            this.genderText.Visible = false;
+            // 
+            // genderLabel
+            // 
+            this.genderLabel.AutoSize = true;
+            this.genderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.genderLabel.Location = new System.Drawing.Point(24, 159);
+            this.genderLabel.Name = "genderLabel";
+            this.genderLabel.Size = new System.Drawing.Size(52, 13);
+            this.genderLabel.TabIndex = 69;
+            this.genderLabel.Text = "Gender:";
+            this.genderLabel.Visible = false;
+            // 
+            // mostCommonCheckinLabel
+            // 
+            this.mostCommonCheckinLabel.AutoSize = true;
+            this.mostCommonCheckinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.mostCommonCheckinLabel.Location = new System.Drawing.Point(24, 210);
+            this.mostCommonCheckinLabel.Name = "mostCommonCheckinLabel";
+            this.mostCommonCheckinLabel.Size = new System.Drawing.Size(139, 13);
+            this.mostCommonCheckinLabel.TabIndex = 68;
+            this.mostCommonCheckinLabel.Text = "Most Common Checkin:";
+            this.mostCommonCheckinLabel.Visible = false;
+            // 
+            // mostTaggedUserLabel
+            // 
+            this.mostTaggedUserLabel.AutoSize = true;
+            this.mostTaggedUserLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.mostTaggedUserLabel.Location = new System.Drawing.Point(24, 183);
+            this.mostTaggedUserLabel.Name = "mostTaggedUserLabel";
+            this.mostTaggedUserLabel.Size = new System.Drawing.Size(115, 13);
+            this.mostTaggedUserLabel.TabIndex = 67;
+            this.mostTaggedUserLabel.Text = "Most Tagged User:";
+            this.mostTaggedUserLabel.Visible = false;
+            // 
+            // birthdayDate
+            // 
+            this.birthdayDate.AutoSize = true;
+            this.birthdayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.birthdayDate.Location = new System.Drawing.Point(24, 135);
+            this.birthdayDate.Name = "birthdayDate";
+            this.birthdayDate.Size = new System.Drawing.Size(57, 13);
+            this.birthdayDate.TabIndex = 66;
+            this.birthdayDate.Text = "Birthday:";
+            this.birthdayDate.Visible = false;
+            // 
+            // fullNameLabel
+            // 
+            this.fullNameLabel.AutoSize = true;
+            this.fullNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.fullNameLabel.Location = new System.Drawing.Point(24, 112);
+            this.fullNameLabel.Name = "fullNameLabel";
+            this.fullNameLabel.Size = new System.Drawing.Size(43, 13);
+            this.fullNameLabel.TabIndex = 65;
+            this.fullNameLabel.Text = "Name:";
+            this.fullNameLabel.Visible = false;
+            // 
+            // mostTaggedCheckin
+            // 
+            this.mostTaggedCheckin.AutoSize = true;
+            this.mostTaggedCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.mostTaggedCheckin.Location = new System.Drawing.Point(169, 210);
+            this.mostTaggedCheckin.Name = "mostTaggedCheckin";
+            this.mostTaggedCheckin.Size = new System.Drawing.Size(123, 13);
+            this.mostTaggedCheckin.TabIndex = 64;
+            this.mostTaggedCheckin.Text = "MostTaggedCheckin";
+            this.mostTaggedCheckin.Visible = false;
+            // 
+            // mostTaggedUser
+            // 
+            this.mostTaggedUser.AutoSize = true;
+            this.mostTaggedUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.mostTaggedUser.Location = new System.Drawing.Point(169, 183);
+            this.mostTaggedUser.Name = "mostTaggedUser";
+            this.mostTaggedUser.Size = new System.Drawing.Size(77, 13);
+            this.mostTaggedUser.TabIndex = 63;
+            this.mostTaggedUser.Text = "MostTagged";
+            this.mostTaggedUser.Visible = false;
             // 
             // CreateBirthdayEventButton
             // 
@@ -327,116 +441,6 @@
             this.ButtonFaceBookLogin.Text = "Login";
             this.ButtonFaceBookLogin.UseVisualStyleBackColor = true;
             this.ButtonFaceBookLogin.Click += new System.EventHandler(this.buttonLogin_Click);
-            // 
-            // mostTaggedUser
-            // 
-            this.mostTaggedUser.AutoSize = true;
-            this.mostTaggedUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostTaggedUser.Location = new System.Drawing.Point(169, 183);
-            this.mostTaggedUser.Name = "mostTaggedUser";
-            this.mostTaggedUser.Size = new System.Drawing.Size(77, 13);
-            this.mostTaggedUser.TabIndex = 63;
-            this.mostTaggedUser.Text = "MostTagged";
-            this.mostTaggedUser.Visible = false;
-            // 
-            // mostTaggedCheckin
-            // 
-            this.mostTaggedCheckin.AutoSize = true;
-            this.mostTaggedCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostTaggedCheckin.Location = new System.Drawing.Point(169, 210);
-            this.mostTaggedCheckin.Name = "mostTaggedCheckin";
-            this.mostTaggedCheckin.Size = new System.Drawing.Size(123, 13);
-            this.mostTaggedCheckin.TabIndex = 64;
-            this.mostTaggedCheckin.Text = "MostTaggedCheckin";
-            this.mostTaggedCheckin.Visible = false;
-            // 
-            // fullNameLabel
-            // 
-            this.fullNameLabel.AutoSize = true;
-            this.fullNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.fullNameLabel.Location = new System.Drawing.Point(24, 112);
-            this.fullNameLabel.Name = "fullNameLabel";
-            this.fullNameLabel.Size = new System.Drawing.Size(43, 13);
-            this.fullNameLabel.TabIndex = 65;
-            this.fullNameLabel.Text = "Name:";
-            this.fullNameLabel.Visible = false;
-            // 
-            // birthdayDate
-            // 
-            this.birthdayDate.AutoSize = true;
-            this.birthdayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.birthdayDate.Location = new System.Drawing.Point(24, 135);
-            this.birthdayDate.Name = "birthdayDate";
-            this.birthdayDate.Size = new System.Drawing.Size(57, 13);
-            this.birthdayDate.TabIndex = 66;
-            this.birthdayDate.Text = "Birthday:";
-            this.birthdayDate.Visible = false;
-            // 
-            // mostTaggedUserLabel
-            // 
-            this.mostTaggedUserLabel.AutoSize = true;
-            this.mostTaggedUserLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostTaggedUserLabel.Location = new System.Drawing.Point(24, 183);
-            this.mostTaggedUserLabel.Name = "mostTaggedUserLabel";
-            this.mostTaggedUserLabel.Size = new System.Drawing.Size(115, 13);
-            this.mostTaggedUserLabel.TabIndex = 67;
-            this.mostTaggedUserLabel.Text = "Most Tagged User:";
-            this.mostTaggedUserLabel.Visible = false;
-            // 
-            // mostCommonCheckinLabel
-            // 
-            this.mostCommonCheckinLabel.AutoSize = true;
-            this.mostCommonCheckinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostCommonCheckinLabel.Location = new System.Drawing.Point(24, 210);
-            this.mostCommonCheckinLabel.Name = "mostCommonCheckinLabel";
-            this.mostCommonCheckinLabel.Size = new System.Drawing.Size(139, 13);
-            this.mostCommonCheckinLabel.TabIndex = 68;
-            this.mostCommonCheckinLabel.Text = "Most Common Checkin:";
-            this.mostCommonCheckinLabel.Visible = false;
-            // 
-            // genderLabel
-            // 
-            this.genderLabel.AutoSize = true;
-            this.genderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.genderLabel.Location = new System.Drawing.Point(24, 159);
-            this.genderLabel.Name = "genderLabel";
-            this.genderLabel.Size = new System.Drawing.Size(52, 13);
-            this.genderLabel.TabIndex = 69;
-            this.genderLabel.Text = "Gender:";
-            this.genderLabel.Visible = false;
-            // 
-            // genderText
-            // 
-            this.genderText.AutoSize = true;
-            this.genderText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.genderText.Location = new System.Drawing.Point(169, 159);
-            this.genderText.Name = "genderText";
-            this.genderText.Size = new System.Drawing.Size(48, 13);
-            this.genderText.TabIndex = 70;
-            this.genderText.Text = "Gender";
-            this.genderText.Visible = false;
-            // 
-            // albumsLabel
-            // 
-            this.albumsLabel.AutoSize = true;
-            this.albumsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.albumsLabel.Location = new System.Drawing.Point(24, 236);
-            this.albumsLabel.Name = "albumsLabel";
-            this.albumsLabel.Size = new System.Drawing.Size(51, 13);
-            this.albumsLabel.TabIndex = 71;
-            this.albumsLabel.Text = "Albums:";
-            this.albumsLabel.Visible = false;
-            // 
-            // albumsText
-            // 
-            this.albumsText.AutoSize = true;
-            this.albumsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.albumsText.Location = new System.Drawing.Point(169, 236);
-            this.albumsText.Name = "albumsText";
-            this.albumsText.Size = new System.Drawing.Size(47, 13);
-            this.albumsText.TabIndex = 72;
-            this.albumsText.Text = "Albums";
-            this.albumsText.Visible = false;
             // 
             // FacebookFeatures
             // 
