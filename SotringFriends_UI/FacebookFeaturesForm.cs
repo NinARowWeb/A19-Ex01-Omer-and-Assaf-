@@ -13,10 +13,9 @@ namespace SotringFriends_UI
         public FacebookFeatures()
         {
             InitializeComponent();
-            FormClosing += formClosing_Click;
         }
 
-        private void formClosing_Click(object sender, FormClosingEventArgs e)
+        private void formClosing_Click(object sender, EventArgs e)
         {
             m_FeaturesEngine.LogoutUser();
         }
@@ -28,11 +27,20 @@ namespace SotringFriends_UI
             if (m_FeaturesEngine.UserConnected()) /// exception?
             {
                 fetchFriends();
+                changeToLogoutButton(ButtonFaceBookLogin);
+                changeToLogoutButton(LoginButton);
             }
             else
             {
                 MessageBox.Show("Login to facebook failed");
             }
+        }
+
+        private void changeToLogoutButton(Button i_Button)
+        {
+            i_Button.Text = "Logout";
+            i_Button.Click -= buttonLogin_Click;
+            i_Button.Click += formClosing_Click;
         }
 
         private void fetchFriends()

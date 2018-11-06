@@ -238,30 +238,51 @@ namespace SortingFriends_Engine
             int bestFriendIndex = k_BestFriendNotFound;
             int index = 0;
             int bestFriendcommonFriendsAmount = 0;
+            Dictionary<User, int> likedMyPosts = new Dictionary<User, int>();
 
-            foreach (User friend in m_Friends)
+            foreach (Post currentPost in m_LoggedInUser.Posts)
             {
-                DateTime friendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(friend.Birthday.Substring(0, 2)), int.Parse(friend.Birthday.Substring(3, 2)));
-                if (birthdayMonthInRange(friendBirthdayDate))
+                foreach (User currentUser in currentPost.LikedBy)
                 {
-                    if (friend.Friends.Count > bestFriendcommonFriendsAmount)
+                    if (likedMyPosts.ContainsKey(currentUser))
                     {
-                        m_BestFriend = friend;
-                        bestFriendcommonFriendsAmount = friend.Friends.Count;
-                        bestFriendIndex = index;
+                        likedMyPosts[currentUser]++;
                     }
-                    else if (friend.Friends.Count == bestFriendcommonFriendsAmount)
+                    else if (currentUser == m_LoggedInUser)
                     {
-                        m_BestFriend = getEalierBirthdayFriend(friend, m_BestFriend);
-                        if (m_BestFriend == friend)
-                        {
-                            bestFriendIndex = index;
-                        }
+                        likedMyPosts.Add(currentUser, 1);
                     }
                 }
-
-                index++;
             }
+
+            foreach(User friend in m_Friends)
+            {
+                if(likedMyPosts.ContainsKey(friend))
+                {
+                    DateTime friendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(friend.Birthday.Substring(0, 2)), int.Parse(friend.Birthday.Substring(3, 2)));
+                    if (birthdayMonthInRange(friendBirthdayDate))
+                    {
+
+                        if (likedMyPosts[friend] > bestFriendcommonFriendsAmount)
+                        {
+                            m_BestFriend = friend;
+                            bestFriendcommonFriendsAmount = likedMyPosts[friend];
+                            bestFriendIndex = index;
+                        }
+                        else if (likedMyPosts[friend] == bestFriendcommonFriendsAmount)
+                        {
+                            m_BestFriend = getEalierBirthdayFriend(friend, m_BestFriend);
+                            if (m_BestFriend == friend)
+                            {
+                                bestFriendIndex = index;
+                            }
+                        }
+                    }
+
+                    index++;
+                }
+            }
+          
 
             return bestFriendIndex;
         }
@@ -276,7 +297,7 @@ namespace SortingFriends_Engine
 
         private bool birthdayMonthInRange(DateTime i_FriendBirthdayDate)
         {
-            return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 120;
+            return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 200;
         }
 
         public string GetBestFriendFullName()
