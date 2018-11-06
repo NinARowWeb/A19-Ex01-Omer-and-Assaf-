@@ -57,14 +57,48 @@ namespace SotringFriends_UI
             }
         }
 
+        private string getAlbumDetails()
+        {
+            string photoFromAlbum = m_FeaturesEngine.GetPictureFromAlbum(FriendsList.SelectedIndex);
+            if (photoFromAlbum != null)
+            {
+                pictureBoxAlbumPhoto.LoadAsync(photoFromAlbum);
+                LabelAlbumName.Text = m_FeaturesEngine.GetAlbumName(FriendsList.SelectedIndex);
+                LabelPhotoTitle.Text = m_FeaturesEngine.GetPictureTitle(FriendsList.SelectedIndex);
+                pictureBoxAlbumPhoto.Visible = true;
+                LabelAlbumName.Visible = true;
+                LabelPhotoTitle.Visible = true;
+                buttonNextAlbum.Visible = true;
+                buttonPrevAlbum.Visible = true;
+                buttonPrevPicture.Visible = true;
+                buttonNextPicture.Visible = true;
+            }
+            return photoFromAlbum;
+        }
+
+        private void disableAlbum(string i_Error)
+        {
+            LabelAlbumName.Visible = false;
+            LabelPhotoTitle.Visible = false;
+            buttonNextAlbum.Visible = false;
+            buttonPrevAlbum.Visible = false;
+            buttonPrevPicture.Visible = false;
+            buttonNextPicture.Visible = false;
+            MessageBox.Show(i_Error);
+        }
+
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (FriendsList.SelectedItems.Count == 1)
             {
                 string friendImageURL = m_FeaturesEngine.GetFriendPicture(FriendsList.SelectedIndex);
-
                 if (friendImageURL != null)
                 {
+                    m_FeaturesEngine.InitialAlbumIndexes();
+                    if(getAlbumDetails() == null)
+                    {
+                        disableAlbum("The user selected doesn't have albums");
+                    }
                     pictureBoxFriend.LoadAsync(friendImageURL);
                     pictureBoxFriend.Visible = true;
                 }
@@ -197,6 +231,54 @@ namespace SotringFriends_UI
             else
             {
                 MessageBox.Show("First you need to connect to your facebook account");
+            }
+        }
+
+        private void buttonPrevAlbum_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetPrevAlbumIndex())
+            {
+                getAlbumDetails();
+            }
+            else
+            {
+                MessageBox.Show("You are in the first album");
+            }
+        }
+
+        private void buttonNextAlbum_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetNextAlbumIndex(FriendsList.SelectedIndex))
+            {
+                getAlbumDetails();
+            }
+            else
+            {
+                MessageBox.Show("You are in the last album");
+            }
+        }
+
+        private void buttonPrevPicture_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetPrevPictureAlbumIndex())
+            {
+                getAlbumDetails();
+            }
+            else
+            {
+                MessageBox.Show("You are in the first picture in album");
+            }
+        }
+
+        private void buttonNextPicture_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetNextPictureAlbumIndex(FriendsList.SelectedIndex))
+            {
+                getAlbumDetails();
+            }
+            else
+            {
+                MessageBox.Show("You are in the last picture in album");
             }
         }
     }

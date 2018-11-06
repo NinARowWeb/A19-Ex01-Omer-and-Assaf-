@@ -9,11 +9,13 @@ namespace SortingFriends_Engine
 {
     public class FeaturesEngine
     {
-        private const int k_ChangePositions = 1, k_NotChangePosition = -1, k_BestFriendNotFound = -1, k_IndexNotFound = -1;
+        private const int k_NotInitialized = -1, k_ChangePositions = 1, k_NotChangePosition = -1, k_BestFriendNotFound = -1, k_IndexNotFound = -1;
         private const string k_AppId = "1027335734116799";
         private User m_LoggedInUser;
         private User m_BestFriend;
         private List<User> m_Friends;
+        private int m_AlbumPictureIndex = 0;
+        private int m_AlbumIndex = 0;
 
         public void LoginUser()
         {
@@ -57,9 +59,81 @@ namespace SortingFriends_Engine
             return friends;
         }
 
+        public string GetPictureFromAlbum(int i_FriendIndex)
+        {
+            string pictureURL = null;
+            if(m_Friends[i_FriendIndex].Albums.Count > 0 && m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos.Count > 0)
+            {
+                pictureURL = m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos[m_AlbumPictureIndex].Images[0].Source;
+            }
+            return pictureURL;
+        }
+
+        public string GetAlbumName(int i_FriendIndex)
+        {
+            return m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Name;
+        }
+
+        public string GetPictureTitle(int i_FriendIndex)
+        {
+            return m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos[m_AlbumPictureIndex].Name;
+        }
+
         public string GetFriendPicture(int i_FriendIndex)
         {
             return m_Friends[i_FriendIndex].PictureLargeURL;
+        }
+
+        public void InitialAlbumIndexes()
+        {
+            m_AlbumPictureIndex = m_AlbumIndex = 0;
+        }
+
+        public bool SetNextAlbumIndex(int i_FriendIndex)
+        {
+            bool setNextAlbumSucceed = false;
+            if (m_AlbumIndex + 1 < m_Friends[i_FriendIndex].Albums.Count)
+            {
+                setNextAlbumSucceed = true;
+                m_AlbumIndex++;
+                m_AlbumPictureIndex = 0;
+            }
+            return setNextAlbumSucceed;
+        }
+
+        public bool SetPrevAlbumIndex()
+        {
+            bool setPrevAlbumSucceed = false;
+            if(m_AlbumIndex - 1 >= 0)
+            {
+                setPrevAlbumSucceed = true;
+                m_AlbumIndex--;
+                m_AlbumPictureIndex = 0;
+            }
+            return setPrevAlbumSucceed;
+        }
+
+        public bool SetPrevPictureAlbumIndex()
+        {
+            bool setPrevPictureInAlbumSucceed = false;
+            if (m_AlbumPictureIndex - 1 >= 0)
+            {
+                setPrevPictureInAlbumSucceed = true;
+                m_AlbumPictureIndex--;
+            }
+            return setPrevPictureInAlbumSucceed;
+        }
+
+        public bool SetNextPictureAlbumIndex(int i_FriendIndex)
+        {
+            bool setNextPictureInAlbumSucceed = false;
+            if (m_AlbumPictureIndex + 1 < m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos.Count)
+            {
+                setNextPictureInAlbumSucceed = true;
+                m_AlbumPictureIndex++;
+            }
+            return setNextPictureInAlbumSucceed;
+
         }
 
         public string GetFriendBirthdayOrAgeAttribute(int i_FriendIndex, int i_SortingBySelectedIndex)

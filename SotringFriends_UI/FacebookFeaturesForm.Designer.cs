@@ -63,11 +63,19 @@
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.ButtonFaceBookLogin = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBoxAlbumPhoto = new System.Windows.Forms.PictureBox();
+            this.LabelAlbumName = new System.Windows.Forms.Label();
+            this.buttonPrevPicture = new System.Windows.Forms.Button();
+            this.buttonNextPicture = new System.Windows.Forms.Button();
+            this.buttonPrevAlbum = new System.Windows.Forms.Button();
+            this.buttonNextAlbum = new System.Windows.Forms.Button();
+            this.LabelPhotoTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             this.Features.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.BirthdayEvent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BestFriendPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).BeginInit();
             this.SuspendLayout();
             // 
             // FriendsList
@@ -101,9 +109,9 @@
             // 
             // pictureBoxFriend
             // 
-            this.pictureBoxFriend.Location = new System.Drawing.Point(417, 39);
+            this.pictureBoxFriend.Location = new System.Drawing.Point(250, 145);
             this.pictureBoxFriend.Name = "pictureBoxFriend";
-            this.pictureBoxFriend.Size = new System.Drawing.Size(371, 386);
+            this.pictureBoxFriend.Size = new System.Drawing.Size(315, 280);
             this.pictureBoxFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxFriend.TabIndex = 49;
             this.pictureBoxFriend.TabStop = false;
@@ -140,6 +148,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.LabelPhotoTitle);
+            this.tabPage1.Controls.Add(this.buttonNextAlbum);
+            this.tabPage1.Controls.Add(this.buttonPrevAlbum);
+            this.tabPage1.Controls.Add(this.buttonNextPicture);
+            this.tabPage1.Controls.Add(this.buttonPrevPicture);
+            this.tabPage1.Controls.Add(this.LabelAlbumName);
+            this.tabPage1.Controls.Add(this.pictureBoxAlbumPhoto);
             this.tabPage1.Controls.Add(this.placeHolderLabel);
             this.tabPage1.Controls.Add(this.SortByLabel);
             this.tabPage1.Controls.Add(this.pictureBoxFriend);
@@ -159,7 +174,7 @@
             // 
             this.placeHolderLabel.AutoSize = true;
             this.placeHolderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.placeHolderLabel.Location = new System.Drawing.Point(522, 446);
+            this.placeHolderLabel.Location = new System.Drawing.Point(340, 449);
             this.placeHolderLabel.Name = "placeHolderLabel";
             this.placeHolderLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.placeHolderLabel.Size = new System.Drawing.Size(125, 24);
@@ -442,6 +457,85 @@
             this.ButtonFaceBookLogin.UseVisualStyleBackColor = true;
             this.ButtonFaceBookLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
+            // pictureBoxAlbumPhoto
+            // 
+            this.pictureBoxAlbumPhoto.Location = new System.Drawing.Point(708, 145);
+            this.pictureBoxAlbumPhoto.Name = "pictureBoxAlbumPhoto";
+            this.pictureBoxAlbumPhoto.Size = new System.Drawing.Size(221, 171);
+            this.pictureBoxAlbumPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxAlbumPhoto.TabIndex = 54;
+            this.pictureBoxAlbumPhoto.TabStop = false;
+            // 
+            // LabelAlbumName
+            // 
+            this.LabelAlbumName.AutoSize = true;
+            this.LabelAlbumName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.LabelAlbumName.Location = new System.Drawing.Point(758, 361);
+            this.LabelAlbumName.Name = "LabelAlbumName";
+            this.LabelAlbumName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LabelAlbumName.Size = new System.Drawing.Size(125, 24);
+            this.LabelAlbumName.TabIndex = 55;
+            this.LabelAlbumName.Text = "AlbumName";
+            this.LabelAlbumName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelAlbumName.Visible = false;
+            // 
+            // buttonPrevPicture
+            // 
+            this.buttonPrevPicture.Location = new System.Drawing.Point(708, 402);
+            this.buttonPrevPicture.Name = "buttonPrevPicture";
+            this.buttonPrevPicture.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevPicture.TabIndex = 56;
+            this.buttonPrevPicture.Text = "Prev Picture";
+            this.buttonPrevPicture.UseVisualStyleBackColor = true;
+            this.buttonPrevPicture.Visible = false;
+            this.buttonPrevPicture.Click += new System.EventHandler(this.buttonPrevPicture_Click);
+            // 
+            // buttonNextPicture
+            // 
+            this.buttonNextPicture.Location = new System.Drawing.Point(854, 402);
+            this.buttonNextPicture.Name = "buttonNextPicture";
+            this.buttonNextPicture.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextPicture.TabIndex = 57;
+            this.buttonNextPicture.Text = "Next Picture";
+            this.buttonNextPicture.UseVisualStyleBackColor = true;
+            this.buttonNextPicture.Visible = false;
+            this.buttonNextPicture.Click += new System.EventHandler(this.buttonNextPicture_Click);
+            // 
+            // buttonPrevAlbum
+            // 
+            this.buttonPrevAlbum.Location = new System.Drawing.Point(708, 322);
+            this.buttonPrevAlbum.Name = "buttonPrevAlbum";
+            this.buttonPrevAlbum.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevAlbum.TabIndex = 58;
+            this.buttonPrevAlbum.Text = "Prev Album";
+            this.buttonPrevAlbum.UseVisualStyleBackColor = true;
+            this.buttonPrevAlbum.Visible = false;
+            this.buttonPrevAlbum.Click += new System.EventHandler(this.buttonPrevAlbum_Click);
+            // 
+            // buttonNextAlbum
+            // 
+            this.buttonNextAlbum.Location = new System.Drawing.Point(854, 322);
+            this.buttonNextAlbum.Name = "buttonNextAlbum";
+            this.buttonNextAlbum.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextAlbum.TabIndex = 59;
+            this.buttonNextAlbum.Text = "Next Album";
+            this.buttonNextAlbum.UseVisualStyleBackColor = true;
+            this.buttonNextAlbum.Visible = false;
+            this.buttonNextAlbum.Click += new System.EventHandler(this.buttonNextAlbum_Click);
+            // 
+            // LabelPhotoTitle
+            // 
+            this.LabelPhotoTitle.AutoSize = true;
+            this.LabelPhotoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.LabelPhotoTitle.Location = new System.Drawing.Point(758, 449);
+            this.LabelPhotoTitle.Name = "LabelPhotoTitle";
+            this.LabelPhotoTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LabelPhotoTitle.Size = new System.Drawing.Size(104, 24);
+            this.LabelPhotoTitle.TabIndex = 60;
+            this.LabelPhotoTitle.Text = "PhotoTitle";
+            this.LabelPhotoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.LabelPhotoTitle.Visible = false;
+            // 
             // FacebookFeatures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,6 +551,7 @@
             this.BirthdayEvent.ResumeLayout(false);
             this.BirthdayEvent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BestFriendPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).EndInit();
             this.ResumeLayout(false);
 
           }
@@ -497,6 +592,13 @@
         private System.Windows.Forms.Label albumsLabel;
         private System.Windows.Forms.Label genderText;
         private System.Windows.Forms.Label genderLabel;
+        private System.Windows.Forms.Label LabelPhotoTitle;
+        private System.Windows.Forms.Button buttonNextAlbum;
+        private System.Windows.Forms.Button buttonPrevAlbum;
+        private System.Windows.Forms.Button buttonNextPicture;
+        private System.Windows.Forms.Button buttonPrevPicture;
+        private System.Windows.Forms.Label LabelAlbumName;
+        private System.Windows.Forms.PictureBox pictureBoxAlbumPhoto;
     }
 }
 
