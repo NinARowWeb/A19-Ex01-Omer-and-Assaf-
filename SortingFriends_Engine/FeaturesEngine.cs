@@ -16,7 +16,7 @@ namespace SortingFriends_Engine
         private List<User> m_Friends;
         private int m_AlbumPictureIndex = 0;
         private int m_AlbumIndex = 0;
-
+        private readonly object r_LogoutObjectContext = new object();
         public void LoginUser()
         {
             LoginResult result = FacebookService.Login(k_AppId, "public_profile", "user_friends", "user_birthday",
@@ -30,9 +30,14 @@ namespace SortingFriends_Engine
 
         public void LogoutUser()
         {
-            if (m_LoggedInUser != null)
+            lock (r_LogoutObjectContext)
             {
-                FacebookService.Logout(null);
+                if (m_LoggedInUser != null)
+                {
+                    FacebookService.Logout(null);
+                    m_Friends.Clear();
+                    m_LoggedInUser = null;
+                }
             }
         }
 

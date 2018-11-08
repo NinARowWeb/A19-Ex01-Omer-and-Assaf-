@@ -29,69 +29,69 @@
           private void InitializeComponent()
           {
             this.components = new System.ComponentModel.Container();
-            this.FriendsList = new System.Windows.Forms.ListBox();
-            this.ComboBoxSortingOptions = new System.Windows.Forms.ComboBox();
+            this.listBoxFriends = new System.Windows.Forms.ListBox();
+            this.comboBoxSortingOptions = new System.Windows.Forms.ComboBox();
             this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
-            this.FriendsLabel = new System.Windows.Forms.Label();
-            this.LoginButton = new System.Windows.Forms.Button();
+            this.labelFriends = new System.Windows.Forms.Label();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.Features = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.labelPhotoTitle = new System.Windows.Forms.Label();
+            this.buttonNextAlbum = new System.Windows.Forms.Button();
+            this.buttonPrevAlbum = new System.Windows.Forms.Button();
+            this.buttonNextPicture = new System.Windows.Forms.Button();
+            this.buttonPrevPicture = new System.Windows.Forms.Button();
+            this.labelAlbumName = new System.Windows.Forms.Label();
+            this.pictureBoxAlbumPhoto = new System.Windows.Forms.PictureBox();
             this.placeHolderLabel = new System.Windows.Forms.Label();
-            this.SortByLabel = new System.Windows.Forms.Label();
+            this.labelSortBy = new System.Windows.Forms.Label();
             this.BirthdayEvent = new System.Windows.Forms.TabPage();
-            this.albumsText = new System.Windows.Forms.Label();
-            this.albumsLabel = new System.Windows.Forms.Label();
-            this.genderText = new System.Windows.Forms.Label();
-            this.genderLabel = new System.Windows.Forms.Label();
-            this.mostCommonCheckinLabel = new System.Windows.Forms.Label();
-            this.mostTaggedUserLabel = new System.Windows.Forms.Label();
-            this.birthdayDate = new System.Windows.Forms.Label();
-            this.fullNameLabel = new System.Windows.Forms.Label();
-            this.mostTaggedCheckin = new System.Windows.Forms.Label();
-            this.mostTaggedUser = new System.Windows.Forms.Label();
-            this.CreateBirthdayEventButton = new System.Windows.Forms.Button();
-            this.BirthdayDateLabel = new System.Windows.Forms.Label();
-            this.BestFriendNameLabel = new System.Windows.Forms.Label();
+            this.labelAlbumsText = new System.Windows.Forms.Label();
+            this.labelAlbums = new System.Windows.Forms.Label();
+            this.labelGenderText = new System.Windows.Forms.Label();
+            this.labelGender = new System.Windows.Forms.Label();
+            this.labelMostCommonCheckin = new System.Windows.Forms.Label();
+            this.labelMostTaggedUser = new System.Windows.Forms.Label();
+            this.labelBirthdayDate = new System.Windows.Forms.Label();
+            this.labelFullName = new System.Windows.Forms.Label();
+            this.labelMostTaggedCheckinText = new System.Windows.Forms.Label();
+            this.labelMostTaggedUserText = new System.Windows.Forms.Label();
+            this.buttonCreateBirthdayEvent = new System.Windows.Forms.Button();
+            this.labelBirthdayDateText = new System.Windows.Forms.Label();
+            this.labelBestFriendNameText = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.BestFriendPictureBox = new System.Windows.Forms.PictureBox();
-            this.BestFriendLabel = new System.Windows.Forms.Label();
-            this.FindBestFriendButton = new System.Windows.Forms.Button();
-            this.LocationTextBox = new System.Windows.Forms.TextBox();
-            this.DescirptionTextBox = new System.Windows.Forms.TextBox();
-            this.LocationLabel = new System.Windows.Forms.Label();
-            this.DescriptionLabel = new System.Windows.Forms.Label();
-            this.ButtonFaceBookLogin = new System.Windows.Forms.Button();
+            this.pictureBoxBestFriendPicture = new System.Windows.Forms.PictureBox();
+            this.labelBestFriend = new System.Windows.Forms.Label();
+            this.buttonFindBestFriend = new System.Windows.Forms.Button();
+            this.textBoxLocation = new System.Windows.Forms.TextBox();
+            this.textBoxDescirption = new System.Windows.Forms.TextBox();
+            this.labelLocation = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.buttonFaceBookLogin = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBoxAlbumPhoto = new System.Windows.Forms.PictureBox();
-            this.LabelAlbumName = new System.Windows.Forms.Label();
-            this.buttonPrevPicture = new System.Windows.Forms.Button();
-            this.buttonNextPicture = new System.Windows.Forms.Button();
-            this.buttonPrevAlbum = new System.Windows.Forms.Button();
-            this.buttonNextAlbum = new System.Windows.Forms.Button();
-            this.LabelPhotoTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             this.Features.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.BirthdayEvent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BestFriendPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).BeginInit();
+            this.BirthdayEvent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBestFriendPicture)).BeginInit();
             this.SuspendLayout();
             // 
-            // FriendsList
+            // listBoxFriends
             // 
-            this.FriendsList.FormattingEnabled = true;
-            this.FriendsList.Location = new System.Drawing.Point(19, 145);
-            this.FriendsList.Name = "FriendsList";
-            this.FriendsList.Size = new System.Drawing.Size(181, 355);
-            this.FriendsList.TabIndex = 51;
-            this.FriendsList.SelectedIndexChanged += new System.EventHandler(this.listBoxFriends_SelectedIndexChanged);
+            this.listBoxFriends.FormattingEnabled = true;
+            this.listBoxFriends.Location = new System.Drawing.Point(19, 145);
+            this.listBoxFriends.Name = "listBoxFriends";
+            this.listBoxFriends.Size = new System.Drawing.Size(181, 355);
+            this.listBoxFriends.TabIndex = 51;
+            this.listBoxFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxFriends_SelectedIndexChanged);
             // 
-            // ComboBoxSortingOptions
+            // comboBoxSortingOptions
             // 
-            this.ComboBoxSortingOptions.AccessibleName = "";
-            this.ComboBoxSortingOptions.FormattingEnabled = true;
-            this.ComboBoxSortingOptions.Items.AddRange(new object[] {
+            this.comboBoxSortingOptions.AccessibleName = "";
+            this.comboBoxSortingOptions.FormattingEnabled = true;
+            this.comboBoxSortingOptions.Items.AddRange(new object[] {
             "Default",
             "First Name",
             "Last Name",
@@ -101,11 +101,11 @@
             "Most Tagged Photos Amount",
             "Most CheckIns Amount",
             "Most Albums"});
-            this.ComboBoxSortingOptions.Location = new System.Drawing.Point(19, 77);
-            this.ComboBoxSortingOptions.Name = "ComboBoxSortingOptions";
-            this.ComboBoxSortingOptions.Size = new System.Drawing.Size(121, 21);
-            this.ComboBoxSortingOptions.TabIndex = 50;
-            this.ComboBoxSortingOptions.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortingOption_SelectedIndexChanged);
+            this.comboBoxSortingOptions.Location = new System.Drawing.Point(19, 77);
+            this.comboBoxSortingOptions.Name = "comboBoxSortingOptions";
+            this.comboBoxSortingOptions.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSortingOptions.TabIndex = 50;
+            this.comboBoxSortingOptions.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortingOption_SelectedIndexChanged);
             // 
             // pictureBoxFriend
             // 
@@ -116,25 +116,25 @@
             this.pictureBoxFriend.TabIndex = 49;
             this.pictureBoxFriend.TabStop = false;
             // 
-            // FriendsLabel
+            // labelFriends
             // 
-            this.FriendsLabel.AutoSize = true;
-            this.FriendsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.FriendsLabel.Location = new System.Drawing.Point(15, 112);
-            this.FriendsLabel.Name = "FriendsLabel";
-            this.FriendsLabel.Size = new System.Drawing.Size(69, 20);
-            this.FriendsLabel.TabIndex = 48;
-            this.FriendsLabel.Text = "Friends";
+            this.labelFriends.AutoSize = true;
+            this.labelFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelFriends.Location = new System.Drawing.Point(15, 112);
+            this.labelFriends.Name = "labelFriends";
+            this.labelFriends.Size = new System.Drawing.Size(69, 20);
+            this.labelFriends.TabIndex = 48;
+            this.labelFriends.Text = "Friends";
             // 
-            // LoginButton
+            // buttonLogin
             // 
-            this.LoginButton.Location = new System.Drawing.Point(19, 26);
-            this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(75, 23);
-            this.LoginButton.TabIndex = 47;
-            this.LoginButton.Text = "Login";
-            this.LoginButton.UseVisualStyleBackColor = true;
-            this.LoginButton.Click += new System.EventHandler(this.buttonLogin_Click);
+            this.buttonLogin.Location = new System.Drawing.Point(19, 26);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogin.TabIndex = 47;
+            this.buttonLogin.Text = "Login";
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // Features
             // 
@@ -148,20 +148,20 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.LabelPhotoTitle);
+            this.tabPage1.Controls.Add(this.labelPhotoTitle);
             this.tabPage1.Controls.Add(this.buttonNextAlbum);
             this.tabPage1.Controls.Add(this.buttonPrevAlbum);
             this.tabPage1.Controls.Add(this.buttonNextPicture);
             this.tabPage1.Controls.Add(this.buttonPrevPicture);
-            this.tabPage1.Controls.Add(this.LabelAlbumName);
+            this.tabPage1.Controls.Add(this.labelAlbumName);
             this.tabPage1.Controls.Add(this.pictureBoxAlbumPhoto);
             this.tabPage1.Controls.Add(this.placeHolderLabel);
-            this.tabPage1.Controls.Add(this.SortByLabel);
+            this.tabPage1.Controls.Add(this.labelSortBy);
             this.tabPage1.Controls.Add(this.pictureBoxFriend);
-            this.tabPage1.Controls.Add(this.FriendsLabel);
-            this.tabPage1.Controls.Add(this.ComboBoxSortingOptions);
-            this.tabPage1.Controls.Add(this.LoginButton);
-            this.tabPage1.Controls.Add(this.FriendsList);
+            this.tabPage1.Controls.Add(this.labelFriends);
+            this.tabPage1.Controls.Add(this.comboBoxSortingOptions);
+            this.tabPage1.Controls.Add(this.buttonLogin);
+            this.tabPage1.Controls.Add(this.listBoxFriends);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -169,6 +169,85 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sorting Friends";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // labelPhotoTitle
+            // 
+            this.labelPhotoTitle.AutoSize = true;
+            this.labelPhotoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelPhotoTitle.Location = new System.Drawing.Point(758, 449);
+            this.labelPhotoTitle.Name = "labelPhotoTitle";
+            this.labelPhotoTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelPhotoTitle.Size = new System.Drawing.Size(104, 24);
+            this.labelPhotoTitle.TabIndex = 60;
+            this.labelPhotoTitle.Text = "PhotoTitle";
+            this.labelPhotoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelPhotoTitle.Visible = false;
+            // 
+            // buttonNextAlbum
+            // 
+            this.buttonNextAlbum.Location = new System.Drawing.Point(854, 322);
+            this.buttonNextAlbum.Name = "buttonNextAlbum";
+            this.buttonNextAlbum.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextAlbum.TabIndex = 59;
+            this.buttonNextAlbum.Text = "Next Album";
+            this.buttonNextAlbum.UseVisualStyleBackColor = true;
+            this.buttonNextAlbum.Visible = false;
+            this.buttonNextAlbum.Click += new System.EventHandler(this.buttonNextAlbum_Click);
+            // 
+            // buttonPrevAlbum
+            // 
+            this.buttonPrevAlbum.Location = new System.Drawing.Point(708, 322);
+            this.buttonPrevAlbum.Name = "buttonPrevAlbum";
+            this.buttonPrevAlbum.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevAlbum.TabIndex = 58;
+            this.buttonPrevAlbum.Text = "Prev Album";
+            this.buttonPrevAlbum.UseVisualStyleBackColor = true;
+            this.buttonPrevAlbum.Visible = false;
+            this.buttonPrevAlbum.Click += new System.EventHandler(this.buttonPrevAlbum_Click);
+            // 
+            // buttonNextPicture
+            // 
+            this.buttonNextPicture.Location = new System.Drawing.Point(854, 402);
+            this.buttonNextPicture.Name = "buttonNextPicture";
+            this.buttonNextPicture.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextPicture.TabIndex = 57;
+            this.buttonNextPicture.Text = "Next Picture";
+            this.buttonNextPicture.UseVisualStyleBackColor = true;
+            this.buttonNextPicture.Visible = false;
+            this.buttonNextPicture.Click += new System.EventHandler(this.buttonNextPicture_Click);
+            // 
+            // buttonPrevPicture
+            // 
+            this.buttonPrevPicture.Location = new System.Drawing.Point(708, 402);
+            this.buttonPrevPicture.Name = "buttonPrevPicture";
+            this.buttonPrevPicture.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevPicture.TabIndex = 56;
+            this.buttonPrevPicture.Text = "Prev Picture";
+            this.buttonPrevPicture.UseVisualStyleBackColor = true;
+            this.buttonPrevPicture.Visible = false;
+            this.buttonPrevPicture.Click += new System.EventHandler(this.buttonPrevPicture_Click);
+            // 
+            // labelAlbumName
+            // 
+            this.labelAlbumName.AutoSize = true;
+            this.labelAlbumName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelAlbumName.Location = new System.Drawing.Point(758, 361);
+            this.labelAlbumName.Name = "labelAlbumName";
+            this.labelAlbumName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelAlbumName.Size = new System.Drawing.Size(125, 24);
+            this.labelAlbumName.TabIndex = 55;
+            this.labelAlbumName.Text = "AlbumName";
+            this.labelAlbumName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelAlbumName.Visible = false;
+            // 
+            // pictureBoxAlbumPhoto
+            // 
+            this.pictureBoxAlbumPhoto.Location = new System.Drawing.Point(708, 145);
+            this.pictureBoxAlbumPhoto.Name = "pictureBoxAlbumPhoto";
+            this.pictureBoxAlbumPhoto.Size = new System.Drawing.Size(221, 171);
+            this.pictureBoxAlbumPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxAlbumPhoto.TabIndex = 54;
+            this.pictureBoxAlbumPhoto.TabStop = false;
             // 
             // placeHolderLabel
             // 
@@ -183,40 +262,40 @@
             this.placeHolderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.placeHolderLabel.Visible = false;
             // 
-            // SortByLabel
+            // labelSortBy
             // 
-            this.SortByLabel.AutoSize = true;
-            this.SortByLabel.Location = new System.Drawing.Point(16, 61);
-            this.SortByLabel.Name = "SortByLabel";
-            this.SortByLabel.Size = new System.Drawing.Size(44, 13);
-            this.SortByLabel.TabIndex = 52;
-            this.SortByLabel.Text = "Sort By:";
+            this.labelSortBy.AutoSize = true;
+            this.labelSortBy.Location = new System.Drawing.Point(16, 61);
+            this.labelSortBy.Name = "labelSortBy";
+            this.labelSortBy.Size = new System.Drawing.Size(58, 13);
+            this.labelSortBy.TabIndex = 52;
+            this.labelSortBy.Text = "Sorting By:";
             // 
             // BirthdayEvent
             // 
-            this.BirthdayEvent.Controls.Add(this.albumsText);
-            this.BirthdayEvent.Controls.Add(this.albumsLabel);
-            this.BirthdayEvent.Controls.Add(this.genderText);
-            this.BirthdayEvent.Controls.Add(this.genderLabel);
-            this.BirthdayEvent.Controls.Add(this.mostCommonCheckinLabel);
-            this.BirthdayEvent.Controls.Add(this.mostTaggedUserLabel);
-            this.BirthdayEvent.Controls.Add(this.birthdayDate);
-            this.BirthdayEvent.Controls.Add(this.fullNameLabel);
-            this.BirthdayEvent.Controls.Add(this.mostTaggedCheckin);
-            this.BirthdayEvent.Controls.Add(this.mostTaggedUser);
-            this.BirthdayEvent.Controls.Add(this.CreateBirthdayEventButton);
-            this.BirthdayEvent.Controls.Add(this.BirthdayDateLabel);
-            this.BirthdayEvent.Controls.Add(this.BestFriendNameLabel);
+            this.BirthdayEvent.Controls.Add(this.labelAlbumsText);
+            this.BirthdayEvent.Controls.Add(this.labelAlbums);
+            this.BirthdayEvent.Controls.Add(this.labelGenderText);
+            this.BirthdayEvent.Controls.Add(this.labelGender);
+            this.BirthdayEvent.Controls.Add(this.labelMostCommonCheckin);
+            this.BirthdayEvent.Controls.Add(this.labelMostTaggedUser);
+            this.BirthdayEvent.Controls.Add(this.labelBirthdayDate);
+            this.BirthdayEvent.Controls.Add(this.labelFullName);
+            this.BirthdayEvent.Controls.Add(this.labelMostTaggedCheckinText);
+            this.BirthdayEvent.Controls.Add(this.labelMostTaggedUserText);
+            this.BirthdayEvent.Controls.Add(this.buttonCreateBirthdayEvent);
+            this.BirthdayEvent.Controls.Add(this.labelBirthdayDateText);
+            this.BirthdayEvent.Controls.Add(this.labelBestFriendNameText);
             this.BirthdayEvent.Controls.Add(this.label2);
             this.BirthdayEvent.Controls.Add(this.label1);
-            this.BirthdayEvent.Controls.Add(this.BestFriendPictureBox);
-            this.BirthdayEvent.Controls.Add(this.BestFriendLabel);
-            this.BirthdayEvent.Controls.Add(this.FindBestFriendButton);
-            this.BirthdayEvent.Controls.Add(this.LocationTextBox);
-            this.BirthdayEvent.Controls.Add(this.DescirptionTextBox);
-            this.BirthdayEvent.Controls.Add(this.LocationLabel);
-            this.BirthdayEvent.Controls.Add(this.DescriptionLabel);
-            this.BirthdayEvent.Controls.Add(this.ButtonFaceBookLogin);
+            this.BirthdayEvent.Controls.Add(this.pictureBoxBestFriendPicture);
+            this.BirthdayEvent.Controls.Add(this.labelBestFriend);
+            this.BirthdayEvent.Controls.Add(this.buttonFindBestFriend);
+            this.BirthdayEvent.Controls.Add(this.textBoxLocation);
+            this.BirthdayEvent.Controls.Add(this.textBoxDescirption);
+            this.BirthdayEvent.Controls.Add(this.labelLocation);
+            this.BirthdayEvent.Controls.Add(this.labelDescription);
+            this.BirthdayEvent.Controls.Add(this.buttonFaceBookLogin);
             this.BirthdayEvent.Location = new System.Drawing.Point(4, 22);
             this.BirthdayEvent.Name = "BirthdayEvent";
             this.BirthdayEvent.Padding = new System.Windows.Forms.Padding(3);
@@ -225,147 +304,147 @@
             this.BirthdayEvent.Text = "Best Friend Birthday";
             this.BirthdayEvent.UseVisualStyleBackColor = true;
             // 
-            // albumsText
+            // labelAlbumsText
             // 
-            this.albumsText.AutoSize = true;
-            this.albumsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.albumsText.Location = new System.Drawing.Point(169, 236);
-            this.albumsText.Name = "albumsText";
-            this.albumsText.Size = new System.Drawing.Size(47, 13);
-            this.albumsText.TabIndex = 72;
-            this.albumsText.Text = "Albums";
-            this.albumsText.Visible = false;
+            this.labelAlbumsText.AutoSize = true;
+            this.labelAlbumsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelAlbumsText.Location = new System.Drawing.Point(169, 236);
+            this.labelAlbumsText.Name = "labelAlbumsText";
+            this.labelAlbumsText.Size = new System.Drawing.Size(47, 13);
+            this.labelAlbumsText.TabIndex = 72;
+            this.labelAlbumsText.Text = "Albums";
+            this.labelAlbumsText.Visible = false;
             // 
-            // albumsLabel
+            // labelAlbums
             // 
-            this.albumsLabel.AutoSize = true;
-            this.albumsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.albumsLabel.Location = new System.Drawing.Point(24, 236);
-            this.albumsLabel.Name = "albumsLabel";
-            this.albumsLabel.Size = new System.Drawing.Size(51, 13);
-            this.albumsLabel.TabIndex = 71;
-            this.albumsLabel.Text = "Albums:";
-            this.albumsLabel.Visible = false;
+            this.labelAlbums.AutoSize = true;
+            this.labelAlbums.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelAlbums.Location = new System.Drawing.Point(24, 236);
+            this.labelAlbums.Name = "labelAlbums";
+            this.labelAlbums.Size = new System.Drawing.Size(51, 13);
+            this.labelAlbums.TabIndex = 71;
+            this.labelAlbums.Text = "Albums:";
+            this.labelAlbums.Visible = false;
             // 
-            // genderText
+            // labelGenderText
             // 
-            this.genderText.AutoSize = true;
-            this.genderText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.genderText.Location = new System.Drawing.Point(169, 159);
-            this.genderText.Name = "genderText";
-            this.genderText.Size = new System.Drawing.Size(48, 13);
-            this.genderText.TabIndex = 70;
-            this.genderText.Text = "Gender";
-            this.genderText.Visible = false;
+            this.labelGenderText.AutoSize = true;
+            this.labelGenderText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelGenderText.Location = new System.Drawing.Point(169, 159);
+            this.labelGenderText.Name = "labelGenderText";
+            this.labelGenderText.Size = new System.Drawing.Size(48, 13);
+            this.labelGenderText.TabIndex = 70;
+            this.labelGenderText.Text = "Gender";
+            this.labelGenderText.Visible = false;
             // 
-            // genderLabel
+            // labelGender
             // 
-            this.genderLabel.AutoSize = true;
-            this.genderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.genderLabel.Location = new System.Drawing.Point(24, 159);
-            this.genderLabel.Name = "genderLabel";
-            this.genderLabel.Size = new System.Drawing.Size(52, 13);
-            this.genderLabel.TabIndex = 69;
-            this.genderLabel.Text = "Gender:";
-            this.genderLabel.Visible = false;
+            this.labelGender.AutoSize = true;
+            this.labelGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelGender.Location = new System.Drawing.Point(24, 159);
+            this.labelGender.Name = "labelGender";
+            this.labelGender.Size = new System.Drawing.Size(52, 13);
+            this.labelGender.TabIndex = 69;
+            this.labelGender.Text = "Gender:";
+            this.labelGender.Visible = false;
             // 
-            // mostCommonCheckinLabel
+            // labelMostCommonCheckin
             // 
-            this.mostCommonCheckinLabel.AutoSize = true;
-            this.mostCommonCheckinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostCommonCheckinLabel.Location = new System.Drawing.Point(24, 210);
-            this.mostCommonCheckinLabel.Name = "mostCommonCheckinLabel";
-            this.mostCommonCheckinLabel.Size = new System.Drawing.Size(139, 13);
-            this.mostCommonCheckinLabel.TabIndex = 68;
-            this.mostCommonCheckinLabel.Text = "Most Common Checkin:";
-            this.mostCommonCheckinLabel.Visible = false;
+            this.labelMostCommonCheckin.AutoSize = true;
+            this.labelMostCommonCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelMostCommonCheckin.Location = new System.Drawing.Point(24, 210);
+            this.labelMostCommonCheckin.Name = "labelMostCommonCheckin";
+            this.labelMostCommonCheckin.Size = new System.Drawing.Size(139, 13);
+            this.labelMostCommonCheckin.TabIndex = 68;
+            this.labelMostCommonCheckin.Text = "Most Common Checkin:";
+            this.labelMostCommonCheckin.Visible = false;
             // 
-            // mostTaggedUserLabel
+            // labelMostTaggedUser
             // 
-            this.mostTaggedUserLabel.AutoSize = true;
-            this.mostTaggedUserLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostTaggedUserLabel.Location = new System.Drawing.Point(24, 183);
-            this.mostTaggedUserLabel.Name = "mostTaggedUserLabel";
-            this.mostTaggedUserLabel.Size = new System.Drawing.Size(115, 13);
-            this.mostTaggedUserLabel.TabIndex = 67;
-            this.mostTaggedUserLabel.Text = "Most Tagged User:";
-            this.mostTaggedUserLabel.Visible = false;
+            this.labelMostTaggedUser.AutoSize = true;
+            this.labelMostTaggedUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelMostTaggedUser.Location = new System.Drawing.Point(24, 183);
+            this.labelMostTaggedUser.Name = "labelMostTaggedUser";
+            this.labelMostTaggedUser.Size = new System.Drawing.Size(115, 13);
+            this.labelMostTaggedUser.TabIndex = 67;
+            this.labelMostTaggedUser.Text = "Most Tagged User:";
+            this.labelMostTaggedUser.Visible = false;
             // 
-            // birthdayDate
+            // labelBirthdayDate
             // 
-            this.birthdayDate.AutoSize = true;
-            this.birthdayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.birthdayDate.Location = new System.Drawing.Point(24, 135);
-            this.birthdayDate.Name = "birthdayDate";
-            this.birthdayDate.Size = new System.Drawing.Size(57, 13);
-            this.birthdayDate.TabIndex = 66;
-            this.birthdayDate.Text = "Birthday:";
-            this.birthdayDate.Visible = false;
+            this.labelBirthdayDate.AutoSize = true;
+            this.labelBirthdayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelBirthdayDate.Location = new System.Drawing.Point(24, 135);
+            this.labelBirthdayDate.Name = "labelBirthdayDate";
+            this.labelBirthdayDate.Size = new System.Drawing.Size(57, 13);
+            this.labelBirthdayDate.TabIndex = 66;
+            this.labelBirthdayDate.Text = "Birthday:";
+            this.labelBirthdayDate.Visible = false;
             // 
-            // fullNameLabel
+            // labelFullName
             // 
-            this.fullNameLabel.AutoSize = true;
-            this.fullNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.fullNameLabel.Location = new System.Drawing.Point(24, 112);
-            this.fullNameLabel.Name = "fullNameLabel";
-            this.fullNameLabel.Size = new System.Drawing.Size(43, 13);
-            this.fullNameLabel.TabIndex = 65;
-            this.fullNameLabel.Text = "Name:";
-            this.fullNameLabel.Visible = false;
+            this.labelFullName.AutoSize = true;
+            this.labelFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelFullName.Location = new System.Drawing.Point(24, 112);
+            this.labelFullName.Name = "labelFullName";
+            this.labelFullName.Size = new System.Drawing.Size(43, 13);
+            this.labelFullName.TabIndex = 65;
+            this.labelFullName.Text = "Name:";
+            this.labelFullName.Visible = false;
             // 
-            // mostTaggedCheckin
+            // labelMostTaggedCheckinText
             // 
-            this.mostTaggedCheckin.AutoSize = true;
-            this.mostTaggedCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostTaggedCheckin.Location = new System.Drawing.Point(169, 210);
-            this.mostTaggedCheckin.Name = "mostTaggedCheckin";
-            this.mostTaggedCheckin.Size = new System.Drawing.Size(123, 13);
-            this.mostTaggedCheckin.TabIndex = 64;
-            this.mostTaggedCheckin.Text = "MostTaggedCheckin";
-            this.mostTaggedCheckin.Visible = false;
+            this.labelMostTaggedCheckinText.AutoSize = true;
+            this.labelMostTaggedCheckinText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelMostTaggedCheckinText.Location = new System.Drawing.Point(169, 210);
+            this.labelMostTaggedCheckinText.Name = "labelMostTaggedCheckinText";
+            this.labelMostTaggedCheckinText.Size = new System.Drawing.Size(123, 13);
+            this.labelMostTaggedCheckinText.TabIndex = 64;
+            this.labelMostTaggedCheckinText.Text = "MostTaggedCheckin";
+            this.labelMostTaggedCheckinText.Visible = false;
             // 
-            // mostTaggedUser
+            // labelMostTaggedUserText
             // 
-            this.mostTaggedUser.AutoSize = true;
-            this.mostTaggedUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.mostTaggedUser.Location = new System.Drawing.Point(169, 183);
-            this.mostTaggedUser.Name = "mostTaggedUser";
-            this.mostTaggedUser.Size = new System.Drawing.Size(77, 13);
-            this.mostTaggedUser.TabIndex = 63;
-            this.mostTaggedUser.Text = "MostTagged";
-            this.mostTaggedUser.Visible = false;
+            this.labelMostTaggedUserText.AutoSize = true;
+            this.labelMostTaggedUserText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelMostTaggedUserText.Location = new System.Drawing.Point(169, 183);
+            this.labelMostTaggedUserText.Name = "labelMostTaggedUserText";
+            this.labelMostTaggedUserText.Size = new System.Drawing.Size(77, 13);
+            this.labelMostTaggedUserText.TabIndex = 63;
+            this.labelMostTaggedUserText.Text = "MostTagged";
+            this.labelMostTaggedUserText.Visible = false;
             // 
-            // CreateBirthdayEventButton
+            // buttonCreateBirthdayEvent
             // 
-            this.CreateBirthdayEventButton.Location = new System.Drawing.Point(555, 356);
-            this.CreateBirthdayEventButton.Name = "CreateBirthdayEventButton";
-            this.CreateBirthdayEventButton.Size = new System.Drawing.Size(130, 23);
-            this.CreateBirthdayEventButton.TabIndex = 62;
-            this.CreateBirthdayEventButton.Text = "Create Birthday Event";
-            this.CreateBirthdayEventButton.UseVisualStyleBackColor = true;
-            this.CreateBirthdayEventButton.Click += new System.EventHandler(this.buttonCreateBirthdayEvent_Click);
+            this.buttonCreateBirthdayEvent.Location = new System.Drawing.Point(555, 356);
+            this.buttonCreateBirthdayEvent.Name = "buttonCreateBirthdayEvent";
+            this.buttonCreateBirthdayEvent.Size = new System.Drawing.Size(130, 23);
+            this.buttonCreateBirthdayEvent.TabIndex = 62;
+            this.buttonCreateBirthdayEvent.Text = "Create Birthday Event";
+            this.buttonCreateBirthdayEvent.UseVisualStyleBackColor = true;
+            this.buttonCreateBirthdayEvent.Click += new System.EventHandler(this.buttonCreateBirthdayEvent_Click);
             // 
-            // BirthdayDateLabel
+            // labelBirthdayDateText
             // 
-            this.BirthdayDateLabel.AutoSize = true;
-            this.BirthdayDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.BirthdayDateLabel.Location = new System.Drawing.Point(169, 135);
-            this.BirthdayDateLabel.Name = "BirthdayDateLabel";
-            this.BirthdayDateLabel.Size = new System.Drawing.Size(80, 13);
-            this.BirthdayDateLabel.TabIndex = 61;
-            this.BirthdayDateLabel.Text = "BirthdayDate";
-            this.BirthdayDateLabel.Visible = false;
+            this.labelBirthdayDateText.AutoSize = true;
+            this.labelBirthdayDateText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelBirthdayDateText.Location = new System.Drawing.Point(169, 135);
+            this.labelBirthdayDateText.Name = "labelBirthdayDateText";
+            this.labelBirthdayDateText.Size = new System.Drawing.Size(80, 13);
+            this.labelBirthdayDateText.TabIndex = 61;
+            this.labelBirthdayDateText.Text = "BirthdayDate";
+            this.labelBirthdayDateText.Visible = false;
             // 
-            // BestFriendNameLabel
+            // labelBestFriendNameText
             // 
-            this.BestFriendNameLabel.AutoSize = true;
-            this.BestFriendNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.BestFriendNameLabel.Location = new System.Drawing.Point(169, 112);
-            this.BestFriendNameLabel.Name = "BestFriendNameLabel";
-            this.BestFriendNameLabel.Size = new System.Drawing.Size(107, 13);
-            this.BestFriendNameLabel.TabIndex = 60;
-            this.BestFriendNameLabel.Text = "Best Friend Name";
-            this.BestFriendNameLabel.Visible = false;
+            this.labelBestFriendNameText.AutoSize = true;
+            this.labelBestFriendNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelBestFriendNameText.Location = new System.Drawing.Point(169, 112);
+            this.labelBestFriendNameText.Name = "labelBestFriendNameText";
+            this.labelBestFriendNameText.Size = new System.Drawing.Size(107, 13);
+            this.labelBestFriendNameText.TabIndex = 60;
+            this.labelBestFriendNameText.Text = "Best Friend Name";
+            this.labelBestFriendNameText.Visible = false;
             // 
             // label2
             // 
@@ -383,158 +462,79 @@
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 58;
             // 
-            // BestFriendPictureBox
+            // pictureBoxBestFriendPicture
             // 
-            this.BestFriendPictureBox.Location = new System.Drawing.Point(27, 265);
-            this.BestFriendPictureBox.Name = "BestFriendPictureBox";
-            this.BestFriendPictureBox.Size = new System.Drawing.Size(167, 166);
-            this.BestFriendPictureBox.TabIndex = 57;
-            this.BestFriendPictureBox.TabStop = false;
-            this.BestFriendPictureBox.Visible = false;
+            this.pictureBoxBestFriendPicture.Location = new System.Drawing.Point(27, 265);
+            this.pictureBoxBestFriendPicture.Name = "pictureBoxBestFriendPicture";
+            this.pictureBoxBestFriendPicture.Size = new System.Drawing.Size(167, 166);
+            this.pictureBoxBestFriendPicture.TabIndex = 57;
+            this.pictureBoxBestFriendPicture.TabStop = false;
+            this.pictureBoxBestFriendPicture.Visible = false;
             // 
-            // BestFriendLabel
+            // labelBestFriend
             // 
-            this.BestFriendLabel.AutoSize = true;
-            this.BestFriendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.BestFriendLabel.Location = new System.Drawing.Point(16, 87);
-            this.BestFriendLabel.Name = "BestFriendLabel";
-            this.BestFriendLabel.Size = new System.Drawing.Size(144, 18);
-            this.BestFriendLabel.TabIndex = 56;
-            this.BestFriendLabel.Text = "Your Best Friend :";
+            this.labelBestFriend.AutoSize = true;
+            this.labelBestFriend.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelBestFriend.Location = new System.Drawing.Point(16, 87);
+            this.labelBestFriend.Name = "labelBestFriend";
+            this.labelBestFriend.Size = new System.Drawing.Size(144, 18);
+            this.labelBestFriend.TabIndex = 56;
+            this.labelBestFriend.Text = "Your Best Friend :";
             // 
-            // FindBestFriendButton
+            // buttonFindBestFriend
             // 
-            this.FindBestFriendButton.Location = new System.Drawing.Point(19, 55);
-            this.FindBestFriendButton.Name = "FindBestFriendButton";
-            this.FindBestFriendButton.Size = new System.Drawing.Size(112, 23);
-            this.FindBestFriendButton.TabIndex = 55;
-            this.FindBestFriendButton.Text = "Find Best Friend";
-            this.FindBestFriendButton.UseVisualStyleBackColor = true;
-            this.FindBestFriendButton.Click += new System.EventHandler(this.buttonFindBestFriend_Click);
+            this.buttonFindBestFriend.Location = new System.Drawing.Point(19, 55);
+            this.buttonFindBestFriend.Name = "buttonFindBestFriend";
+            this.buttonFindBestFriend.Size = new System.Drawing.Size(112, 23);
+            this.buttonFindBestFriend.TabIndex = 55;
+            this.buttonFindBestFriend.Text = "Find Best Friend";
+            this.buttonFindBestFriend.UseVisualStyleBackColor = true;
+            this.buttonFindBestFriend.Click += new System.EventHandler(this.buttonFindBestFriend_Click);
             // 
-            // LocationTextBox
+            // textBoxLocation
             // 
-            this.LocationTextBox.Location = new System.Drawing.Point(555, 75);
-            this.LocationTextBox.Name = "LocationTextBox";
-            this.LocationTextBox.Size = new System.Drawing.Size(100, 20);
-            this.LocationTextBox.TabIndex = 53;
+            this.textBoxLocation.Location = new System.Drawing.Point(555, 75);
+            this.textBoxLocation.Name = "textBoxLocation";
+            this.textBoxLocation.Size = new System.Drawing.Size(100, 20);
+            this.textBoxLocation.TabIndex = 53;
             // 
-            // DescirptionTextBox
+            // textBoxDescirption
             // 
-            this.DescirptionTextBox.Location = new System.Drawing.Point(555, 135);
-            this.DescirptionTextBox.Multiline = true;
-            this.DescirptionTextBox.Name = "DescirptionTextBox";
-            this.DescirptionTextBox.Size = new System.Drawing.Size(234, 180);
-            this.DescirptionTextBox.TabIndex = 52;
+            this.textBoxDescirption.Location = new System.Drawing.Point(555, 135);
+            this.textBoxDescirption.Multiline = true;
+            this.textBoxDescirption.Name = "textBoxDescirption";
+            this.textBoxDescirption.Size = new System.Drawing.Size(234, 180);
+            this.textBoxDescirption.TabIndex = 52;
             // 
-            // LocationLabel
+            // labelLocation
             // 
-            this.LocationLabel.AutoSize = true;
-            this.LocationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LocationLabel.Location = new System.Drawing.Point(481, 78);
-            this.LocationLabel.Name = "LocationLabel";
-            this.LocationLabel.Size = new System.Drawing.Size(56, 13);
-            this.LocationLabel.TabIndex = 50;
-            this.LocationLabel.Text = "Location";
+            this.labelLocation.AutoSize = true;
+            this.labelLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLocation.Location = new System.Drawing.Point(481, 78);
+            this.labelLocation.Name = "labelLocation";
+            this.labelLocation.Size = new System.Drawing.Size(56, 13);
+            this.labelLocation.TabIndex = 50;
+            this.labelLocation.Text = "Location";
             // 
-            // DescriptionLabel
+            // labelDescription
             // 
-            this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DescriptionLabel.Location = new System.Drawing.Point(481, 138);
-            this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(71, 13);
-            this.DescriptionLabel.TabIndex = 49;
-            this.DescriptionLabel.Text = "Description";
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescription.Location = new System.Drawing.Point(481, 138);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(71, 13);
+            this.labelDescription.TabIndex = 49;
+            this.labelDescription.Text = "Description";
             // 
-            // ButtonFaceBookLogin
+            // buttonFaceBookLogin
             // 
-            this.ButtonFaceBookLogin.Location = new System.Drawing.Point(19, 26);
-            this.ButtonFaceBookLogin.Name = "ButtonFaceBookLogin";
-            this.ButtonFaceBookLogin.Size = new System.Drawing.Size(75, 23);
-            this.ButtonFaceBookLogin.TabIndex = 48;
-            this.ButtonFaceBookLogin.Text = "Login";
-            this.ButtonFaceBookLogin.UseVisualStyleBackColor = true;
-            this.ButtonFaceBookLogin.Click += new System.EventHandler(this.buttonLogin_Click);
-            // 
-            // pictureBoxAlbumPhoto
-            // 
-            this.pictureBoxAlbumPhoto.Location = new System.Drawing.Point(708, 145);
-            this.pictureBoxAlbumPhoto.Name = "pictureBoxAlbumPhoto";
-            this.pictureBoxAlbumPhoto.Size = new System.Drawing.Size(221, 171);
-            this.pictureBoxAlbumPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxAlbumPhoto.TabIndex = 54;
-            this.pictureBoxAlbumPhoto.TabStop = false;
-            // 
-            // LabelAlbumName
-            // 
-            this.LabelAlbumName.AutoSize = true;
-            this.LabelAlbumName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.LabelAlbumName.Location = new System.Drawing.Point(758, 361);
-            this.LabelAlbumName.Name = "LabelAlbumName";
-            this.LabelAlbumName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LabelAlbumName.Size = new System.Drawing.Size(125, 24);
-            this.LabelAlbumName.TabIndex = 55;
-            this.LabelAlbumName.Text = "AlbumName";
-            this.LabelAlbumName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.LabelAlbumName.Visible = false;
-            // 
-            // buttonPrevPicture
-            // 
-            this.buttonPrevPicture.Location = new System.Drawing.Point(708, 402);
-            this.buttonPrevPicture.Name = "buttonPrevPicture";
-            this.buttonPrevPicture.Size = new System.Drawing.Size(75, 23);
-            this.buttonPrevPicture.TabIndex = 56;
-            this.buttonPrevPicture.Text = "Prev Picture";
-            this.buttonPrevPicture.UseVisualStyleBackColor = true;
-            this.buttonPrevPicture.Visible = false;
-            this.buttonPrevPicture.Click += new System.EventHandler(this.buttonPrevPicture_Click);
-            // 
-            // buttonNextPicture
-            // 
-            this.buttonNextPicture.Location = new System.Drawing.Point(854, 402);
-            this.buttonNextPicture.Name = "buttonNextPicture";
-            this.buttonNextPicture.Size = new System.Drawing.Size(75, 23);
-            this.buttonNextPicture.TabIndex = 57;
-            this.buttonNextPicture.Text = "Next Picture";
-            this.buttonNextPicture.UseVisualStyleBackColor = true;
-            this.buttonNextPicture.Visible = false;
-            this.buttonNextPicture.Click += new System.EventHandler(this.buttonNextPicture_Click);
-            // 
-            // buttonPrevAlbum
-            // 
-            this.buttonPrevAlbum.Location = new System.Drawing.Point(708, 322);
-            this.buttonPrevAlbum.Name = "buttonPrevAlbum";
-            this.buttonPrevAlbum.Size = new System.Drawing.Size(75, 23);
-            this.buttonPrevAlbum.TabIndex = 58;
-            this.buttonPrevAlbum.Text = "Prev Album";
-            this.buttonPrevAlbum.UseVisualStyleBackColor = true;
-            this.buttonPrevAlbum.Visible = false;
-            this.buttonPrevAlbum.Click += new System.EventHandler(this.buttonPrevAlbum_Click);
-            // 
-            // buttonNextAlbum
-            // 
-            this.buttonNextAlbum.Location = new System.Drawing.Point(854, 322);
-            this.buttonNextAlbum.Name = "buttonNextAlbum";
-            this.buttonNextAlbum.Size = new System.Drawing.Size(75, 23);
-            this.buttonNextAlbum.TabIndex = 59;
-            this.buttonNextAlbum.Text = "Next Album";
-            this.buttonNextAlbum.UseVisualStyleBackColor = true;
-            this.buttonNextAlbum.Visible = false;
-            this.buttonNextAlbum.Click += new System.EventHandler(this.buttonNextAlbum_Click);
-            // 
-            // LabelPhotoTitle
-            // 
-            this.LabelPhotoTitle.AutoSize = true;
-            this.LabelPhotoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.LabelPhotoTitle.Location = new System.Drawing.Point(758, 449);
-            this.LabelPhotoTitle.Name = "LabelPhotoTitle";
-            this.LabelPhotoTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LabelPhotoTitle.Size = new System.Drawing.Size(104, 24);
-            this.LabelPhotoTitle.TabIndex = 60;
-            this.LabelPhotoTitle.Text = "PhotoTitle";
-            this.LabelPhotoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.LabelPhotoTitle.Visible = false;
+            this.buttonFaceBookLogin.Location = new System.Drawing.Point(19, 26);
+            this.buttonFaceBookLogin.Name = "buttonFaceBookLogin";
+            this.buttonFaceBookLogin.Size = new System.Drawing.Size(75, 23);
+            this.buttonFaceBookLogin.TabIndex = 48;
+            this.buttonFaceBookLogin.Text = "Login";
+            this.buttonFaceBookLogin.UseVisualStyleBackColor = true;
+            this.buttonFaceBookLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // FacebookFeatures
             // 
@@ -548,56 +548,56 @@
             this.Features.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).EndInit();
             this.BirthdayEvent.ResumeLayout(false);
             this.BirthdayEvent.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BestFriendPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBestFriendPicture)).EndInit();
             this.ResumeLayout(false);
 
           }
 
           #endregion
 
-          private System.Windows.Forms.ListBox FriendsList;
-          private System.Windows.Forms.ComboBox ComboBoxSortingOptions;
+          private System.Windows.Forms.ListBox listBoxFriends;
+          private System.Windows.Forms.ComboBox comboBoxSortingOptions;
           private System.Windows.Forms.PictureBox pictureBoxFriend;
-          private System.Windows.Forms.Label FriendsLabel;
-          private System.Windows.Forms.Button LoginButton;
+          private System.Windows.Forms.Label labelFriends;
+          private System.Windows.Forms.Button buttonLogin;
           private System.Windows.Forms.TabControl Features;
           private System.Windows.Forms.TabPage tabPage1;
           private System.Windows.Forms.TabPage BirthdayEvent;
-          private System.Windows.Forms.TextBox LocationTextBox;
-          private System.Windows.Forms.TextBox DescirptionTextBox;
-          private System.Windows.Forms.Label LocationLabel;
-          private System.Windows.Forms.Label DescriptionLabel;
-          private System.Windows.Forms.Button ButtonFaceBookLogin;
-          private System.Windows.Forms.Label BestFriendLabel;
-          private System.Windows.Forms.Button FindBestFriendButton;
+          private System.Windows.Forms.TextBox textBoxLocation;
+          private System.Windows.Forms.TextBox textBoxDescirption;
+          private System.Windows.Forms.Label labelLocation;
+          private System.Windows.Forms.Label labelDescription;
+          private System.Windows.Forms.Button buttonFaceBookLogin;
+          private System.Windows.Forms.Label labelBestFriend;
+          private System.Windows.Forms.Button buttonFindBestFriend;
           private System.Windows.Forms.Label label2;
           private System.Windows.Forms.Label label1;
-          private System.Windows.Forms.PictureBox BestFriendPictureBox;
+          private System.Windows.Forms.PictureBox pictureBoxBestFriendPicture;
           private System.Windows.Forms.Timer timer1;
-          private System.Windows.Forms.Label BirthdayDateLabel;
-          private System.Windows.Forms.Label BestFriendNameLabel;
-          private System.Windows.Forms.Button CreateBirthdayEventButton;
-        private System.Windows.Forms.Label SortByLabel;
+          private System.Windows.Forms.Label labelBirthdayDateText;
+          private System.Windows.Forms.Label labelBestFriendNameText;
+          private System.Windows.Forms.Button buttonCreateBirthdayEvent;
+        private System.Windows.Forms.Label labelSortBy;
           private System.Windows.Forms.Label placeHolderLabel;
-        private System.Windows.Forms.Label mostTaggedUser;
-        private System.Windows.Forms.Label mostTaggedCheckin;
-        private System.Windows.Forms.Label mostCommonCheckinLabel;
-        private System.Windows.Forms.Label mostTaggedUserLabel;
-        private System.Windows.Forms.Label birthdayDate;
-        private System.Windows.Forms.Label fullNameLabel;
-        private System.Windows.Forms.Label albumsText;
-        private System.Windows.Forms.Label albumsLabel;
-        private System.Windows.Forms.Label genderText;
-        private System.Windows.Forms.Label genderLabel;
-        private System.Windows.Forms.Label LabelPhotoTitle;
+        private System.Windows.Forms.Label labelMostTaggedUserText;
+        private System.Windows.Forms.Label labelMostTaggedCheckinText;
+        private System.Windows.Forms.Label labelMostCommonCheckin;
+        private System.Windows.Forms.Label labelMostTaggedUser;
+        private System.Windows.Forms.Label labelBirthdayDate;
+        private System.Windows.Forms.Label labelFullName;
+        private System.Windows.Forms.Label labelAlbumsText;
+        private System.Windows.Forms.Label labelAlbums;
+        private System.Windows.Forms.Label labelGenderText;
+        private System.Windows.Forms.Label labelGender;
+        private System.Windows.Forms.Label labelPhotoTitle;
         private System.Windows.Forms.Button buttonNextAlbum;
         private System.Windows.Forms.Button buttonPrevAlbum;
         private System.Windows.Forms.Button buttonNextPicture;
         private System.Windows.Forms.Button buttonPrevPicture;
-        private System.Windows.Forms.Label LabelAlbumName;
+        private System.Windows.Forms.Label labelAlbumName;
         private System.Windows.Forms.PictureBox pictureBoxAlbumPhoto;
     }
 }

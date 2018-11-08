@@ -15,11 +15,56 @@ namespace SotringFriends_UI
             InitializeComponent();
         }
 
+        private void disableFirstFeatureControls()
+        {
+            pictureBoxFriend.Visible = false;
+            placeHolderLabel.Visible = false;
+            pictureBoxAlbumPhoto.Visible = false;
+            labelAlbumName.Visible = false;
+            labelPhotoTitle.Visible = false;
+            buttonNextAlbum.Visible = false;
+            buttonPrevAlbum.Visible = false;
+            buttonPrevPicture.Visible = false;
+            buttonNextPicture.Visible = false;
+        }
+
+        private void disableSecondFeatureControls()
+        {
+            labelFullName.Visible = false;
+            labelBirthdayDate.Visible = false;
+            labelGender.Visible = false; 
+            labelMostTaggedUser.Visible = false;
+            labelMostCommonCheckin.Visible = false; 
+            labelAlbums.Visible = false;
+            labelBestFriendNameText.Text = "";
+            labelBestFriendNameText.Visible = false;
+            labelBirthdayDateText.Text = "";
+            labelBirthdayDateText.Visible = false;
+            labelGenderText.Text = "";
+            labelGenderText.Visible = false;
+            labelMostTaggedUserText.Text = "";
+            labelMostTaggedUserText.Visible = false;
+            labelMostTaggedCheckinText.Text = "";
+            labelMostTaggedCheckinText.Visible = false;
+            labelAlbumsText.Text = "";
+            labelAlbumsText.Visible = false;
+            pictureBoxBestFriendPicture.Visible = false;
+
+
+        }
+
+        private void disableControls()
+        {
+            disableFirstFeatureControls();
+            disableSecondFeatureControls();
+        }
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             m_FeaturesEngine.LogoutUser();
-            changeButtonMeaning(ButtonFaceBookLogin,"Login",buttonLogin_Click,buttonLogout_Click);
-            changeButtonMeaning(LoginButton, "Login", buttonLogin_Click, buttonLogout_Click);
+            fetchFriends();
+            disableControls();
+            changeButtonMeaning(buttonFaceBookLogin,"Login",buttonLogin_Click,buttonLogout_Click);
+            changeButtonMeaning(buttonLogin, "Login", buttonLogin_Click, buttonLogout_Click);
 
         }
 
@@ -30,8 +75,8 @@ namespace SotringFriends_UI
             if (m_FeaturesEngine.UserConnected()) /// exception?
             {
                 fetchFriends();
-                changeButtonMeaning(ButtonFaceBookLogin, "Logout", buttonLogout_Click, buttonLogin_Click);
-                changeButtonMeaning(LoginButton, "Logout", buttonLogout_Click, buttonLogin_Click);
+                changeButtonMeaning(buttonFaceBookLogin, "Logout", buttonLogout_Click, buttonLogin_Click);
+                changeButtonMeaning(buttonLogin, "Logout", buttonLogout_Click, buttonLogin_Click);
             }
             else
             {
@@ -50,24 +95,24 @@ namespace SotringFriends_UI
         {
             List<string> friendsName = m_FeaturesEngine.GetFriends();
 
-            FriendsList.Items.Clear();
+            listBoxFriends.Items.Clear();
             foreach (string friendName in friendsName)
             {
-                FriendsList.Items.Add(friendName);
+                listBoxFriends.Items.Add(friendName);
             }
         }
 
         private string getAlbumDetails()
         {
-            string photoFromAlbum = m_FeaturesEngine.GetPictureFromAlbum(FriendsList.SelectedIndex);
+            string photoFromAlbum = m_FeaturesEngine.GetPictureFromAlbum(listBoxFriends.SelectedIndex);
             if (photoFromAlbum != null)
             {
                 pictureBoxAlbumPhoto.LoadAsync(photoFromAlbum);
-                LabelAlbumName.Text = m_FeaturesEngine.GetAlbumName(FriendsList.SelectedIndex);
-                LabelPhotoTitle.Text = m_FeaturesEngine.GetPictureTitle(FriendsList.SelectedIndex);
+                labelAlbumName.Text = m_FeaturesEngine.GetAlbumName(listBoxFriends.SelectedIndex);
+                labelPhotoTitle.Text = m_FeaturesEngine.GetPictureTitle(listBoxFriends.SelectedIndex);
                 pictureBoxAlbumPhoto.Visible = true;
-                LabelAlbumName.Visible = true;
-                LabelPhotoTitle.Visible = true;
+                labelAlbumName.Visible = true;
+                labelPhotoTitle.Visible = true;
                 buttonNextAlbum.Visible = true;
                 buttonPrevAlbum.Visible = true;
                 buttonPrevPicture.Visible = true;
@@ -78,8 +123,8 @@ namespace SotringFriends_UI
 
         private void disableAlbum(string i_Error)
         {
-            LabelAlbumName.Visible = false;
-            LabelPhotoTitle.Visible = false;
+            labelAlbumName.Visible = false;
+            labelPhotoTitle.Visible = false;
             buttonNextAlbum.Visible = false;
             buttonPrevAlbum.Visible = false;
             buttonPrevPicture.Visible = false;
@@ -89,9 +134,9 @@ namespace SotringFriends_UI
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FriendsList.SelectedItems.Count == 1)
+            if (listBoxFriends.SelectedItems.Count == 1)
             {
-                string friendImageURL = m_FeaturesEngine.GetFriendPicture(FriendsList.SelectedIndex);
+                string friendImageURL = m_FeaturesEngine.GetFriendPicture(listBoxFriends.SelectedIndex);
                 if (friendImageURL != null)
                 {
                     m_FeaturesEngine.InitialAlbumIndexes();
@@ -117,7 +162,7 @@ namespace SotringFriends_UI
 
         private void setBirthdayOrAgeAttribute()
         {
-            string attribute = m_FeaturesEngine.GetFriendBirthdayOrAgeAttribute(FriendsList.SelectedIndex, ComboBoxSortingOptions.SelectedIndex);
+            string attribute = m_FeaturesEngine.GetFriendBirthdayOrAgeAttribute(listBoxFriends.SelectedIndex, comboBoxSortingOptions.SelectedIndex);
             if (attribute != null)
             {
                 placeHolderLabel.Text = attribute;
@@ -133,9 +178,9 @@ namespace SotringFriends_UI
         {
             if (m_FeaturesEngine.UserConnected())
             {
-                m_FeaturesEngine.SortFriends(ComboBoxSortingOptions.SelectedIndex);
+                m_FeaturesEngine.SortFriends(comboBoxSortingOptions.SelectedIndex);
                 fetchFriends();
-                pictureBoxFriend.Visible = false;
+                disableFirstFeatureControls();
                 setBirthdayOrAgeAttribute();
             }
             else
@@ -152,41 +197,41 @@ namespace SotringFriends_UI
 
                 if (bestFriendIndex != k_BestFriendNotFoundIndex)
                 {
-                    mostCommonCheckinLabel.Visible = true;
-                    mostTaggedUserLabel.Visible = true;
-                    fullNameLabel.Visible = true;
-                    birthdayDate.Visible = true;
-                    genderLabel.Visible = true;
-                    albumsLabel.Visible = true;
-                    albumsText.Visible = true;
-                    albumsText.Text = m_FeaturesEngine.GetBestFriendAmountOfAlbums().ToString();
-                    genderText.Visible = true;
-                    genderText.Text = m_FeaturesEngine.GetBestFriendGender();
-                    BestFriendNameLabel.Visible = true;
-                    BestFriendNameLabel.Text = m_FeaturesEngine.GetBestFriendFullName();
-                    BestFriendPictureBox.Visible = true;
-                    BestFriendPictureBox.LoadAsync(m_FeaturesEngine.GetFriendPicture(bestFriendIndex));
-                    BirthdayDateLabel.Visible = true;
-                    BirthdayDateLabel.Text = m_FeaturesEngine.GetBestFriendBirthdayDate();
-                    mostTaggedUser.Visible = true;
+                    labelMostCommonCheckin.Visible = true;
+                    labelMostTaggedUser.Visible = true;
+                    labelFullName.Visible = true;
+                    labelBirthdayDate.Visible = true;
+                    labelGender.Visible = true;
+                    labelAlbums.Visible = true;
+                    labelAlbumsText.Visible = true;
+                    labelAlbumsText.Text = m_FeaturesEngine.GetBestFriendAmountOfAlbums().ToString();
+                    labelGenderText.Visible = true;
+                    labelGenderText.Text = m_FeaturesEngine.GetBestFriendGender();
+                    labelBestFriendNameText.Visible = true;
+                    labelBestFriendNameText.Text = m_FeaturesEngine.GetBestFriendFullName();
+                    pictureBoxBestFriendPicture.Visible = true;
+                    pictureBoxBestFriendPicture.LoadAsync(m_FeaturesEngine.GetFriendPicture(bestFriendIndex));
+                    labelBirthdayDateText.Visible = true;
+                    labelBirthdayDateText.Text = m_FeaturesEngine.GetBestFriendBirthdayDate();
+                    labelMostTaggedUserText.Visible = true;
                     string bestFriendMostTaggedUser = m_FeaturesEngine.GetBestFriendTopTag();
                     if(bestFriendMostTaggedUser != null)
                     {
-                        mostTaggedUser.Text = bestFriendMostTaggedUser;
+                        labelMostTaggedUserText.Text = bestFriendMostTaggedUser;
                     }
                     else
                     {
-                        mostTaggedUser.Text = "No tags available";
+                        labelMostTaggedUserText.Text = "No tags available";
                     }
-                    mostTaggedCheckin.Visible = true;
+                    labelMostTaggedCheckinText.Visible = true;
                     string bestFriendMostTopCheckIn = m_FeaturesEngine.GetBestFriendTopCheckIn();
                     if(bestFriendMostTopCheckIn != null)
                     {
-                        mostTaggedCheckin.Text = bestFriendMostTopCheckIn;
+                        labelMostTaggedCheckinText.Text = bestFriendMostTopCheckIn;
                     }
                     else
                     {
-                        mostTaggedCheckin.Text = "CheckIn data is not available";
+                        labelMostTaggedCheckinText.Text = "CheckIn data is not available";
                     }
 
                 }
@@ -207,18 +252,20 @@ namespace SotringFriends_UI
             {
                 if (m_FeaturesEngine.IsBestFriendExist())
                 {
-                    if (string.IsNullOrEmpty(DescirptionTextBox.Text))
+                    if (string.IsNullOrEmpty(textBoxDescirption.Text))
                     {
                         MessageBox.Show("The decription can't be empty");
                     }
-                    else if (string.IsNullOrEmpty(LocationTextBox.Text))
+                    else if (string.IsNullOrEmpty(textBoxLocation.Text))
                     {
                         MessageBox.Show("The location can't be empty");
                     }
                     else
                     {
-                        if (!m_FeaturesEngine.CreateEvent(DescirptionTextBox.Text, LocationTextBox.Text))
+                        if (!m_FeaturesEngine.CreateEvent(textBoxDescirption.Text, textBoxLocation.Text))
                         {
+                            textBoxDescirption.Text = "";
+                            textBoxLocation.Text = "";
                             MessageBox.Show("suprise party event should be created. the feature blocked from version 2.0");
                         }
                     }
@@ -248,7 +295,7 @@ namespace SotringFriends_UI
 
         private void buttonNextAlbum_Click(object sender, EventArgs e)
         {
-            if (m_FeaturesEngine.SetNextAlbumIndex(FriendsList.SelectedIndex))
+            if (m_FeaturesEngine.SetNextAlbumIndex(listBoxFriends.SelectedIndex))
             {
                 getAlbumDetails();
             }
@@ -272,7 +319,7 @@ namespace SotringFriends_UI
 
         private void buttonNextPicture_Click(object sender, EventArgs e)
         {
-            if (m_FeaturesEngine.SetNextPictureAlbumIndex(FriendsList.SelectedIndex))
+            if (m_FeaturesEngine.SetNextPictureAlbumIndex(listBoxFriends.SelectedIndex))
             {
                 getAlbumDetails();
             }
