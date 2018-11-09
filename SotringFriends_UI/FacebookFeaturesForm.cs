@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SortingFriends_Engine;
+using System.Reflection;
+using eSortingByEnum;
+using System.ComponentModel;
 
 namespace SotringFriends_UI
 {
@@ -20,10 +23,10 @@ namespace SotringFriends_UI
             pictureBoxFriend.Visible = false;
             placeHolderLabel.Visible = false;
             pictureBoxAlbumPhoto.Visible = false;
-            labelAlbumName.Visible = false;
+            labelAttributePlaceHolder.Visible = false;
             labelPhotoTitle.Visible = false;
-            buttonNextAlbum.Visible = false;
-            buttonPrevAlbum.Visible = false;
+            buttonNextPlaceHolder.Visible = false;
+            buttonPrevPlaceHolder.Visible = false;
             buttonPrevPicture.Visible = false;
             buttonNextPicture.Visible = false;
         }
@@ -32,9 +35,9 @@ namespace SotringFriends_UI
         {
             labelFullName.Visible = false;
             labelBirthdayDate.Visible = false;
-            labelGender.Visible = false; 
+            labelGender.Visible = false;
             labelMostTaggedUser.Visible = false;
-            labelMostCommonCheckin.Visible = false; 
+            labelMostCommonCheckin.Visible = false;
             labelAlbums.Visible = false;
             labelBestFriendNameText.Text = "";
             labelBestFriendNameText.Visible = false;
@@ -49,11 +52,9 @@ namespace SotringFriends_UI
             labelAlbumsText.Text = "";
             labelAlbumsText.Visible = false;
             pictureBoxBestFriendPicture.Visible = false;
-
-
         }
 
-        private void disableControls()
+        private void disableWholeControls()
         {
             disableFirstFeatureControls();
             disableSecondFeatureControls();
@@ -62,8 +63,8 @@ namespace SotringFriends_UI
         {
             m_FeaturesEngine.LogoutUser();
             fetchFriends();
-            disableControls();
-            changeButtonMeaning(buttonFaceBookLogin,"Login",buttonLogin_Click,buttonLogout_Click);
+            disableWholeControls();
+            changeButtonMeaning(buttonFaceBookLogin, "Login", buttonLogin_Click, buttonLogout_Click);
             changeButtonMeaning(buttonLogin, "Login", buttonLogin_Click, buttonLogout_Click);
 
         }
@@ -84,11 +85,22 @@ namespace SotringFriends_UI
             }
         }
 
-        private void changeButtonMeaning (Button i_Button, string i_TextButton, EventHandler i_EventToAdd, EventHandler i_EventToDelete)
+        private void clearEvents(Button i_Button)
         {
+            FieldInfo f1 = typeof(Control).GetField("EventClick",
+            BindingFlags.Static | BindingFlags.NonPublic);
+            object obj = f1.GetValue(i_Button);
+            PropertyInfo pi = i_Button.GetType().GetProperty("Events",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            EventHandlerList list = (EventHandlerList)pi.GetValue(i_Button, null);
+            list.RemoveHandler(obj, list[obj]);
+        }
+
+        private void changeButtonMeaning(Button i_Button, string i_TextButton, EventHandler i_EventToAdd, EventHandler i_EventToDelete)
+        {
+            clearEvents(i_Button);
             i_Button.Text = i_TextButton;
             i_Button.Click += i_EventToAdd;
-            i_Button.Click -= i_EventToDelete;
         }
 
         private void fetchFriends()
@@ -102,34 +114,120 @@ namespace SotringFriends_UI
             }
         }
 
+        private string getPosts()
+        {
+            string post = m_FeaturesEngine.GetPost(listBoxFriends.SelectedIndex);
+            if (post != null)
+            {
+                labelAttributePlaceHolder.Text = post;
+            }
+            return post;
+        }
+
+        private string getTags()
+        {
+            string tag = m_FeaturesEngine.GetTag(listBoxFriends.SelectedIndex);
+            if (tag != null)
+            {
+                labelAttributePlaceHolder.Text = tag;
+            }
+            return tag;
+        }
+
+        private string getCheckin()
+        {
+            string checkin = m_FeaturesEngine.GetCheckin(listBoxFriends.SelectedIndex);
+            if (checkin != null)
+            {
+                labelAttributePlaceHolder.Text = checkin;
+            }
+            return checkin;
+        }
+
         private string getAlbumDetails()
         {
             string photoFromAlbum = m_FeaturesEngine.GetPictureFromAlbum(listBoxFriends.SelectedIndex);
             if (photoFromAlbum != null)
             {
                 pictureBoxAlbumPhoto.LoadAsync(photoFromAlbum);
-                labelAlbumName.Text = m_FeaturesEngine.GetAlbumName(listBoxFriends.SelectedIndex);
+                labelAttributePlaceHolder.Text = m_FeaturesEngine.GetAlbumName(listBoxFriends.SelectedIndex);
                 labelPhotoTitle.Text = m_FeaturesEngine.GetPictureTitle(listBoxFriends.SelectedIndex);
                 pictureBoxAlbumPhoto.Visible = true;
-                labelAlbumName.Visible = true;
+                labelAttributePlaceHolder.Visible = true;
                 labelPhotoTitle.Visible = true;
-                buttonNextAlbum.Visible = true;
-                buttonPrevAlbum.Visible = true;
+                buttonNextPlaceHolder.Visible = true;
+                buttonPrevPlaceHolder.Visible = true;
                 buttonPrevPicture.Visible = true;
                 buttonNextPicture.Visible = true;
             }
             return photoFromAlbum;
         }
 
+        private void clearButtonsEvents(params Button[] i_ListButtons)
+        {
+            foreach (Button currentButton in i_ListButtons)
+            {
+                clearEvents(currentButton);
+            }
+        }
+
+        private void setVisibilityControls(bool i_Visiblity, params Control[] i_ControlsList)
+        {
+            foreach (Control currentControl in i_ControlsList)
+            {
+                currentControl.Visible = i_Visiblity;
+            }
+        }
+
+
         private void disableAlbum(string i_Error)
         {
-            labelAlbumName.Visible = false;
+            labelAttributePlaceHolder.Visible = false;
             labelPhotoTitle.Visible = false;
-            buttonNextAlbum.Visible = false;
-            buttonPrevAlbum.Visible = false;
+            buttonNextPlaceHolder.Visible = false;
+            buttonPrevPlaceHolder.Visible = false;
             buttonPrevPicture.Visible = false;
             buttonNextPicture.Visible = false;
             MessageBox.Show(i_Error);
+        }
+
+        private void suitFunctionalityBySelectedIndex()
+        {
+            m_FeaturesEngine.InitialAlbumIndexes();
+            switch ((eSortingBy)comboBoxSortingOptions.SelectedIndex)
+            {
+                case eSortingBy.Age:
+                    {
+                        setBirthdayOrAgeAttribute();
+                        break;
+                    }
+                case eSortingBy.Birthday:
+                    {
+                        setBirthdayOrAgeAttribute();
+                        break;
+                    }
+                case eSortingBy.MostAlbums:
+                    {
+                        setAlbumsAttributes();
+                        break;
+                    }
+                case eSortingBy.MostPosts:
+                    {
+                        setPostsAttributes();
+                        break;
+                    }
+                case eSortingBy.MostCheckIns:
+                    {
+                        setCheckInsAttributes();
+                        break;
+                    }
+                case eSortingBy.MostTags:
+                    {
+                        setTagsAttributes();
+                        break;
+                    }
+            }
+
         }
 
         private void listBoxFriends_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,11 +237,7 @@ namespace SotringFriends_UI
                 string friendImageURL = m_FeaturesEngine.GetFriendPicture(listBoxFriends.SelectedIndex);
                 if (friendImageURL != null)
                 {
-                    m_FeaturesEngine.InitialAlbumIndexes();
-                    if(getAlbumDetails() == null)
-                    {
-                        disableAlbum("The user selected doesn't have albums");
-                    }
+                    suitFunctionalityBySelectedIndex();
                     pictureBoxFriend.LoadAsync(friendImageURL);
                     pictureBoxFriend.Visible = true;
                 }
@@ -151,8 +245,6 @@ namespace SotringFriends_UI
                 {
                     pictureBoxFriend.Image = pictureBoxFriend.ErrorImage;
                 }
-
-                setBirthdayOrAgeAttribute();
             }
             else
             {
@@ -174,18 +266,91 @@ namespace SotringFriends_UI
             }
         }
 
+        private void setTagsAttributes()
+        {
+            if (getTags() != null)
+            {
+                buttonPrevPlaceHolder.Text = "Prev Tag";
+                buttonNextPlaceHolder.Text = "Next Tag";
+                buttonPrevPlaceHolder.Click += buttonPrevTag_Click;
+                buttonNextPlaceHolder.Click += buttonNextTag_Click;
+                setVisibilityControls(true, labelAttributePlaceHolder, buttonPrevPlaceHolder, buttonNextPlaceHolder);
+            }
+            else
+            {
+                MessageBox.Show("The user doesn't have Tags");
+                setVisibilityControls(false, buttonPrevPicture, buttonNextPicture);
+            }
+        }
+
+
+        private void setCheckInsAttributes()
+        {
+            if (getCheckin() != null)
+            {
+                buttonPrevPlaceHolder.Text = "Prev Checkin";
+                buttonNextPlaceHolder.Text = "Next Checkin";
+                buttonPrevPlaceHolder.Click += buttonPrevCheckIn_Click;
+                buttonNextPlaceHolder.Click += buttonNextCheckIn_Click;
+                setVisibilityControls(true, labelAttributePlaceHolder, buttonPrevPlaceHolder, buttonNextPlaceHolder);
+            }
+            else
+            {
+                MessageBox.Show("The user doesn't have checkins");
+                setVisibilityControls(false, buttonPrevPicture, buttonNextPicture);
+            }
+        }
+
+        private void setPostsAttributes()
+        {
+            if (getPosts() != null)
+            {
+                buttonPrevPlaceHolder.Text = "Prev Post";
+                buttonNextPlaceHolder.Text = "Next Post";
+                buttonPrevPlaceHolder.Click += buttonPrevPost_Click;
+                buttonNextPlaceHolder.Click += buttonNextPost_Click;
+                setVisibilityControls(true, labelAttributePlaceHolder, buttonPrevPlaceHolder, buttonNextPlaceHolder);
+            }
+            else
+            {
+                MessageBox.Show("The user doesn't have posts");
+                setVisibilityControls(false,labelAttributePlaceHolder, buttonPrevPicture, buttonNextPicture);
+            }
+        }
+
         private void comboBoxSortingOption_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (m_FeaturesEngine.UserConnected())
             {
                 m_FeaturesEngine.SortFriends(comboBoxSortingOptions.SelectedIndex);
+                clearButtonsEvents(buttonNextPlaceHolder, buttonPrevPlaceHolder, buttonNextPicture, buttonPrevPicture);
                 fetchFriends();
                 disableFirstFeatureControls();
-                setBirthdayOrAgeAttribute();
             }
             else
             {
                 MessageBox.Show("You need to Log-In to facebook");
+            }
+        }
+
+        private void setAlbumsAttributes()
+        {
+            if (getAlbumDetails() != null)
+            {
+                buttonNextPlaceHolder.Text = "Next Album";
+                buttonPrevPlaceHolder.Text = "Prev Album";
+                buttonPrevPicture.Visible = true;
+                buttonNextPicture.Visible = true;
+                labelPhotoTitle.Visible = true;
+                buttonNextPlaceHolder.Click += buttonNextAlbum_Click;
+                buttonPrevPlaceHolder.Click += buttonPrevAlbum_Click;
+                buttonNextPicture.Click += buttonNextPicture_Click;
+                buttonPrevPicture.Click += buttonPrevPicture_Click;
+                setVisibilityControls(true, labelAttributePlaceHolder, buttonPrevPlaceHolder, buttonNextPlaceHolder);
+            }
+            else
+            {
+                disableAlbum("The user selected doesn't have albums");
             }
         }
 
@@ -215,7 +380,7 @@ namespace SotringFriends_UI
                     labelBirthdayDateText.Text = m_FeaturesEngine.GetBestFriendBirthdayDate();
                     labelMostTaggedUserText.Visible = true;
                     string bestFriendMostTaggedUser = m_FeaturesEngine.GetBestFriendTopTag();
-                    if(bestFriendMostTaggedUser != null)
+                    if (bestFriendMostTaggedUser != null)
                     {
                         labelMostTaggedUserText.Text = bestFriendMostTaggedUser;
                     }
@@ -225,7 +390,7 @@ namespace SotringFriends_UI
                     }
                     labelMostTaggedCheckinText.Visible = true;
                     string bestFriendMostTopCheckIn = m_FeaturesEngine.GetBestFriendTopCheckIn();
-                    if(bestFriendMostTopCheckIn != null)
+                    if (bestFriendMostTopCheckIn != null)
                     {
                         labelMostTaggedCheckinText.Text = bestFriendMostTopCheckIn;
                     }
@@ -283,7 +448,7 @@ namespace SotringFriends_UI
 
         private void buttonPrevAlbum_Click(object sender, EventArgs e)
         {
-            if (m_FeaturesEngine.SetPrevAlbumIndex())
+            if (m_FeaturesEngine.SetPrevPlaceHolderIndex())
             {
                 getAlbumDetails();
             }
@@ -326,6 +491,78 @@ namespace SotringFriends_UI
             else
             {
                 MessageBox.Show("You are in the last picture in album");
+            }
+        }
+
+        private void buttonPrevCheckIn_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetPrevPlaceHolderIndex())
+            {
+                getCheckin();
+            }
+            else
+            {
+                MessageBox.Show("You are in the first checkin");
+            }
+        }
+
+        private void buttonNextCheckIn_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetNextCheckinIndex(listBoxFriends.SelectedIndex))
+            {
+                getCheckin();
+            }
+            else
+            {
+                MessageBox.Show("You are in the last checkin");
+            }
+        }
+
+        private void buttonPrevPost_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetPrevPlaceHolderIndex())
+            {
+                getPosts();
+            }
+            else
+            {
+                MessageBox.Show("You are in the first post");
+            }
+        }
+
+        private void buttonNextPost_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetNextPostIndex(listBoxFriends.SelectedIndex))
+            {
+                getPosts();
+            }
+            else
+            {
+                MessageBox.Show("You are in the last post");
+            }
+        }
+
+        private void buttonPrevTag_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetPrevPlaceHolderIndex())
+            {
+                getTags();
+            }
+            else
+            {
+                MessageBox.Show("You are in the first tag");
+            }
+        }
+
+        private void buttonNextTag_Click(object sender, EventArgs e)
+        {
+            if (m_FeaturesEngine.SetNextTagIndex(listBoxFriends.SelectedIndex))
+            {
+                getTags();
+            }
+            else
+            {
+                MessageBox.Show("You are in the last tag");
             }
         }
     }

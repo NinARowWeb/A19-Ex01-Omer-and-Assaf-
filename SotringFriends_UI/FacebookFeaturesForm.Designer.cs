@@ -37,11 +37,11 @@
             this.Features = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.labelPhotoTitle = new System.Windows.Forms.Label();
-            this.buttonNextAlbum = new System.Windows.Forms.Button();
-            this.buttonPrevAlbum = new System.Windows.Forms.Button();
+            this.buttonNextPlaceHolder = new System.Windows.Forms.Button();
+            this.buttonPrevPlaceHolder = new System.Windows.Forms.Button();
             this.buttonNextPicture = new System.Windows.Forms.Button();
             this.buttonPrevPicture = new System.Windows.Forms.Button();
-            this.labelAlbumName = new System.Windows.Forms.Label();
+            this.labelAttributePlaceHolder = new System.Windows.Forms.Label();
             this.pictureBoxAlbumPhoto = new System.Windows.Forms.PictureBox();
             this.placeHolderLabel = new System.Windows.Forms.Label();
             this.labelSortBy = new System.Windows.Forms.Label();
@@ -149,11 +149,11 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.labelPhotoTitle);
-            this.tabPage1.Controls.Add(this.buttonNextAlbum);
-            this.tabPage1.Controls.Add(this.buttonPrevAlbum);
+            this.tabPage1.Controls.Add(this.buttonNextPlaceHolder);
+            this.tabPage1.Controls.Add(this.buttonPrevPlaceHolder);
             this.tabPage1.Controls.Add(this.buttonNextPicture);
             this.tabPage1.Controls.Add(this.buttonPrevPicture);
-            this.tabPage1.Controls.Add(this.labelAlbumName);
+            this.tabPage1.Controls.Add(this.labelAttributePlaceHolder);
             this.tabPage1.Controls.Add(this.pictureBoxAlbumPhoto);
             this.tabPage1.Controls.Add(this.placeHolderLabel);
             this.tabPage1.Controls.Add(this.labelSortBy);
@@ -174,7 +174,7 @@
             // 
             this.labelPhotoTitle.AutoSize = true;
             this.labelPhotoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelPhotoTitle.Location = new System.Drawing.Point(758, 449);
+            this.labelPhotoTitle.Location = new System.Drawing.Point(640, 449);
             this.labelPhotoTitle.Name = "labelPhotoTitle";
             this.labelPhotoTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelPhotoTitle.Size = new System.Drawing.Size(104, 24);
@@ -183,31 +183,29 @@
             this.labelPhotoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelPhotoTitle.Visible = false;
             // 
-            // buttonNextAlbum
+            // buttonNextPlaceHolder
             // 
-            this.buttonNextAlbum.Location = new System.Drawing.Point(854, 322);
-            this.buttonNextAlbum.Name = "buttonNextAlbum";
-            this.buttonNextAlbum.Size = new System.Drawing.Size(75, 23);
-            this.buttonNextAlbum.TabIndex = 59;
-            this.buttonNextAlbum.Text = "Next Album";
-            this.buttonNextAlbum.UseVisualStyleBackColor = true;
-            this.buttonNextAlbum.Visible = false;
-            this.buttonNextAlbum.Click += new System.EventHandler(this.buttonNextAlbum_Click);
+            this.buttonNextPlaceHolder.Location = new System.Drawing.Point(731, 322);
+            this.buttonNextPlaceHolder.Name = "buttonNextPlaceHolder";
+            this.buttonNextPlaceHolder.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextPlaceHolder.TabIndex = 59;
+            this.buttonNextPlaceHolder.UseVisualStyleBackColor = true;
+            this.buttonNextPlaceHolder.Visible = false;
+            this.buttonNextPlaceHolder.Click += new System.EventHandler(this.buttonNextAlbum_Click);
             // 
-            // buttonPrevAlbum
+            // buttonPrevPlaceHolder
             // 
-            this.buttonPrevAlbum.Location = new System.Drawing.Point(708, 322);
-            this.buttonPrevAlbum.Name = "buttonPrevAlbum";
-            this.buttonPrevAlbum.Size = new System.Drawing.Size(75, 23);
-            this.buttonPrevAlbum.TabIndex = 58;
-            this.buttonPrevAlbum.Text = "Prev Album";
-            this.buttonPrevAlbum.UseVisualStyleBackColor = true;
-            this.buttonPrevAlbum.Visible = false;
-            this.buttonPrevAlbum.Click += new System.EventHandler(this.buttonPrevAlbum_Click);
+            this.buttonPrevPlaceHolder.Location = new System.Drawing.Point(585, 322);
+            this.buttonPrevPlaceHolder.Name = "buttonPrevPlaceHolder";
+            this.buttonPrevPlaceHolder.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevPlaceHolder.TabIndex = 58;
+            this.buttonPrevPlaceHolder.UseVisualStyleBackColor = true;
+            this.buttonPrevPlaceHolder.Visible = false;
+            this.buttonPrevPlaceHolder.Click += new System.EventHandler(this.buttonPrevAlbum_Click);
             // 
             // buttonNextPicture
             // 
-            this.buttonNextPicture.Location = new System.Drawing.Point(854, 402);
+            this.buttonNextPicture.Location = new System.Drawing.Point(731, 402);
             this.buttonNextPicture.Name = "buttonNextPicture";
             this.buttonNextPicture.Size = new System.Drawing.Size(75, 23);
             this.buttonNextPicture.TabIndex = 57;
@@ -218,7 +216,7 @@
             // 
             // buttonPrevPicture
             // 
-            this.buttonPrevPicture.Location = new System.Drawing.Point(708, 402);
+            this.buttonPrevPicture.Location = new System.Drawing.Point(585, 402);
             this.buttonPrevPicture.Name = "buttonPrevPicture";
             this.buttonPrevPicture.Size = new System.Drawing.Size(75, 23);
             this.buttonPrevPicture.TabIndex = 56;
@@ -227,22 +225,22 @@
             this.buttonPrevPicture.Visible = false;
             this.buttonPrevPicture.Click += new System.EventHandler(this.buttonPrevPicture_Click);
             // 
-            // labelAlbumName
+            // labelAttributePlaceHolder
             // 
-            this.labelAlbumName.AutoSize = true;
-            this.labelAlbumName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelAlbumName.Location = new System.Drawing.Point(758, 361);
-            this.labelAlbumName.Name = "labelAlbumName";
-            this.labelAlbumName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.labelAlbumName.Size = new System.Drawing.Size(125, 24);
-            this.labelAlbumName.TabIndex = 55;
-            this.labelAlbumName.Text = "AlbumName";
-            this.labelAlbumName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.labelAlbumName.Visible = false;
+            this.labelAttributePlaceHolder.AutoSize = true;
+            this.labelAttributePlaceHolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelAttributePlaceHolder.Location = new System.Drawing.Point(585, 362);
+            this.labelAttributePlaceHolder.Name = "labelAttributePlaceHolder";
+            this.labelAttributePlaceHolder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelAttributePlaceHolder.Size = new System.Drawing.Size(202, 24);
+            this.labelAttributePlaceHolder.TabIndex = 55;
+            this.labelAttributePlaceHolder.Text = "AttributePlaceHolder";
+            this.labelAttributePlaceHolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelAttributePlaceHolder.Visible = false;
             // 
             // pictureBoxAlbumPhoto
             // 
-            this.pictureBoxAlbumPhoto.Location = new System.Drawing.Point(708, 145);
+            this.pictureBoxAlbumPhoto.Location = new System.Drawing.Point(585, 145);
             this.pictureBoxAlbumPhoto.Name = "pictureBoxAlbumPhoto";
             this.pictureBoxAlbumPhoto.Size = new System.Drawing.Size(221, 171);
             this.pictureBoxAlbumPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -593,11 +591,11 @@
         private System.Windows.Forms.Label labelGenderText;
         private System.Windows.Forms.Label labelGender;
         private System.Windows.Forms.Label labelPhotoTitle;
-        private System.Windows.Forms.Button buttonNextAlbum;
-        private System.Windows.Forms.Button buttonPrevAlbum;
+        private System.Windows.Forms.Button buttonNextPlaceHolder;
+        private System.Windows.Forms.Button buttonPrevPlaceHolder;
         private System.Windows.Forms.Button buttonNextPicture;
         private System.Windows.Forms.Button buttonPrevPicture;
-        private System.Windows.Forms.Label labelAlbumName;
+        private System.Windows.Forms.Label labelAttributePlaceHolder;
         private System.Windows.Forms.PictureBox pictureBoxAlbumPhoto;
     }
 }

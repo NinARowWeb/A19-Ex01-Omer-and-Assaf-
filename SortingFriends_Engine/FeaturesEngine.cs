@@ -4,6 +4,7 @@ using Facebook;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 using eSortingByEnum;
+using System.Reflection;
 
 namespace SortingFriends_Engine
 {
@@ -15,7 +16,7 @@ namespace SortingFriends_Engine
         private User m_BestFriend;
         private List<User> m_Friends;
         private int m_AlbumPictureIndex = 0;
-        private int m_AlbumIndex = 0;
+        private int m_PlaceHolderIndex = 0;
         private readonly object r_LogoutObjectContext = new object();
         public void LoginUser()
         {
@@ -37,6 +38,7 @@ namespace SortingFriends_Engine
                     FacebookService.Logout(null);
                     m_Friends.Clear();
                     m_LoggedInUser = null;
+                    m_BestFriend = null;
                 }
             }
         }
@@ -67,21 +69,21 @@ namespace SortingFriends_Engine
         public string GetPictureFromAlbum(int i_FriendIndex)
         {
             string pictureURL = null;
-            if(m_Friends[i_FriendIndex].Albums.Count > 0 && m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos.Count > 0)
+            if(m_Friends[i_FriendIndex].Albums.Count > 0 && m_Friends[i_FriendIndex].Albums[m_PlaceHolderIndex].Photos.Count > 0)
             {
-                pictureURL = m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos[m_AlbumPictureIndex].Images[0].Source;
+                pictureURL = m_Friends[i_FriendIndex].Albums[m_PlaceHolderIndex].Photos[m_AlbumPictureIndex].Images[0].Source;
             }
             return pictureURL;
         }
 
         public string GetAlbumName(int i_FriendIndex)
         {
-            return m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Name;
+            return m_Friends[i_FriendIndex].Albums[m_PlaceHolderIndex].Name;
         }
 
         public string GetPictureTitle(int i_FriendIndex)
         {
-            return m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos[m_AlbumPictureIndex].Name;
+            return m_Friends[i_FriendIndex].Albums[m_PlaceHolderIndex].Photos[m_AlbumPictureIndex].Name;
         }
 
         public string GetFriendPicture(int i_FriendIndex)
@@ -91,28 +93,96 @@ namespace SortingFriends_Engine
 
         public void InitialAlbumIndexes()
         {
-            m_AlbumPictureIndex = m_AlbumIndex = 0;
+            m_AlbumPictureIndex = m_PlaceHolderIndex = 0;
         }
 
+        public string GetTag(int i_FriendIndex)
+        {
+            string tag = null;
+            if (m_Friends[i_FriendIndex].PhotosTaggedIn.Count > 0)
+            {
+                tag = m_Friends[i_FriendIndex].PhotosTaggedIn[m_PlaceHolderIndex].Message;
+            }
+
+            return tag;
+        }
+
+        public string GetCheckin(int i_FriendIndex)
+        {
+            string checkin = null;
+            if (m_Friends[i_FriendIndex].Checkins.Count > 0)
+            {
+                checkin = m_Friends[i_FriendIndex].Checkins[m_PlaceHolderIndex].Message;
+            }
+
+            return checkin;
+        }
+
+        public string GetPost(int i_FriendIndex)
+        {
+            string post = null;
+            if(m_Friends[i_FriendIndex].WallPosts.Count > 0)
+            {
+                post = m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Message == null ?
+                    "Empty Post" : m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Message;
+            }
+
+            return post;
+
+        }
+        
         public bool SetNextAlbumIndex(int i_FriendIndex)
         {
             bool setNextAlbumSucceed = false;
-            if (m_AlbumIndex + 1 < m_Friends[i_FriendIndex].Albums.Count)
+            if (m_PlaceHolderIndex + 1 < m_Friends[i_FriendIndex].Albums.Count)
             {
                 setNextAlbumSucceed = true;
-                m_AlbumIndex++;
+                m_PlaceHolderIndex++;
                 m_AlbumPictureIndex = 0;
             }
             return setNextAlbumSucceed;
         }
 
-        public bool SetPrevAlbumIndex()
+        public bool SetNextTagIndex(int i_FriendIndex)
+        {
+            bool setNextTagSucceed = false;
+            if (m_PlaceHolderIndex + 1 < m_Friends[i_FriendIndex].PhotosTaggedIn.Count)
+            {
+                setNextTagSucceed = true;
+                m_PlaceHolderIndex++;
+            }
+            return setNextTagSucceed;
+        }
+
+        public bool SetNextPostIndex(int i_FriendIndex)
+        {
+            bool setNextTagSucceed = false;
+            if (m_PlaceHolderIndex + 1 < m_Friends[i_FriendIndex].WallPosts.Count)
+            {
+                setNextTagSucceed = true;
+                m_PlaceHolderIndex++;
+            }
+            return setNextTagSucceed;
+        }
+
+        public bool SetNextCheckinIndex(int i_FriendIndex)
+        {
+            bool setNextCheckinSucceed = false;
+            if (m_PlaceHolderIndex + 1 < m_Friends[i_FriendIndex].Checkins.Count)
+            {
+                setNextCheckinSucceed = true;
+                m_PlaceHolderIndex++;
+            }
+            return setNextCheckinSucceed;
+        }
+
+        public bool SetPrevPlaceHolderIndex()
         {
             bool setPrevAlbumSucceed = false;
-            if(m_AlbumIndex - 1 >= 0)
+            if(m_PlaceHolderIndex - 1 >= 0)
             {
                 setPrevAlbumSucceed = true;
-                m_AlbumIndex--;
+                m_PlaceHolderIndex--;
                 m_AlbumPictureIndex = 0;
             }
             return setPrevAlbumSucceed;
@@ -132,7 +202,7 @@ namespace SortingFriends_Engine
         public bool SetNextPictureAlbumIndex(int i_FriendIndex)
         {
             bool setNextPictureInAlbumSucceed = false;
-            if (m_AlbumPictureIndex + 1 < m_Friends[i_FriendIndex].Albums[m_AlbumIndex].Photos.Count)
+            if (m_AlbumPictureIndex + 1 < m_Friends[i_FriendIndex].Albums[m_PlaceHolderIndex].Photos.Count)
             {
                 setNextPictureInAlbumSucceed = true;
                 m_AlbumPictureIndex++;
@@ -327,19 +397,97 @@ namespace SortingFriends_Engine
                     {
                         foreach (User currentUser in currentPost.LikedBy)
                         {
-                            if (likedMyPosts.ContainsKey(friend))
+                            if (currentUser.Id == m_LoggedInUser.Id)
                             {
-                                likedMyPosts[friend]++;
+                                if (likedMyPosts.ContainsKey(friend))
+                                {
+                                    likedMyPosts[friend]++;
+                                }
+                                else
+                                {
+                                    likedMyPosts.Add(friend, 1);
+                                }
                             }
-                            else if (currentUser.Name == m_LoggedInUser.Name)
-                            {
-                                likedMyPosts.Add(friend, 1);
-                            }
+
                         }
                     }
                     catch (FacebookOAuthException)
                     {
                         /// the likedByUsers can not be supplied in some posts
+                    }
+
+                    try
+                    {
+                        foreach (Comment currentComment in currentPost.Comments)
+                        {
+                            if (currentComment.From != null && currentComment.From.Id == m_LoggedInUser.Id)
+                            {
+                                if (likedMyPosts.ContainsKey(friend))
+                                {
+                                    likedMyPosts[friend]+= 2;
+                                }
+                                else
+                                {
+                                    likedMyPosts.Add(friend, 2);
+                                }
+                            }
+
+                        }
+                    }
+                    catch (FacebookOAuthException)
+                    {
+                        /// the comment can not be supplied in some posts
+                    }
+
+                    try
+                    {
+                        foreach (User currentFriend in currentPost.TaggedUsers)
+                        {
+                            if (currentFriend.Id == m_LoggedInUser.Id)
+                            {
+                                if (likedMyPosts.ContainsKey(friend))
+                                {
+                                    likedMyPosts[friend] += 3;
+                                }
+                                else
+                                {
+                                    likedMyPosts.Add(friend, 3);
+                                }
+                            }
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        /// the tagged users can not be supplied in some posts
+                    }
+
+                    try
+                    {
+                        if (currentPost.TargetUsers != null)
+                        {
+
+                            foreach (User currentFriend in currentPost.TargetUsers)
+                            {
+                                if (currentFriend.Id == m_LoggedInUser.Id)
+                                {
+                                    if (likedMyPosts.ContainsKey(friend))
+                                    {
+                                        likedMyPosts[friend] += 4;
+                                    }
+                                    else
+                                    {
+                                        likedMyPosts.Add(friend, 4);
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }
+                    catch (FacebookOAuthException)
+                    {
+                        /// the tagged users can not be supplied in some posts
                     }
                 }
             }
@@ -521,3 +669,98 @@ namespace SortingFriends_Engine
         }
     }
 }
+
+/*
+             foreach (Post currentPost in m_LoggedInUser.WallPosts)
+            {
+                try
+                {
+                    foreach (User currentUser in currentPost.LikedBy)
+                    {
+                        if(currentUser != m_LoggedInUser)
+                        {
+                            if (friendsHierarchyDictionary.ContainsKey(currentUser.Id))
+                            {
+                                friendsHierarchyDictionary[currentUser.Id]++;
+                            }
+                            else
+                            {
+                                friendsHierarchyDictionary.Add(currentUser.Id, 1);
+                            }
+                        }
+                    }
+                }
+                catch (FacebookOAuthException)
+                {
+                    /// the likedByUsers can not be supplied in some posts
+                }
+
+                try
+                {
+                    foreach (User currentUser in currentPost.TaggedUsers)
+                    {
+                        if (currentUser != m_LoggedInUser)
+                        {
+                            if (friendsHierarchyDictionary.ContainsKey(currentUser.Id))
+                            {
+                                friendsHierarchyDictionary[currentUser.Id] += 3;
+                            }
+                            else
+                            {
+                                friendsHierarchyDictionary.Add(currentUser.Id, 3);
+                            }
+                        }
+                    }
+                }
+                catch (FacebookOAuthException)
+                {
+                    /// the likedByUsers can not be supplied in some posts
+                }
+
+                try
+                {
+                    foreach (Comment currentComment in currentPost.Comments)
+                    {
+                        if (currentComment.From != m_LoggedInUser)
+                        {
+                            if (friendsHierarchyDictionary.ContainsKey(currentComment.From.Id))
+                            {
+                                friendsHierarchyDictionary[currentComment.From.Id] += 2;
+                            }
+                            else
+                            {
+                                friendsHierarchyDictionary.Add(currentComment.From.Id, 2);
+                            }
+                        }
+
+                    }
+                }
+                catch (FacebookOAuthException)
+                {
+                    /// the likedByUsers can not be supplied in some posts
+                }
+
+                try
+                {
+                    if (currentPost.TargetUsers != null)
+                    {
+                        foreach (User currentFriend in currentPost.TargetUsers)
+                        {
+                            if (friendsHierarchyDictionary.ContainsKey(currentFriend.Id))
+                            {
+                                friendsHierarchyDictionary[currentFriend.Id] += 4;
+                            }
+                            else
+                            {
+                                friendsHierarchyDictionary.Add(currentFriend.Id, 4);
+                            }
+                        }
+                    }
+                }
+                catch (FacebookOAuthException)
+                {
+                    /// the likedByUsers can not be supplied in some posts
+                }
+            }
+  
+ * */
