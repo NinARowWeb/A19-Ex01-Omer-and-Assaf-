@@ -63,6 +63,26 @@ namespace SotringFriends_UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap facebook_logo {
+            get {
+                object obj = ResourceManager.GetObject("facebook_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap green_circle {
+            get {
+                object obj = ResourceManager.GetObject("green_circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap green_light {
             get {
                 object obj = ResourceManager.GetObject("green_light", resourceCulture);
@@ -76,6 +96,16 @@ namespace SotringFriends_UI.Properties {
         internal static System.Drawing.Bitmap red_light {
             get {
                 object obj = ResourceManager.GetObject("red_light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap red_light_no_background {
+            get {
+                object obj = ResourceManager.GetObject("red_light_no_background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

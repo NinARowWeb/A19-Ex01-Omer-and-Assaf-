@@ -32,10 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacebookFeatures));
             this.listBoxFriends = new System.Windows.Forms.ListBox();
             this.comboBoxSortingOptions = new System.Windows.Forms.ComboBox();
-            this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
             this.labelFriends = new System.Windows.Forms.Label();
             this.Features = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBoxLoginStatus = new System.Windows.Forms.PictureBox();
             this.pictureBoxLogin = new System.Windows.Forms.PictureBox();
             this.labelPhotoTitle = new System.Windows.Forms.Label();
             this.buttonNextPlaceHolder = new System.Windows.Forms.Button();
@@ -46,7 +46,9 @@
             this.pictureBoxAlbumPhoto = new System.Windows.Forms.PictureBox();
             this.placeHolderLabel = new System.Windows.Forms.Label();
             this.labelSortBy = new System.Windows.Forms.Label();
+            this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
             this.BirthdayEvent = new System.Windows.Forms.TabPage();
+            this.pictureBoxFacebookLoginStatus = new System.Windows.Forms.PictureBox();
             this.pictureBoxFacebookLogin = new System.Windows.Forms.PictureBox();
             this.labelAlbumsText = new System.Windows.Forms.Label();
             this.labelAlbums = new System.Windows.Forms.Label();
@@ -61,28 +63,24 @@
             this.buttonCreateBirthdayEvent = new System.Windows.Forms.Button();
             this.labelBirthdayDateText = new System.Windows.Forms.Label();
             this.labelBestFriendNameText = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBoxBestFriendPicture = new System.Windows.Forms.PictureBox();
             this.labelBestFriend = new System.Windows.Forms.Label();
             this.buttonFindBestFriend = new System.Windows.Forms.Button();
             this.textBoxLocation = new System.Windows.Forms.TextBox();
             this.textBoxDescirption = new System.Windows.Forms.TextBox();
             this.labelLocation = new System.Windows.Forms.Label();
             this.labelDescription = new System.Windows.Forms.Label();
+            this.pictureBoxBestFriendPicture = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBoxLoginStatus = new System.Windows.Forms.PictureBox();
-            this.pictureBoxFacebookLoginStatus = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             this.Features.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             this.BirthdayEvent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLoginStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBestFriendPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLoginStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxFriends
@@ -114,15 +112,6 @@
             this.comboBoxSortingOptions.TabIndex = 50;
             this.comboBoxSortingOptions.SelectedIndexChanged += new System.EventHandler(this.comboBoxSortingOption_SelectedIndexChanged);
             // 
-            // pictureBoxFriend
-            // 
-            this.pictureBoxFriend.Location = new System.Drawing.Point(250, 145);
-            this.pictureBoxFriend.Name = "pictureBoxFriend";
-            this.pictureBoxFriend.Size = new System.Drawing.Size(315, 280);
-            this.pictureBoxFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxFriend.TabIndex = 49;
-            this.pictureBoxFriend.TabStop = false;
-            // 
             // labelFriends
             // 
             this.labelFriends.AutoSize = true;
@@ -135,6 +124,9 @@
             // 
             // Features
             // 
+            this.Features.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Features.Controls.Add(this.tabPage1);
             this.Features.Controls.Add(this.BirthdayEvent);
             this.Features.Location = new System.Drawing.Point(2, 0);
@@ -168,6 +160,14 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sorting Friends";
             // 
+            // pictureBoxLoginStatus
+            // 
+            this.pictureBoxLoginStatus.Location = new System.Drawing.Point(90, 26);
+            this.pictureBoxLoginStatus.Name = "pictureBoxLoginStatus";
+            this.pictureBoxLoginStatus.Size = new System.Drawing.Size(22, 20);
+            this.pictureBoxLoginStatus.TabIndex = 62;
+            this.pictureBoxLoginStatus.TabStop = false;
+            // 
             // pictureBoxLogin
             // 
             this.pictureBoxLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogin.BackgroundImage")));
@@ -176,6 +176,7 @@
             this.pictureBoxLogin.Location = new System.Drawing.Point(20, 13);
             this.pictureBoxLogin.Name = "pictureBoxLogin";
             this.pictureBoxLogin.Size = new System.Drawing.Size(50, 45);
+            this.pictureBoxLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxLogin.TabIndex = 61;
             this.pictureBoxLogin.TabStop = false;
             this.pictureBoxLogin.Click += new System.EventHandler(this.pictureBoxLogin_Click);
@@ -263,11 +264,10 @@
             this.placeHolderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.placeHolderLabel.Location = new System.Drawing.Point(340, 449);
             this.placeHolderLabel.Name = "placeHolderLabel";
-            this.placeHolderLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.placeHolderLabel.Size = new System.Drawing.Size(125, 24);
             this.placeHolderLabel.TabIndex = 53;
             this.placeHolderLabel.Text = "PlaceHolder";
-            this.placeHolderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.placeHolderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.placeHolderLabel.Visible = false;
             // 
             // labelSortBy
@@ -278,6 +278,15 @@
             this.labelSortBy.Size = new System.Drawing.Size(58, 13);
             this.labelSortBy.TabIndex = 52;
             this.labelSortBy.Text = "Sorting By:";
+            // 
+            // pictureBoxFriend
+            // 
+            this.pictureBoxFriend.Location = new System.Drawing.Point(250, 145);
+            this.pictureBoxFriend.Name = "pictureBoxFriend";
+            this.pictureBoxFriend.Size = new System.Drawing.Size(315, 280);
+            this.pictureBoxFriend.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxFriend.TabIndex = 49;
+            this.pictureBoxFriend.TabStop = false;
             // 
             // BirthdayEvent
             // 
@@ -297,15 +306,13 @@
             this.BirthdayEvent.Controls.Add(this.buttonCreateBirthdayEvent);
             this.BirthdayEvent.Controls.Add(this.labelBirthdayDateText);
             this.BirthdayEvent.Controls.Add(this.labelBestFriendNameText);
-            this.BirthdayEvent.Controls.Add(this.label2);
-            this.BirthdayEvent.Controls.Add(this.label1);
-            this.BirthdayEvent.Controls.Add(this.pictureBoxBestFriendPicture);
             this.BirthdayEvent.Controls.Add(this.labelBestFriend);
             this.BirthdayEvent.Controls.Add(this.buttonFindBestFriend);
             this.BirthdayEvent.Controls.Add(this.textBoxLocation);
             this.BirthdayEvent.Controls.Add(this.textBoxDescirption);
             this.BirthdayEvent.Controls.Add(this.labelLocation);
             this.BirthdayEvent.Controls.Add(this.labelDescription);
+            this.BirthdayEvent.Controls.Add(this.pictureBoxBestFriendPicture);
             this.BirthdayEvent.Location = new System.Drawing.Point(4, 22);
             this.BirthdayEvent.Name = "BirthdayEvent";
             this.BirthdayEvent.Padding = new System.Windows.Forms.Padding(3);
@@ -313,14 +320,23 @@
             this.BirthdayEvent.TabIndex = 1;
             this.BirthdayEvent.Text = "Best Friend Birthday";
             // 
+            // pictureBoxFacebookLoginStatus
+            // 
+            this.pictureBoxFacebookLoginStatus.Location = new System.Drawing.Point(90, 26);
+            this.pictureBoxFacebookLoginStatus.Name = "pictureBoxFacebookLoginStatus";
+            this.pictureBoxFacebookLoginStatus.Size = new System.Drawing.Size(22, 20);
+            this.pictureBoxFacebookLoginStatus.TabIndex = 74;
+            this.pictureBoxFacebookLoginStatus.TabStop = false;
+            // 
             // pictureBoxFacebookLogin
             // 
             this.pictureBoxFacebookLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebookLogin.BackgroundImage")));
             this.pictureBoxFacebookLogin.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebookLogin.Image")));
             this.pictureBoxFacebookLogin.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebookLogin.InitialImage")));
-            this.pictureBoxFacebookLogin.Location = new System.Drawing.Point(21, 8);
+            this.pictureBoxFacebookLogin.Location = new System.Drawing.Point(20, 13);
             this.pictureBoxFacebookLogin.Name = "pictureBoxFacebookLogin";
-            this.pictureBoxFacebookLogin.Size = new System.Drawing.Size(50, 42);
+            this.pictureBoxFacebookLogin.Size = new System.Drawing.Size(50, 45);
+            this.pictureBoxFacebookLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFacebookLogin.TabIndex = 73;
             this.pictureBoxFacebookLogin.TabStop = false;
             // 
@@ -328,7 +344,7 @@
             // 
             this.labelAlbumsText.AutoSize = true;
             this.labelAlbumsText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelAlbumsText.Location = new System.Drawing.Point(169, 236);
+            this.labelAlbumsText.Location = new System.Drawing.Point(168, 246);
             this.labelAlbumsText.Name = "labelAlbumsText";
             this.labelAlbumsText.Size = new System.Drawing.Size(47, 13);
             this.labelAlbumsText.TabIndex = 72;
@@ -339,7 +355,7 @@
             // 
             this.labelAlbums.AutoSize = true;
             this.labelAlbums.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelAlbums.Location = new System.Drawing.Point(24, 236);
+            this.labelAlbums.Location = new System.Drawing.Point(23, 246);
             this.labelAlbums.Name = "labelAlbums";
             this.labelAlbums.Size = new System.Drawing.Size(51, 13);
             this.labelAlbums.TabIndex = 71;
@@ -350,7 +366,7 @@
             // 
             this.labelGenderText.AutoSize = true;
             this.labelGenderText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelGenderText.Location = new System.Drawing.Point(169, 159);
+            this.labelGenderText.Location = new System.Drawing.Point(168, 169);
             this.labelGenderText.Name = "labelGenderText";
             this.labelGenderText.Size = new System.Drawing.Size(48, 13);
             this.labelGenderText.TabIndex = 70;
@@ -361,7 +377,7 @@
             // 
             this.labelGender.AutoSize = true;
             this.labelGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelGender.Location = new System.Drawing.Point(24, 159);
+            this.labelGender.Location = new System.Drawing.Point(23, 169);
             this.labelGender.Name = "labelGender";
             this.labelGender.Size = new System.Drawing.Size(52, 13);
             this.labelGender.TabIndex = 69;
@@ -372,7 +388,7 @@
             // 
             this.labelMostCommonCheckin.AutoSize = true;
             this.labelMostCommonCheckin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelMostCommonCheckin.Location = new System.Drawing.Point(24, 210);
+            this.labelMostCommonCheckin.Location = new System.Drawing.Point(23, 220);
             this.labelMostCommonCheckin.Name = "labelMostCommonCheckin";
             this.labelMostCommonCheckin.Size = new System.Drawing.Size(139, 13);
             this.labelMostCommonCheckin.TabIndex = 68;
@@ -383,7 +399,7 @@
             // 
             this.labelMostTaggedUser.AutoSize = true;
             this.labelMostTaggedUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelMostTaggedUser.Location = new System.Drawing.Point(24, 183);
+            this.labelMostTaggedUser.Location = new System.Drawing.Point(23, 193);
             this.labelMostTaggedUser.Name = "labelMostTaggedUser";
             this.labelMostTaggedUser.Size = new System.Drawing.Size(115, 13);
             this.labelMostTaggedUser.TabIndex = 67;
@@ -394,7 +410,7 @@
             // 
             this.labelBirthdayDate.AutoSize = true;
             this.labelBirthdayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelBirthdayDate.Location = new System.Drawing.Point(24, 135);
+            this.labelBirthdayDate.Location = new System.Drawing.Point(23, 145);
             this.labelBirthdayDate.Name = "labelBirthdayDate";
             this.labelBirthdayDate.Size = new System.Drawing.Size(57, 13);
             this.labelBirthdayDate.TabIndex = 66;
@@ -405,7 +421,7 @@
             // 
             this.labelFullName.AutoSize = true;
             this.labelFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelFullName.Location = new System.Drawing.Point(24, 112);
+            this.labelFullName.Location = new System.Drawing.Point(23, 122);
             this.labelFullName.Name = "labelFullName";
             this.labelFullName.Size = new System.Drawing.Size(43, 13);
             this.labelFullName.TabIndex = 65;
@@ -416,7 +432,7 @@
             // 
             this.labelMostTaggedCheckinText.AutoSize = true;
             this.labelMostTaggedCheckinText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelMostTaggedCheckinText.Location = new System.Drawing.Point(169, 210);
+            this.labelMostTaggedCheckinText.Location = new System.Drawing.Point(168, 220);
             this.labelMostTaggedCheckinText.Name = "labelMostTaggedCheckinText";
             this.labelMostTaggedCheckinText.Size = new System.Drawing.Size(123, 13);
             this.labelMostTaggedCheckinText.TabIndex = 64;
@@ -427,7 +443,7 @@
             // 
             this.labelMostTaggedUserText.AutoSize = true;
             this.labelMostTaggedUserText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelMostTaggedUserText.Location = new System.Drawing.Point(169, 183);
+            this.labelMostTaggedUserText.Location = new System.Drawing.Point(168, 193);
             this.labelMostTaggedUserText.Name = "labelMostTaggedUserText";
             this.labelMostTaggedUserText.Size = new System.Drawing.Size(77, 13);
             this.labelMostTaggedUserText.TabIndex = 63;
@@ -448,7 +464,7 @@
             // 
             this.labelBirthdayDateText.AutoSize = true;
             this.labelBirthdayDateText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelBirthdayDateText.Location = new System.Drawing.Point(169, 135);
+            this.labelBirthdayDateText.Location = new System.Drawing.Point(168, 145);
             this.labelBirthdayDateText.Name = "labelBirthdayDateText";
             this.labelBirthdayDateText.Size = new System.Drawing.Size(80, 13);
             this.labelBirthdayDateText.TabIndex = 61;
@@ -459,43 +475,18 @@
             // 
             this.labelBestFriendNameText.AutoSize = true;
             this.labelBestFriendNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelBestFriendNameText.Location = new System.Drawing.Point(169, 112);
+            this.labelBestFriendNameText.Location = new System.Drawing.Point(168, 122);
             this.labelBestFriendNameText.Name = "labelBestFriendNameText";
             this.labelBestFriendNameText.Size = new System.Drawing.Size(107, 13);
             this.labelBestFriendNameText.TabIndex = 60;
             this.labelBestFriendNameText.Text = "Best Friend Name";
             this.labelBestFriendNameText.Visible = false;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(84, 338);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 59;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(81, 338);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 58;
-            // 
-            // pictureBoxBestFriendPicture
-            // 
-            this.pictureBoxBestFriendPicture.Location = new System.Drawing.Point(27, 265);
-            this.pictureBoxBestFriendPicture.Name = "pictureBoxBestFriendPicture";
-            this.pictureBoxBestFriendPicture.Size = new System.Drawing.Size(167, 166);
-            this.pictureBoxBestFriendPicture.TabIndex = 57;
-            this.pictureBoxBestFriendPicture.TabStop = false;
-            this.pictureBoxBestFriendPicture.Visible = false;
-            // 
             // labelBestFriend
             // 
             this.labelBestFriend.AutoSize = true;
             this.labelBestFriend.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelBestFriend.Location = new System.Drawing.Point(16, 87);
+            this.labelBestFriend.Location = new System.Drawing.Point(15, 97);
             this.labelBestFriend.Name = "labelBestFriend";
             this.labelBestFriend.Size = new System.Drawing.Size(144, 18);
             this.labelBestFriend.TabIndex = 56;
@@ -503,7 +494,7 @@
             // 
             // buttonFindBestFriend
             // 
-            this.buttonFindBestFriend.Location = new System.Drawing.Point(19, 55);
+            this.buttonFindBestFriend.Location = new System.Drawing.Point(18, 65);
             this.buttonFindBestFriend.Name = "buttonFindBestFriend";
             this.buttonFindBestFriend.Size = new System.Drawing.Size(112, 23);
             this.buttonFindBestFriend.TabIndex = 55;
@@ -546,21 +537,14 @@
             this.labelDescription.TabIndex = 49;
             this.labelDescription.Text = "Description";
             // 
-            // pictureBoxLoginStatus
+            // pictureBoxBestFriendPicture
             // 
-            this.pictureBoxLoginStatus.Location = new System.Drawing.Point(90, 26);
-            this.pictureBoxLoginStatus.Name = "pictureBoxLoginStatus";
-            this.pictureBoxLoginStatus.Size = new System.Drawing.Size(22, 20);
-            this.pictureBoxLoginStatus.TabIndex = 62;
-            this.pictureBoxLoginStatus.TabStop = false;
-            // 
-            // pictureBoxFacebookLoginStatus
-            // 
-            this.pictureBoxFacebookLoginStatus.Location = new System.Drawing.Point(87, 18);
-            this.pictureBoxFacebookLoginStatus.Name = "pictureBoxFacebookLoginStatus";
-            this.pictureBoxFacebookLoginStatus.Size = new System.Drawing.Size(22, 20);
-            this.pictureBoxFacebookLoginStatus.TabIndex = 74;
-            this.pictureBoxFacebookLoginStatus.TabStop = false;
+            this.pictureBoxBestFriendPicture.Location = new System.Drawing.Point(26, 262);
+            this.pictureBoxBestFriendPicture.Name = "pictureBoxBestFriendPicture";
+            this.pictureBoxBestFriendPicture.Size = new System.Drawing.Size(167, 166);
+            this.pictureBoxBestFriendPicture.TabIndex = 57;
+            this.pictureBoxBestFriendPicture.TabStop = false;
+            this.pictureBoxBestFriendPicture.Visible = false;
             // 
             // FacebookFeatures
             // 
@@ -568,20 +552,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1051, 553);
             this.Controls.Add(this.Features);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FacebookFeatures";
             this.Text = "Facebook Features";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
             this.Features.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).EndInit();
             this.BirthdayEvent.ResumeLayout(false);
             this.BirthdayEvent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLoginStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBestFriendPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLoginStatus)).EndInit();
             this.ResumeLayout(false);
 
           }
@@ -601,8 +586,6 @@
           private System.Windows.Forms.Label labelDescription;
           private System.Windows.Forms.Label labelBestFriend;
           private System.Windows.Forms.Button buttonFindBestFriend;
-          private System.Windows.Forms.Label label2;
-          private System.Windows.Forms.Label label1;
           private System.Windows.Forms.PictureBox pictureBoxBestFriendPicture;
           private System.Windows.Forms.Timer timer1;
           private System.Windows.Forms.Label labelBirthdayDateText;

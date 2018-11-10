@@ -17,10 +17,11 @@ namespace SotringFriends_UI
         public FacebookFeatures()
         {
             InitializeComponent();
-            pictureBoxLoginStatus.BackgroundImage = Properties.Resources.red_light;
+            pictureBoxLoginStatus.BackgroundImage = Properties.Resources.red_light_no_background;
             pictureBoxLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBoxFacebookLoginStatus.BackgroundImage = Properties.Resources.red_light;
+            pictureBoxFacebookLoginStatus.BackgroundImage = Properties.Resources.red_light_no_background;
             pictureBoxFacebookLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
+            
         }
 
         private void disableFirstFeatureControls()
@@ -69,8 +70,8 @@ namespace SotringFriends_UI
             m_FeaturesEngine.LogoutUser();
             fetchFriends();
             disableWholeControls();
-            changeButtonMeaning(pictureBoxLogin, Properties.Resources.red_light, pictureBoxLogin_Click, pictureBoxLogout_Click);
-            changeButtonMeaning(pictureBoxFacebookLogin, Properties.Resources.red_light, pictureBoxLogin_Click, pictureBoxLogout_Click);
+            changeButtonMeaning(pictureBoxLogin, Properties.Resources.red_light_no_background, pictureBoxLogin_Click, pictureBoxLogout_Click);
+            changeButtonMeaning(pictureBoxFacebookLogin, Properties.Resources.red_light_no_background, pictureBoxLogin_Click, pictureBoxLogout_Click);
             comboBoxSortingOptions.SelectedIndex = k_InitialValue;
         }
 
@@ -81,8 +82,8 @@ namespace SotringFriends_UI
             if (m_FeaturesEngine.UserConnected()) /// exception?
             {
                 fetchFriends();
-                changeButtonMeaning(pictureBoxLogin, Properties.Resources.green_light, pictureBoxLogout_Click, pictureBoxLogin_Click);
-                changeButtonMeaning(pictureBoxFacebookLogin, Properties.Resources.green_light, pictureBoxLogout_Click, pictureBoxLogin_Click);
+                changeButtonMeaning(pictureBoxLogin, Properties.Resources.green_circle, pictureBoxLogout_Click, pictureBoxLogin_Click);
+                changeButtonMeaning(pictureBoxFacebookLogin, Properties.Resources.green_circle, pictureBoxLogout_Click, pictureBoxLogin_Click);
             }
             else
             {
@@ -124,10 +125,20 @@ namespace SotringFriends_UI
 
         private string getPosts()
         {
-            string post = m_FeaturesEngine.GetPost(listBoxFriends.SelectedIndex);
+            string picture = null;
+            string post = m_FeaturesEngine.GetPost(listBoxFriends.SelectedIndex, ref picture);
             if (post != null)
             {
                 labelAttributePlaceHolder.Text = post;
+            }
+            if(picture != null)
+            {
+                pictureBoxAlbumPhoto.Visible = true;
+                pictureBoxAlbumPhoto.LoadAsync(picture);
+            }
+            else
+            {
+                pictureBoxAlbumPhoto.Visible = false;
             }
             return post;
         }
@@ -160,13 +171,7 @@ namespace SotringFriends_UI
                 pictureBoxAlbumPhoto.LoadAsync(photoFromAlbum);
                 labelAttributePlaceHolder.Text = m_FeaturesEngine.GetAlbumName(listBoxFriends.SelectedIndex);
                 labelPhotoTitle.Text = m_FeaturesEngine.GetPictureTitle(listBoxFriends.SelectedIndex);
-                pictureBoxAlbumPhoto.Visible = true;
-                labelAttributePlaceHolder.Visible = true;
-                labelPhotoTitle.Visible = true;
-                buttonNextPlaceHolder.Visible = true;
-                buttonPrevPlaceHolder.Visible = true;
-                buttonPrevPicture.Visible = true;
-                buttonNextPicture.Visible = true;
+                setVisibilityControls(true, pictureBoxAlbumPhoto, labelAttributePlaceHolder, labelPhotoTitle, buttonNextPlaceHolder, buttonPrevPlaceHolder, buttonPrevPicture, buttonNextPicture);
             }
             return photoFromAlbum;
         }
@@ -190,12 +195,7 @@ namespace SotringFriends_UI
 
         private void disableAlbum(string i_Error)
         {
-            labelAttributePlaceHolder.Visible = false;
-            labelPhotoTitle.Visible = false;
-            buttonNextPlaceHolder.Visible = false;
-            buttonPrevPlaceHolder.Visible = false;
-            buttonPrevPicture.Visible = false;
-            buttonNextPicture.Visible = false;
+            setVisibilityControls(false, labelAttributePlaceHolder, labelPhotoTitle, buttonNextPlaceHolder, buttonPrevPlaceHolder, buttonPrevPicture, buttonNextPicture);
             MessageBox.Show(i_Error);
         }
 
@@ -374,23 +374,12 @@ namespace SotringFriends_UI
 
                 if (bestFriendIndex != k_BestFriendNotFoundIndex)
                 {
-                    labelMostCommonCheckin.Visible = true;
-                    labelMostTaggedUser.Visible = true;
-                    labelFullName.Visible = true;
-                    labelBirthdayDate.Visible = true;
-                    labelGender.Visible = true;
-                    labelAlbums.Visible = true;
-                    labelAlbumsText.Visible = true;
+                    setVisibilityControls(true, labelMostCommonCheckin, labelMostTaggedUser, labelFullName, labelBirthdayDate, labelGender, labelAlbums, labelAlbumsText, labelGenderText, labelBestFriendNameText, pictureBoxBestFriendPicture, labelBirthdayDateText, labelMostTaggedUserText);
                     labelAlbumsText.Text = m_FeaturesEngine.GetBestFriendAmountOfAlbums().ToString();
-                    labelGenderText.Visible = true;
                     labelGenderText.Text = m_FeaturesEngine.GetBestFriendGender();
-                    labelBestFriendNameText.Visible = true;
                     labelBestFriendNameText.Text = m_FeaturesEngine.GetBestFriendFullName();
-                    pictureBoxBestFriendPicture.Visible = true;
                     pictureBoxBestFriendPicture.LoadAsync(m_FeaturesEngine.GetFriendPicture(bestFriendIndex));
-                    labelBirthdayDateText.Visible = true;
                     labelBirthdayDateText.Text = m_FeaturesEngine.GetBestFriendBirthdayDate();
-                    labelMostTaggedUserText.Visible = true;
                     string bestFriendMostTaggedUser = m_FeaturesEngine.GetBestFriendTopTag();
                     if (bestFriendMostTaggedUser != null)
                     {

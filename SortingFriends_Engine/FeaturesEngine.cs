@@ -51,7 +51,7 @@ namespace SortingFriends_Engine
                 m_Friends.Add(friend);
             }
 
-            m_Friends.Add(m_LoggedInUser);
+            //m_Friends.Add(m_LoggedInUser);
         }
 
         public List<string> GetFriends()
@@ -118,17 +118,39 @@ namespace SortingFriends_Engine
             return checkin;
         }
 
-        public string GetPost(int i_FriendIndex)
+        public string GetPost(int i_FriendIndex, ref string io_PictureURL)
         {
             string post = null;
-            if(m_Friends[i_FriendIndex].WallPosts.Count > 0)
+
+            if (m_Friends[i_FriendIndex].WallPosts.Count > 0)
             {
-                post = m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Message == null ?
-                    "Empty Post" : m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Message;
+                if (m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Message != null)
+                {
+                    post = m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Message;
+                }
+                else if (m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Caption != null)
+                {
+                    post = m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Caption;
+                }
+                else if (m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Description != null)
+                {
+                    post = m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Description;
+                }
+                else if (m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Name != null)
+                {
+                    post = m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Name;
+                }
+                else
+                {
+                    post = "Empty Post";
+                }
+                if (m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Type == Post.eType.photo)
+                {
+                    io_PictureURL = m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].PictureURL;
+                }
             }
 
             return post;
-
         }
         
         public bool SetNextAlbumIndex(int i_FriendIndex)
@@ -386,127 +408,43 @@ namespace SortingFriends_Engine
         public int FindBestFriend()
         {
             int bestFriendIndex = k_BestFriendNotFound;
-            int index = 0;
-            int bestFriendcommonFriendsAmount = 0;
             Dictionary<User, int> likedMyPosts = new Dictionary<User, int>();
             foreach (User friend in m_Friends)
             {
                 foreach (Post currentPost in friend.Posts)
                 {
-                    try
-                    {
-                        foreach (User currentUser in currentPost.LikedBy)
-                        {
-                            if (currentUser.Id == m_LoggedInUser.Id)
-                            {
-                                if (likedMyPosts.ContainsKey(friend))
-                                {
-                                    likedMyPosts[friend]++;
-                                }
-                                else
-                                {
-                                    likedMyPosts.Add(friend, 1);
-                                }
-                            }
-
-                        }
-                    }
-                    catch (FacebookOAuthException)
-                    {
-                        /// the likedByUsers can not be supplied in some posts
-                    }
-
-                    try
-                    {
-                        foreach (Comment currentComment in currentPost.Comments)
-                        {
-                            if (currentComment.From != null && currentComment.From.Id == m_LoggedInUser.Id)
-                            {
-                                if (likedMyPosts.ContainsKey(friend))
-                                {
-                                    likedMyPosts[friend]+= 2;
-                                }
-                                else
-                                {
-                                    likedMyPosts.Add(friend, 2);
-                                }
-                            }
-
-                        }
-                    }
-                    catch (FacebookOAuthException)
-                    {
-                        /// the comment can not be supplied in some posts
-                    }
-
-                    try
-                    {
-                        foreach (User currentFriend in currentPost.WithUsers)
-                        {
-                            if (currentFriend.Id == m_LoggedInUser.Id)
-                            {
-                                if (likedMyPosts.ContainsKey(friend))
-                                {
-                                    likedMyPosts[friend] += 3;
-                                }
-                                else
-                                {
-                                    likedMyPosts.Add(friend, 3);
-                                }
-                            }
-
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        /// the tagged users can not be supplied in some posts
-                    }
-
-                    try
-                    {
-                        if (currentPost.TargetUsers != null)
-                        {
-
-                            foreach (User currentFriend in currentPost.TargetUsers)
-                            {
-                                if (currentFriend.Id == m_LoggedInUser.Id)
-                                {
-                                    if (likedMyPosts.ContainsKey(friend))
-                                    {
-                                        likedMyPosts[friend] += 4;
-                                    }
-                                    else
-                                    {
-                                        likedMyPosts.Add(friend, 4);
-                                    }
-                                }
-
-                            }
-                        }
-
-                    }
-                    catch (FacebookOAuthException)
-                    {
-                        /// the tagged users can not be supplied in some posts
-                    }
+                    updateBestFriendDictionaryByLikePost(currentPost, likedMyPosts, friend);
+                    updateBestFriendDictionaryByCommentPost(currentPost, likedMyPosts, friend);
+                    updateBestFriendDictionaryByWithUsersPost(currentPost, likedMyPosts, friend);
+                    updateBestFriendDictionaryByTargetUsersPost(currentPost, likedMyPosts, friend);  
                 }
             }
 
+            bestFriendIndex = searchForBestFriendAfterAnalyzing(likedMyPosts);
+            
+            return bestFriendIndex;
+        }
+
+        private int searchForBestFriendAfterAnalyzing(Dictionary<User, int> i_LikedMyPosts)
+        {
+            int bestFriendIndex = k_BestFriendNotFound;
+            int index = 0;
+            int bestFriendcommonFriendsAmount = 0;
+
             foreach (User friend in m_Friends)
             {
-                if (likedMyPosts.ContainsKey(friend))
+                if (i_LikedMyPosts.ContainsKey(friend))
                 {
                     DateTime friendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(friend.Birthday.Substring(0, 2)), int.Parse(friend.Birthday.Substring(3, 2)));
                     if (birthdayMonthInRange(friendBirthdayDate))
                     {
-
-                        if (likedMyPosts[friend] > bestFriendcommonFriendsAmount)
+                        if (i_LikedMyPosts[friend] > bestFriendcommonFriendsAmount)
                         {
                             m_BestFriend = friend;
-                            bestFriendcommonFriendsAmount = likedMyPosts[friend];
+                            bestFriendcommonFriendsAmount = i_LikedMyPosts[friend];
                             bestFriendIndex = index;
                         }
-                        else if (likedMyPosts[friend] == bestFriendcommonFriendsAmount)
+                        else if (i_LikedMyPosts[friend] == bestFriendcommonFriendsAmount)
                         {
                             m_BestFriend = getEalierBirthdayFriend(friend, m_BestFriend);
                             if (m_BestFriend == friend)
@@ -520,6 +458,110 @@ namespace SortingFriends_Engine
             }
 
             return bestFriendIndex;
+        }
+
+        private void updateBestFriendDictionaryByTargetUsersPost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        {
+            try
+            {
+                if (i_CurrentPost.TargetUsers != null)
+                {
+                    foreach (User currentFriend in i_CurrentPost.TargetUsers)
+                    {
+                        if (currentFriend.Id == m_LoggedInUser.Id)
+                        {
+                            if (i_LikedMyPosts.ContainsKey(i_Friend))
+                            {
+                                i_LikedMyPosts[i_Friend] += 4;
+                            }
+                            else
+                            {
+                                i_LikedMyPosts.Add(i_Friend, 4);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (FacebookOAuthException)
+            {
+                /// the tagged users can not be supplied in some posts
+            }
+        }
+
+        private void updateBestFriendDictionaryByWithUsersPost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        {
+            try
+            {
+                foreach (User currentFriend in i_CurrentPost.WithUsers)
+                {
+                    if (currentFriend.Id == m_LoggedInUser.Id)
+                    {
+                        if (i_LikedMyPosts.ContainsKey(i_Friend))
+                        {
+                            i_LikedMyPosts[i_Friend] += 3;
+                        }
+                        else
+                        {
+                            i_LikedMyPosts.Add(i_Friend, 3);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                /// the tagged users can not be supplied in some posts
+            }
+        }
+
+        private void updateBestFriendDictionaryByCommentPost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        {
+            try
+            {
+                foreach (Comment currentComment in i_CurrentPost.Comments)
+                {
+                    if (currentComment.From != null && currentComment.From.Id == m_LoggedInUser.Id)
+                    {
+                        if (i_LikedMyPosts.ContainsKey(i_Friend))
+                        {
+                            i_LikedMyPosts[i_Friend] += 2;
+                        }
+                        else
+                        {
+                            i_LikedMyPosts.Add(i_Friend, 2);
+                        }
+                    }
+                }
+            }
+            catch (FacebookOAuthException)
+            {
+                /// the comment can not be supplied in some posts
+            }
+        }
+
+        private void updateBestFriendDictionaryByLikePost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        {
+            try
+            {
+                foreach (User currentUser in i_CurrentPost.LikedBy)
+                {
+                    if (currentUser.Id == m_LoggedInUser.Id)
+                    {
+                        if (i_LikedMyPosts.ContainsKey(i_Friend))
+                        {
+                            i_LikedMyPosts[i_Friend]++;
+                        }
+                        else
+                        {
+                            i_LikedMyPosts.Add(i_Friend, 1);
+                        }
+                    }
+
+                }
+            }
+            catch (FacebookOAuthException)
+            {
+                /// the likedByUsers can not be supplied in some posts
+            }
         }
 
         private User getEalierBirthdayFriend(User i_FirstFriend, User i_SecondFriend)
