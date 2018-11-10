@@ -71,7 +71,7 @@ namespace SotringFriends_UI
             disableWholeControls();
             changeButtonMeaning(pictureBoxLogin, Properties.Resources.red_light, pictureBoxLogin_Click, pictureBoxLogout_Click);
             changeButtonMeaning(pictureBoxFacebookLogin, Properties.Resources.red_light, pictureBoxLogin_Click, pictureBoxLogout_Click);
-
+            comboBoxSortingOptions.SelectedIndex = k_InitialValue;
         }
 
         private void pictureBoxLogin_Click(object sender, EventArgs e)
