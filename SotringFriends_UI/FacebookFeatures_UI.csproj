@@ -60,6 +60,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="FacebookFeaturesForm.resx">
       <DependentUpon>FacebookFeaturesForm.cs</DependentUpon>
@@ -79,6 +80,15 @@
       <Project>{04f50967-328c-42f2-9542-dc977e59e937}</Project>
       <Name>FacebookFeatures_Engine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OnlineStatus.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red light.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green light.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

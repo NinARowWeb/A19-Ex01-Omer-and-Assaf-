@@ -441,7 +441,7 @@ namespace SortingFriends_Engine
 
                     try
                     {
-                        foreach (User currentFriend in currentPost.TaggedUsers)
+                        foreach (User currentFriend in currentPost.WithUsers)
                         {
                             if (currentFriend.Id == m_LoggedInUser.Id)
                             {

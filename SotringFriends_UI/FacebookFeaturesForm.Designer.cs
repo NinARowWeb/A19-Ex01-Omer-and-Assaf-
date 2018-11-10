@@ -29,13 +29,14 @@
           private void InitializeComponent()
           {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacebookFeatures));
             this.listBoxFriends = new System.Windows.Forms.ListBox();
             this.comboBoxSortingOptions = new System.Windows.Forms.ComboBox();
             this.pictureBoxFriend = new System.Windows.Forms.PictureBox();
             this.labelFriends = new System.Windows.Forms.Label();
-            this.buttonLogin = new System.Windows.Forms.Button();
             this.Features = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBoxLogin = new System.Windows.Forms.PictureBox();
             this.labelPhotoTitle = new System.Windows.Forms.Label();
             this.buttonNextPlaceHolder = new System.Windows.Forms.Button();
             this.buttonPrevPlaceHolder = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             this.placeHolderLabel = new System.Windows.Forms.Label();
             this.labelSortBy = new System.Windows.Forms.Label();
             this.BirthdayEvent = new System.Windows.Forms.TabPage();
+            this.pictureBoxFacebookLogin = new System.Windows.Forms.PictureBox();
             this.labelAlbumsText = new System.Windows.Forms.Label();
             this.labelAlbums = new System.Windows.Forms.Label();
             this.labelGenderText = new System.Windows.Forms.Label();
@@ -68,14 +70,19 @@
             this.textBoxDescirption = new System.Windows.Forms.TextBox();
             this.labelLocation = new System.Windows.Forms.Label();
             this.labelDescription = new System.Windows.Forms.Label();
-            this.buttonFaceBookLogin = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBoxLoginStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFacebookLoginStatus = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriend)).BeginInit();
             this.Features.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).BeginInit();
             this.BirthdayEvent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLogin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBestFriendPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLoginStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxFriends
@@ -126,16 +133,6 @@
             this.labelFriends.TabIndex = 48;
             this.labelFriends.Text = "Friends";
             // 
-            // buttonLogin
-            // 
-            this.buttonLogin.Location = new System.Drawing.Point(19, 26);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(75, 23);
-            this.buttonLogin.TabIndex = 47;
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
-            // 
             // Features
             // 
             this.Features.Controls.Add(this.tabPage1);
@@ -148,6 +145,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.tabPage1.Controls.Add(this.pictureBoxLoginStatus);
+            this.tabPage1.Controls.Add(this.pictureBoxLogin);
             this.tabPage1.Controls.Add(this.labelPhotoTitle);
             this.tabPage1.Controls.Add(this.buttonNextPlaceHolder);
             this.tabPage1.Controls.Add(this.buttonPrevPlaceHolder);
@@ -160,7 +160,6 @@
             this.tabPage1.Controls.Add(this.pictureBoxFriend);
             this.tabPage1.Controls.Add(this.labelFriends);
             this.tabPage1.Controls.Add(this.comboBoxSortingOptions);
-            this.tabPage1.Controls.Add(this.buttonLogin);
             this.tabPage1.Controls.Add(this.listBoxFriends);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -168,7 +167,18 @@
             this.tabPage1.Size = new System.Drawing.Size(1043, 533);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sorting Friends";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxLogin
+            // 
+            this.pictureBoxLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogin.BackgroundImage")));
+            this.pictureBoxLogin.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogin.Image")));
+            this.pictureBoxLogin.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogin.InitialImage")));
+            this.pictureBoxLogin.Location = new System.Drawing.Point(20, 13);
+            this.pictureBoxLogin.Name = "pictureBoxLogin";
+            this.pictureBoxLogin.Size = new System.Drawing.Size(50, 45);
+            this.pictureBoxLogin.TabIndex = 61;
+            this.pictureBoxLogin.TabStop = false;
+            this.pictureBoxLogin.Click += new System.EventHandler(this.pictureBoxLogin_Click);
             // 
             // labelPhotoTitle
             // 
@@ -271,6 +281,9 @@
             // 
             // BirthdayEvent
             // 
+            this.BirthdayEvent.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.BirthdayEvent.Controls.Add(this.pictureBoxFacebookLoginStatus);
+            this.BirthdayEvent.Controls.Add(this.pictureBoxFacebookLogin);
             this.BirthdayEvent.Controls.Add(this.labelAlbumsText);
             this.BirthdayEvent.Controls.Add(this.labelAlbums);
             this.BirthdayEvent.Controls.Add(this.labelGenderText);
@@ -293,14 +306,23 @@
             this.BirthdayEvent.Controls.Add(this.textBoxDescirption);
             this.BirthdayEvent.Controls.Add(this.labelLocation);
             this.BirthdayEvent.Controls.Add(this.labelDescription);
-            this.BirthdayEvent.Controls.Add(this.buttonFaceBookLogin);
             this.BirthdayEvent.Location = new System.Drawing.Point(4, 22);
             this.BirthdayEvent.Name = "BirthdayEvent";
             this.BirthdayEvent.Padding = new System.Windows.Forms.Padding(3);
             this.BirthdayEvent.Size = new System.Drawing.Size(1043, 533);
             this.BirthdayEvent.TabIndex = 1;
             this.BirthdayEvent.Text = "Best Friend Birthday";
-            this.BirthdayEvent.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxFacebookLogin
+            // 
+            this.pictureBoxFacebookLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebookLogin.BackgroundImage")));
+            this.pictureBoxFacebookLogin.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebookLogin.Image")));
+            this.pictureBoxFacebookLogin.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebookLogin.InitialImage")));
+            this.pictureBoxFacebookLogin.Location = new System.Drawing.Point(21, 8);
+            this.pictureBoxFacebookLogin.Name = "pictureBoxFacebookLogin";
+            this.pictureBoxFacebookLogin.Size = new System.Drawing.Size(50, 42);
+            this.pictureBoxFacebookLogin.TabIndex = 73;
+            this.pictureBoxFacebookLogin.TabStop = false;
             // 
             // labelAlbumsText
             // 
@@ -524,15 +546,21 @@
             this.labelDescription.TabIndex = 49;
             this.labelDescription.Text = "Description";
             // 
-            // buttonFaceBookLogin
+            // pictureBoxLoginStatus
             // 
-            this.buttonFaceBookLogin.Location = new System.Drawing.Point(19, 26);
-            this.buttonFaceBookLogin.Name = "buttonFaceBookLogin";
-            this.buttonFaceBookLogin.Size = new System.Drawing.Size(75, 23);
-            this.buttonFaceBookLogin.TabIndex = 48;
-            this.buttonFaceBookLogin.Text = "Login";
-            this.buttonFaceBookLogin.UseVisualStyleBackColor = true;
-            this.buttonFaceBookLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            this.pictureBoxLoginStatus.Location = new System.Drawing.Point(90, 26);
+            this.pictureBoxLoginStatus.Name = "pictureBoxLoginStatus";
+            this.pictureBoxLoginStatus.Size = new System.Drawing.Size(22, 20);
+            this.pictureBoxLoginStatus.TabIndex = 62;
+            this.pictureBoxLoginStatus.TabStop = false;
+            // 
+            // pictureBoxFacebookLoginStatus
+            // 
+            this.pictureBoxFacebookLoginStatus.Location = new System.Drawing.Point(87, 18);
+            this.pictureBoxFacebookLoginStatus.Name = "pictureBoxFacebookLoginStatus";
+            this.pictureBoxFacebookLoginStatus.Size = new System.Drawing.Size(22, 20);
+            this.pictureBoxFacebookLoginStatus.TabIndex = 74;
+            this.pictureBoxFacebookLoginStatus.TabStop = false;
             // 
             // FacebookFeatures
             // 
@@ -546,10 +574,14 @@
             this.Features.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumPhoto)).EndInit();
             this.BirthdayEvent.ResumeLayout(false);
             this.BirthdayEvent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLogin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBestFriendPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLoginStatus)).EndInit();
             this.ResumeLayout(false);
 
           }
@@ -560,7 +592,6 @@
           private System.Windows.Forms.ComboBox comboBoxSortingOptions;
           private System.Windows.Forms.PictureBox pictureBoxFriend;
           private System.Windows.Forms.Label labelFriends;
-          private System.Windows.Forms.Button buttonLogin;
           private System.Windows.Forms.TabControl Features;
           private System.Windows.Forms.TabPage tabPage1;
           private System.Windows.Forms.TabPage BirthdayEvent;
@@ -568,7 +599,6 @@
           private System.Windows.Forms.TextBox textBoxDescirption;
           private System.Windows.Forms.Label labelLocation;
           private System.Windows.Forms.Label labelDescription;
-          private System.Windows.Forms.Button buttonFaceBookLogin;
           private System.Windows.Forms.Label labelBestFriend;
           private System.Windows.Forms.Button buttonFindBestFriend;
           private System.Windows.Forms.Label label2;
@@ -597,6 +627,10 @@
         private System.Windows.Forms.Button buttonPrevPicture;
         private System.Windows.Forms.Label labelAttributePlaceHolder;
         private System.Windows.Forms.PictureBox pictureBoxAlbumPhoto;
+        private System.Windows.Forms.PictureBox pictureBoxLogin;
+        private System.Windows.Forms.PictureBox pictureBoxFacebookLogin;
+        private System.Windows.Forms.PictureBox pictureBoxLoginStatus;
+        private System.Windows.Forms.PictureBox pictureBoxFacebookLoginStatus;
     }
 }
 

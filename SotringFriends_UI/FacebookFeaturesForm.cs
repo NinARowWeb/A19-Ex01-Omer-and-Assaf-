@@ -5,17 +5,22 @@ using SortingFriends_Engine;
 using System.Reflection;
 using eSortingByEnum;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace SotringFriends_UI
 {
     public partial class FacebookFeatures : Form
     {
-        private const int k_BestFriendNotFoundIndex = -1;
+        private const int k_InitialValue = -1, k_BestFriendNotFoundIndex = -1;
         private FeaturesEngine m_FeaturesEngine = new FeaturesEngine();
 
         public FacebookFeatures()
         {
             InitializeComponent();
+            pictureBoxLoginStatus.BackgroundImage = Properties.Resources.red_light;
+            pictureBoxLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBoxFacebookLoginStatus.BackgroundImage = Properties.Resources.red_light;
+            pictureBoxFacebookLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void disableFirstFeatureControls()
@@ -59,25 +64,25 @@ namespace SotringFriends_UI
             disableFirstFeatureControls();
             disableSecondFeatureControls();
         }
-        private void buttonLogout_Click(object sender, EventArgs e)
+        private void pictureBoxLogout_Click(object sender, EventArgs e)
         {
             m_FeaturesEngine.LogoutUser();
             fetchFriends();
             disableWholeControls();
-            changeButtonMeaning(buttonFaceBookLogin, "Login", buttonLogin_Click, buttonLogout_Click);
-            changeButtonMeaning(buttonLogin, "Login", buttonLogin_Click, buttonLogout_Click);
+            changeButtonMeaning(pictureBoxLogin, Properties.Resources.red_light, pictureBoxLogin_Click, pictureBoxLogout_Click);
+            changeButtonMeaning(pictureBoxFacebookLogin, Properties.Resources.red_light, pictureBoxLogin_Click, pictureBoxLogout_Click);
 
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private void pictureBoxLogin_Click(object sender, EventArgs e)
         {
             m_FeaturesEngine.LoginUser();
 
             if (m_FeaturesEngine.UserConnected()) /// exception?
             {
                 fetchFriends();
-                changeButtonMeaning(buttonFaceBookLogin, "Logout", buttonLogout_Click, buttonLogin_Click);
-                changeButtonMeaning(buttonLogin, "Logout", buttonLogout_Click, buttonLogin_Click);
+                changeButtonMeaning(pictureBoxLogin, Properties.Resources.green_light, pictureBoxLogout_Click, pictureBoxLogin_Click);
+                changeButtonMeaning(pictureBoxFacebookLogin, Properties.Resources.green_light, pictureBoxLogout_Click, pictureBoxLogin_Click);
             }
             else
             {
@@ -85,22 +90,25 @@ namespace SotringFriends_UI
             }
         }
 
-        private void clearEvents(Button i_Button)
+        private void clearEvents(Control i_Control)
         {
             FieldInfo f1 = typeof(Control).GetField("EventClick",
             BindingFlags.Static | BindingFlags.NonPublic);
-            object obj = f1.GetValue(i_Button);
-            PropertyInfo pi = i_Button.GetType().GetProperty("Events",
+            object obj = f1.GetValue(i_Control);
+            PropertyInfo pi = i_Control.GetType().GetProperty("Events",
                 BindingFlags.NonPublic | BindingFlags.Instance);
-            EventHandlerList list = (EventHandlerList)pi.GetValue(i_Button, null);
+            EventHandlerList list = (EventHandlerList)pi.GetValue(i_Control, null);
             list.RemoveHandler(obj, list[obj]);
         }
 
-        private void changeButtonMeaning(Button i_Button, string i_TextButton, EventHandler i_EventToAdd, EventHandler i_EventToDelete)
+        private void changeButtonMeaning(PictureBox i_PictureBox, Bitmap i_Picture ,EventHandler i_EventToAdd, EventHandler i_EventToDelete)
         {
-            clearEvents(i_Button);
-            i_Button.Text = i_TextButton;
-            i_Button.Click += i_EventToAdd;
+            pictureBoxLoginStatus.BackgroundImage = i_Picture;
+            pictureBoxLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBoxFacebookLoginStatus.BackgroundImage = i_Picture;
+            pictureBoxFacebookLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
+            clearEvents(i_PictureBox);
+            i_PictureBox.Click += i_EventToAdd;
         }
 
         private void fetchFriends()
@@ -329,7 +337,11 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show("You need to Log-In to facebook");
+                if(comboBoxSortingOptions.SelectedIndex != k_InitialValue)
+                {
+                    MessageBox.Show("You need to Log-In to facebook");
+                }
+                comboBoxSortingOptions.SelectedIndex = k_InitialValue;
             }
         }
 
@@ -407,6 +419,7 @@ namespace SotringFriends_UI
             }
             else
             {
+
                 MessageBox.Show("First you need to connect to your facebook account");
             }
         }
