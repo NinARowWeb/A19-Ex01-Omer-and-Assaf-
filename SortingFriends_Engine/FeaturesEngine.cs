@@ -11,7 +11,11 @@ namespace SortingFriends_Engine
     public class FeaturesEngine
     {
         private const int k_NotInitialized = -1, k_ChangePositions = 1, k_NotChangePosition = -1, k_BestFriendNotFound = -1, k_IndexNotFound = -1;
-        private const string k_AppId = "1027335734116799";
+        private const string k_AppId = "1027335734116799", k_PublicProfile = "public_profile", k_UsersFriend = "user_friends", 
+            k_UserBirthday = "user_birthday", k_UserGender = "user_gender",
+            k_UserLikes = "user_likes", k_UserPosts = "user_posts", k_UserTaggedPlace = "user_tagged_places";
+        private const int k_MonthLength = 2, k_DayLength = 2, k_YearLength = 4;
+        private const int k_MonthIndex = 0, k_DayIndex = 3, k_YearIndex = 6;
         private User m_LoggedInUser;
         private User m_BestFriend;
         private List<User> m_Friends;
@@ -20,12 +24,18 @@ namespace SortingFriends_Engine
         private readonly object r_LogoutObjectContext = new object();
         public void LoginUser()
         {
-            LoginResult result = FacebookService.Login(k_AppId, "public_profile", "user_friends", "user_birthday",
-                "user_gender", "user_likes", "user_posts", "user_tagged_places");
-            if (!string.IsNullOrEmpty(result.AccessToken))
+            try
             {
-                m_LoggedInUser = result.LoggedInUser;
-                fetchFriends();
+                LoginResult result = FacebookService.Login(k_AppId, k_PublicProfile, k_UsersFriend, k_UserBirthday, k_UserGender, k_UserLikes, k_UserPosts, k_UserTaggedPlace);
+                if (!string.IsNullOrEmpty(result.AccessToken))
+                {
+                    m_LoggedInUser = result.LoggedInUser;
+                    fetchFriends();
+                }
+            }
+            catch (FacebookOAuthException ex)
+            {
+                throw new Exception();
             }
         }
 
@@ -50,8 +60,6 @@ namespace SortingFriends_Engine
             {
                 m_Friends.Add(friend);
             }
-
-            //m_Friends.Add(m_LoggedInUser);
         }
 
         public List<string> GetFriends()
@@ -76,7 +84,7 @@ namespace SortingFriends_Engine
             return pictureURL;
         }
 
-        public string GetAlbumName(int i_FriendIndex)
+        public string GetAlbumName(int i_FriendIndex = k_NotInitialized)
         {
             return m_Friends[i_FriendIndex].Albums[m_PlaceHolderIndex].Name;
         }
@@ -120,6 +128,7 @@ namespace SortingFriends_Engine
 
         public string GetPost(int i_FriendIndex, ref string io_PictureURL)
         {
+            const string k_EmptyPost = "Empty Post";
             string post = null;
 
             if (m_Friends[i_FriendIndex].WallPosts.Count > 0)
@@ -142,7 +151,7 @@ namespace SortingFriends_Engine
                 }
                 else
                 {
-                    post = "Empty Post";
+                    post = k_EmptyPost;
                 }
                 if (m_Friends[i_FriendIndex].Posts[m_PlaceHolderIndex].Type == Post.eType.photo)
                 {
@@ -155,7 +164,7 @@ namespace SortingFriends_Engine
         
         public bool SetNextAlbumIndex(int i_FriendIndex)
         {
-            bool setNextAlbumSucceed = false;
+            var setNextAlbumSucceed = false;
             if (m_PlaceHolderIndex + 1 < m_Friends[i_FriendIndex].Albums.Count)
             {
                 setNextAlbumSucceed = true;
@@ -167,7 +176,7 @@ namespace SortingFriends_Engine
 
         public bool SetNextTagIndex(int i_FriendIndex)
         {
-            bool setNextTagSucceed = false;
+            var setNextTagSucceed = false;
             if (m_PlaceHolderIndex + 1 < m_Friends[i_FriendIndex].PhotosTaggedIn.Count)
             {
                 setNextTagSucceed = true;
@@ -233,7 +242,7 @@ namespace SortingFriends_Engine
 
         }
 
-        public string GetFriendBirthdayOrAgeAttribute(int i_FriendIndex, int i_SortingBySelectedIndex)
+        public string GetFriendBirthdayOrAgeAttribute(int i_FriendIndex, int i_SortingBySelectedIndex = k_NotInitialized)
         {
             eSortingBy sortingOption = (eSortingBy)i_SortingBySelectedIndex;
             string returnValue = null;
@@ -248,9 +257,9 @@ namespace SortingFriends_Engine
                 {
                     string birthday = m_Friends[i_FriendIndex].Birthday;
                     DateTime birthdayDate = new DateTime(
-                         int.Parse(birthday.Substring(6, 4)),
-                         int.Parse(birthday.Substring(0, 2)),
-                         int.Parse(birthday.Substring(3, 2)));
+                         int.Parse(birthday.Substring(k_YearIndex, k_YearLength)),
+                         int.Parse(birthday.Substring(k_MonthIndex, k_MonthLength)),
+                         int.Parse(birthday.Substring(k_DayIndex, k_DayLength)));
                     returnValue = $"Age: {calculateAge(birthdayDate)}";
                 }
             }
@@ -258,61 +267,63 @@ namespace SortingFriends_Engine
             return returnValue;
         }
 
-        public void SortFriends(int i_ComparisonIndex)
+        public void SortFriends(int i_ComparisonIndex = k_NotInitialized)
         {
             eSortingBy comparisonBy = (eSortingBy)i_ComparisonIndex;
-
-            switch (comparisonBy)
+            try
             {
-                case eSortingBy.Default:
-                    {
-                        fetchFriends();
-                        break;
-                    }
+                switch (comparisonBy)
+                {
+                    case eSortingBy.Default:
+                        {
+                            fetchFriends();
+                            break;
+                        }
 
-                case eSortingBy.FirstName:
-                    {
-                        m_Friends.Sort(firstNameComparison);
-                        break;
-                    }
+                    case eSortingBy.FirstName:
+                        {
+                            m_Friends.Sort(firstNameComparison);
+                            break;
+                        }
 
-                case eSortingBy.LastName:
-                    {
-                        m_Friends.Sort(lastNameComparison);
-                        break;
-                    }
+                    case eSortingBy.LastName:
+                        {
+                            m_Friends.Sort(lastNameComparison);
+                            break;
+                        }
 
-                case eSortingBy.Birthday:
-                    {
-                        m_Friends.Sort(birthDayComparison);
-                        break;
-                    }
+                    case eSortingBy.Birthday:
+                        {
+                            m_Friends.Sort(birthDayComparison);
+                            break;
+                        }
 
-                case eSortingBy.Age:
-                    {
-                        m_Friends.Sort(ageComparison);
-                        break;
-                    }
-                case eSortingBy.MostPosts:
-                    {
-                        m_Friends.Sort(postsComparison);
-                        break;
-                    }
-                case eSortingBy.MostCheckIns:
-                    {
-                        m_Friends.Sort(checkInsComparison);
-                        break;
-                    }
-                case eSortingBy.MostTags:
-                    {
-                        m_Friends.Sort(tagsComparison);
-                        break;
-                    }
-                case eSortingBy.MostAlbums:
-                    {
-                        m_Friends.Sort(albumsComparison);
-                        break;
-                    }
+                    case eSortingBy.Age:
+                        {
+                            m_Friends.Sort(ageComparison);
+                            break;
+                        }
+                    case eSortingBy.MostPosts:
+                        {
+                            m_Friends.Sort(postsComparison);
+                            break;
+                        }
+                    case eSortingBy.MostCheckIns:
+                        {
+                            m_Friends.Sort(checkInsComparison);
+                            break;
+                        }
+                    case eSortingBy.MostTags:
+                        {
+                            m_Friends.Sort(tagsComparison);
+                            break;
+                        }
+                    case eSortingBy.MostAlbums:
+                        {
+                            m_Friends.Sort(albumsComparison);
+                            break;
+                        }
+                }
             }
         }
 
@@ -329,13 +340,13 @@ namespace SortingFriends_Engine
         private int birthDayComparison(User i_FirstPerson, User i_SecondPerson)
         {
             int returnValue, firstPersonMonth, secondPersonMonth, firstPersonDay, secondPersonDay;
-            int.TryParse(i_FirstPerson.Birthday.Substring(0, 2), out firstPersonMonth);
-            int.TryParse(i_SecondPerson.Birthday.Substring(0, 2), out secondPersonMonth);
+            int.TryParse(i_FirstPerson.Birthday.Substring(k_MonthIndex, k_MonthLength), out firstPersonMonth);
+            int.TryParse(i_SecondPerson.Birthday.Substring(k_MonthIndex, k_MonthLength), out secondPersonMonth);
 
             if (firstPersonMonth == secondPersonMonth)
             {
-                int.TryParse(i_FirstPerson.Birthday.Substring(3, 2), out firstPersonDay);
-                int.TryParse(i_SecondPerson.Birthday.Substring(3, 2), out secondPersonDay);
+                int.TryParse(i_FirstPerson.Birthday.Substring(k_DayIndex, k_DayLength), out firstPersonDay);
+                int.TryParse(i_SecondPerson.Birthday.Substring(k_DayIndex, k_DayLength), out secondPersonDay);
                 returnValue = firstPersonDay < secondPersonDay ? k_NotChangePosition : k_ChangePositions;
             }
             else
@@ -349,13 +360,13 @@ namespace SortingFriends_Engine
         private int ageComparison(User i_FirstPerson, User i_SecondPerson)
         {
             DateTime firstPersonBirthday = new DateTime(
-                 int.Parse(i_FirstPerson.Birthday.Substring(6, 4)),
-                 int.Parse(i_FirstPerson.Birthday.Substring(0, 2)),
-                 int.Parse(i_FirstPerson.Birthday.Substring(3, 2)));
+                 int.Parse(i_FirstPerson.Birthday.Substring(k_YearIndex, k_YearLength)),
+                 int.Parse(i_FirstPerson.Birthday.Substring(k_MonthIndex, k_MonthLength)),
+                 int.Parse(i_FirstPerson.Birthday.Substring(k_DayIndex, k_DayLength)));
             DateTime secondPersonBirthday = new DateTime(
-                 int.Parse(i_SecondPerson.Birthday.Substring(6, 4)),
-                 int.Parse(i_SecondPerson.Birthday.Substring(0, 2)),
-                 int.Parse(i_SecondPerson.Birthday.Substring(3, 2)));
+                 int.Parse(i_SecondPerson.Birthday.Substring(k_YearIndex, k_YearLength)),
+                 int.Parse(i_SecondPerson.Birthday.Substring(k_MonthIndex, k_MonthLength)),
+                 int.Parse(i_SecondPerson.Birthday.Substring(k_DayIndex, k_DayLength)));
             int firstPersonAge = calculateAge(firstPersonBirthday);
             int secondPersonAge = calculateAge(secondPersonBirthday);
 
@@ -408,24 +419,24 @@ namespace SortingFriends_Engine
         public int FindBestFriend()
         {
             int bestFriendIndex = k_BestFriendNotFound;
-            Dictionary<User, int> likedMyPosts = new Dictionary<User, int>();
+            Dictionary<User, int> friendsHierarchy = new Dictionary<User, int>();
             foreach (User friend in m_Friends)
             {
                 foreach (Post currentPost in friend.Posts)
                 {
-                    updateBestFriendDictionaryByLikePost(currentPost, likedMyPosts, friend);
-                    updateBestFriendDictionaryByCommentPost(currentPost, likedMyPosts, friend);
-                    updateBestFriendDictionaryByWithUsersPost(currentPost, likedMyPosts, friend);
-                    updateBestFriendDictionaryByTargetUsersPost(currentPost, likedMyPosts, friend);  
+                    updateBestFriendDictionaryByLikePost(currentPost, friendsHierarchy, friend);
+                    updateBestFriendDictionaryByCommentPost(currentPost, friendsHierarchy, friend);
+                    updateBestFriendDictionaryByWithUsersPost(currentPost, friendsHierarchy, friend);
+                    updateBestFriendDictionaryByTargetUsersPost(currentPost, friendsHierarchy, friend);  
                 }
             }
 
-            bestFriendIndex = searchForBestFriendAfterAnalyzing(likedMyPosts);
+            bestFriendIndex = searchForBestFriendAfterAnalyzing(friendsHierarchy);
             
             return bestFriendIndex;
         }
 
-        private int searchForBestFriendAfterAnalyzing(Dictionary<User, int> i_LikedMyPosts)
+        private int searchForBestFriendAfterAnalyzing(Dictionary<User, int> i_FriendsHierarchy)
         {
             int bestFriendIndex = k_BestFriendNotFound;
             int index = 0;
@@ -433,18 +444,18 @@ namespace SortingFriends_Engine
 
             foreach (User friend in m_Friends)
             {
-                if (i_LikedMyPosts.ContainsKey(friend))
+                if (i_FriendsHierarchy.ContainsKey(friend))
                 {
-                    DateTime friendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(friend.Birthday.Substring(0, 2)), int.Parse(friend.Birthday.Substring(3, 2)));
+                    DateTime friendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(friend.Birthday.Substring(k_MonthIndex, k_MonthLength)), int.Parse(friend.Birthday.Substring(k_DayIndex, k_DayLength)));
                     if (birthdayMonthInRange(friendBirthdayDate))
                     {
-                        if (i_LikedMyPosts[friend] > bestFriendcommonFriendsAmount)
+                        if (i_FriendsHierarchy[friend] > bestFriendcommonFriendsAmount)
                         {
                             m_BestFriend = friend;
-                            bestFriendcommonFriendsAmount = i_LikedMyPosts[friend];
+                            bestFriendcommonFriendsAmount = i_FriendsHierarchy[friend];
                             bestFriendIndex = index;
                         }
-                        else if (i_LikedMyPosts[friend] == bestFriendcommonFriendsAmount)
+                        else if (i_FriendsHierarchy[friend] == bestFriendcommonFriendsAmount)
                         {
                             m_BestFriend = getEalierBirthdayFriend(friend, m_BestFriend);
                             if (m_BestFriend == friend)
@@ -460,7 +471,7 @@ namespace SortingFriends_Engine
             return bestFriendIndex;
         }
 
-        private void updateBestFriendDictionaryByTargetUsersPost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        private void updateBestFriendDictionaryByTargetUsersPost(Post i_CurrentPost, Dictionary<User, int> i_FriendsHierarchy, User i_Friend)
         {
             try
             {
@@ -470,13 +481,13 @@ namespace SortingFriends_Engine
                     {
                         if (currentFriend.Id == m_LoggedInUser.Id)
                         {
-                            if (i_LikedMyPosts.ContainsKey(i_Friend))
+                            if (i_FriendsHierarchy.ContainsKey(i_Friend))
                             {
-                                i_LikedMyPosts[i_Friend] += 4;
+                                i_FriendsHierarchy[i_Friend] += 4;
                             }
                             else
                             {
-                                i_LikedMyPosts.Add(i_Friend, 4);
+                                i_FriendsHierarchy.Add(i_Friend, 4);
                             }
                         }
                     }
@@ -488,7 +499,7 @@ namespace SortingFriends_Engine
             }
         }
 
-        private void updateBestFriendDictionaryByWithUsersPost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        private void updateBestFriendDictionaryByWithUsersPost(Post i_CurrentPost, Dictionary<User, int> i_FriendsHierarchy, User i_Friend)
         {
             try
             {
@@ -496,13 +507,13 @@ namespace SortingFriends_Engine
                 {
                     if (currentFriend.Id == m_LoggedInUser.Id)
                     {
-                        if (i_LikedMyPosts.ContainsKey(i_Friend))
+                        if (i_FriendsHierarchy.ContainsKey(i_Friend))
                         {
-                            i_LikedMyPosts[i_Friend] += 3;
+                            i_FriendsHierarchy[i_Friend] += 3;
                         }
                         else
                         {
-                            i_LikedMyPosts.Add(i_Friend, 3);
+                            i_FriendsHierarchy.Add(i_Friend, 3);
                         }
                     }
                 }
@@ -513,7 +524,7 @@ namespace SortingFriends_Engine
             }
         }
 
-        private void updateBestFriendDictionaryByCommentPost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        private void updateBestFriendDictionaryByCommentPost(Post i_CurrentPost, Dictionary<User, int> i_FriendsHierarchy, User i_Friend)
         {
             try
             {
@@ -521,13 +532,13 @@ namespace SortingFriends_Engine
                 {
                     if (currentComment.From != null && currentComment.From.Id == m_LoggedInUser.Id)
                     {
-                        if (i_LikedMyPosts.ContainsKey(i_Friend))
+                        if (i_FriendsHierarchy.ContainsKey(i_Friend))
                         {
-                            i_LikedMyPosts[i_Friend] += 2;
+                            i_FriendsHierarchy[i_Friend] += 2;
                         }
                         else
                         {
-                            i_LikedMyPosts.Add(i_Friend, 2);
+                            i_FriendsHierarchy.Add(i_Friend, 2);
                         }
                     }
                 }
@@ -538,7 +549,7 @@ namespace SortingFriends_Engine
             }
         }
 
-        private void updateBestFriendDictionaryByLikePost(Post i_CurrentPost, Dictionary<User, int> i_LikedMyPosts, User i_Friend)
+        private void updateBestFriendDictionaryByLikePost(Post i_CurrentPost, Dictionary<User, int> i_FriendsHierarchy, User i_Friend)
         {
             try
             {
@@ -546,13 +557,13 @@ namespace SortingFriends_Engine
                 {
                     if (currentUser.Id == m_LoggedInUser.Id)
                     {
-                        if (i_LikedMyPosts.ContainsKey(i_Friend))
+                        if (i_FriendsHierarchy.ContainsKey(i_Friend))
                         {
-                            i_LikedMyPosts[i_Friend]++;
+                            i_FriendsHierarchy[i_Friend]++;
                         }
                         else
                         {
-                            i_LikedMyPosts.Add(i_Friend, 1);
+                            i_FriendsHierarchy.Add(i_Friend, 1);
                         }
                     }
 
@@ -566,15 +577,15 @@ namespace SortingFriends_Engine
 
         private User getEalierBirthdayFriend(User i_FirstFriend, User i_SecondFriend)
         {
-            DateTime firstFriendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(i_FirstFriend.Birthday.Substring(0, 2)), int.Parse(i_FirstFriend.Birthday.Substring(3, 2)));
-            DateTime secondFriendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(i_SecondFriend.Birthday.Substring(0, 2)), int.Parse(i_SecondFriend.Birthday.Substring(3, 2)));
+            DateTime firstFriendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(i_FirstFriend.Birthday.Substring(k_MonthIndex, k_MonthLength)), int.Parse(i_FirstFriend.Birthday.Substring(k_DayIndex, k_DayLength)));
+            DateTime secondFriendBirthdayDate = new DateTime(DateTime.Now.Year + 1, int.Parse(i_SecondFriend.Birthday.Substring(k_MonthIndex, k_MonthLength)), int.Parse(i_SecondFriend.Birthday.Substring(k_DayIndex, k_DayLength)));
 
             return firstFriendBirthdayDate < secondFriendBirthdayDate ? i_FirstFriend : i_SecondFriend;
         }
 
         private bool birthdayMonthInRange(DateTime i_FriendBirthdayDate)
         {
-            return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 200;
+            return (i_FriendBirthdayDate - DateTime.Now).TotalDays <= 120;
         }
 
         public string GetBestFriendFullName()
@@ -598,8 +609,8 @@ namespace SortingFriends_Engine
             DateTime startTime, endTime;
             int birthdayYearDate = DateTime.Now.Month >= 11 ? DateTime.Now.Year + 1 : DateTime.Now.Year;
 
-            startTime = new DateTime(birthdayYearDate, int.Parse(m_BestFriend.Birthday.Substring(0, 2)), int.Parse(m_BestFriend.Birthday.Substring(3, 2)), 19, 0, 0);
-            endTime = new DateTime(birthdayYearDate, int.Parse(m_BestFriend.Birthday.Substring(0, 2)), int.Parse(m_BestFriend.Birthday.Substring(3, 2)), 22, 0, 0);
+            startTime = new DateTime(birthdayYearDate, int.Parse(m_BestFriend.Birthday.Substring(k_MonthIndex, k_MonthLength)), int.Parse(m_BestFriend.Birthday.Substring(k_DayIndex, k_DayLength)), 19, 0, 0);
+            endTime = new DateTime(birthdayYearDate, int.Parse(m_BestFriend.Birthday.Substring(k_MonthIndex, k_MonthLength)), int.Parse(m_BestFriend.Birthday.Substring(k_DayIndex, k_DayLength)), 22, 0, 0);
             try
             {
                 m_LoggedInUser.CreateEvent_DeprecatedSinceV2(
@@ -711,98 +722,3 @@ namespace SortingFriends_Engine
         }
     }
 }
-
-/*
-             foreach (Post currentPost in m_LoggedInUser.WallPosts)
-            {
-                try
-                {
-                    foreach (User currentUser in currentPost.LikedBy)
-                    {
-                        if(currentUser != m_LoggedInUser)
-                        {
-                            if (friendsHierarchyDictionary.ContainsKey(currentUser.Id))
-                            {
-                                friendsHierarchyDictionary[currentUser.Id]++;
-                            }
-                            else
-                            {
-                                friendsHierarchyDictionary.Add(currentUser.Id, 1);
-                            }
-                        }
-                    }
-                }
-                catch (FacebookOAuthException)
-                {
-                    /// the likedByUsers can not be supplied in some posts
-                }
-
-                try
-                {
-                    foreach (User currentUser in currentPost.TaggedUsers)
-                    {
-                        if (currentUser != m_LoggedInUser)
-                        {
-                            if (friendsHierarchyDictionary.ContainsKey(currentUser.Id))
-                            {
-                                friendsHierarchyDictionary[currentUser.Id] += 3;
-                            }
-                            else
-                            {
-                                friendsHierarchyDictionary.Add(currentUser.Id, 3);
-                            }
-                        }
-                    }
-                }
-                catch (FacebookOAuthException)
-                {
-                    /// the likedByUsers can not be supplied in some posts
-                }
-
-                try
-                {
-                    foreach (Comment currentComment in currentPost.Comments)
-                    {
-                        if (currentComment.From != m_LoggedInUser)
-                        {
-                            if (friendsHierarchyDictionary.ContainsKey(currentComment.From.Id))
-                            {
-                                friendsHierarchyDictionary[currentComment.From.Id] += 2;
-                            }
-                            else
-                            {
-                                friendsHierarchyDictionary.Add(currentComment.From.Id, 2);
-                            }
-                        }
-
-                    }
-                }
-                catch (FacebookOAuthException)
-                {
-                    /// the likedByUsers can not be supplied in some posts
-                }
-
-                try
-                {
-                    if (currentPost.TargetUsers != null)
-                    {
-                        foreach (User currentFriend in currentPost.TargetUsers)
-                        {
-                            if (friendsHierarchyDictionary.ContainsKey(currentFriend.Id))
-                            {
-                                friendsHierarchyDictionary[currentFriend.Id] += 4;
-                            }
-                            else
-                            {
-                                friendsHierarchyDictionary.Add(currentFriend.Id, 4);
-                            }
-                        }
-                    }
-                }
-                catch (FacebookOAuthException)
-                {
-                    /// the likedByUsers can not be supplied in some posts
-                }
-            }
-  
- * */
