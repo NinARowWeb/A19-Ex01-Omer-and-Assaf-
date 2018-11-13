@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace SortingFriends_Engine
 {
-    public class FeaturesEngine
+    public class FeaturesEngine : ISortable
     {
         private const int k_NotInitialized = -1, k_ChangePositions = 1, k_NotChangePosition = -1, k_BestFriendNotFound = -1, k_IndexNotFound = -1;
         private const string k_AppId = "1027335734116799", k_PublicProfile = "public_profile", k_UsersFriend = "user_friends", 
@@ -16,9 +16,9 @@ namespace SortingFriends_Engine
             k_UserLikes = "user_likes", k_UserPosts = "user_posts", k_UserTaggedPlace = "user_tagged_places";
         private const int k_MonthLength = 2, k_DayLength = 2, k_YearLength = 4;
         private const int k_MonthIndex = 0, k_DayIndex = 3, k_YearIndex = 6;
-        private User m_LoggedInUser;
-        private User m_BestFriend;
-        private List<User> m_Friends;
+        private FacebookUser m_LoggedInUser;
+        private FacebookUser m_BestFriend;
+        private List<FacebookUser> m_Friends;
         private int m_AlbumPictureIndex = 0;
         private int m_PlaceHolderIndex = 0;
         private readonly object r_LogoutObjectContext = new object();
@@ -29,7 +29,7 @@ namespace SortingFriends_Engine
                 LoginResult result = FacebookService.Login(k_AppId, k_PublicProfile, k_UsersFriend, k_UserBirthday, k_UserGender, k_UserLikes, k_UserPosts, k_UserTaggedPlace);
                 if (!string.IsNullOrEmpty(result.AccessToken))
                 {
-                    m_LoggedInUser = result.LoggedInUser;
+                    m_LoggedInUser = new FacebookUser(result.LoggedInUser);
                     fetchFriends();
                 }
             }
@@ -267,63 +267,65 @@ namespace SortingFriends_Engine
             return returnValue;
         }
 
-        public void SortFriends(int i_ComparisonIndex = k_NotInitialized)
+        public override void Sort(int i_Index)
+        {
+            sortFriends();
+        }
+
+        private void sortFriends(int i_ComparisonIndex = k_NotInitialized)
         {
             eSortingBy comparisonBy = (eSortingBy)i_ComparisonIndex;
-            try
+            switch (comparisonBy)
             {
-                switch (comparisonBy)
-                {
-                    case eSortingBy.Default:
-                        {
-                            fetchFriends();
-                            break;
-                        }
+                case eSortingBy.Default:
+                    {
+                        fetchFriends();
+                        break;
+                    }
 
-                    case eSortingBy.FirstName:
-                        {
-                            m_Friends.Sort(firstNameComparison);
-                            break;
-                        }
+                case eSortingBy.FirstName:
+                    {
+                        m_Friends.Sort(firstNameComparison);
+                        break;
+                    }
 
-                    case eSortingBy.LastName:
-                        {
-                            m_Friends.Sort(lastNameComparison);
-                            break;
-                        }
+                case eSortingBy.LastName:
+                    {
+                        m_Friends.Sort(lastNameComparison);
+                        break;
+                    }
 
-                    case eSortingBy.Birthday:
-                        {
-                            m_Friends.Sort(birthDayComparison);
-                            break;
-                        }
+                case eSortingBy.Birthday:
+                    {
+                        m_Friends.Sort(birthDayComparison);
+                        break;
+                    }
 
-                    case eSortingBy.Age:
-                        {
-                            m_Friends.Sort(ageComparison);
-                            break;
-                        }
-                    case eSortingBy.MostPosts:
-                        {
-                            m_Friends.Sort(postsComparison);
-                            break;
-                        }
-                    case eSortingBy.MostCheckIns:
-                        {
-                            m_Friends.Sort(checkInsComparison);
-                            break;
-                        }
-                    case eSortingBy.MostTags:
-                        {
-                            m_Friends.Sort(tagsComparison);
-                            break;
-                        }
-                    case eSortingBy.MostAlbums:
-                        {
-                            m_Friends.Sort(albumsComparison);
-                            break;
-                        }
-                }
+                case eSortingBy.Age:
+                    {
+                        m_Friends.Sort(ageComparison);
+                        break;
+                    }
+                case eSortingBy.MostPosts:
+                    {
+                        m_Friends.Sort(postsComparison);
+                        break;
+                    }
+                case eSortingBy.MostCheckIns:
+                    {
+                        m_Friends.Sort(checkInsComparison);
+                        break;
+                    }
+                case eSortingBy.MostTags:
+                    {
+                        m_Friends.Sort(tagsComparison);
+                        break;
+                    }
+                case eSortingBy.MostAlbums:
+                    {
+                        m_Friends.Sort(albumsComparison);
+                        break;
+                    }
             }
         }
 
