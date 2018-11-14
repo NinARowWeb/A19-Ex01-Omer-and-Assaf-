@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SortingFriends_Engine
 {
-    public interface ISortable
+    public interface IFilterSort
     {
-        void Sort();
+        void Sort(int i_FilterIndex);
     }
 }

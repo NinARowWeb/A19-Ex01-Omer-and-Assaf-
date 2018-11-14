@@ -339,6 +339,7 @@
             this.pictureBoxFacebookLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFacebookLogin.TabIndex = 73;
             this.pictureBoxFacebookLogin.TabStop = false;
+            this.pictureBoxFacebookLogin.Click += new System.EventHandler(this.pictureBoxLogin_Click);
             // 
             // labelAlbumsText
             // 

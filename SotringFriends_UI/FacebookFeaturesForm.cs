@@ -362,7 +362,7 @@ namespace SotringFriends_UI
             {
                 if (m_FeaturesEngine.UserConnected())
                 {
-                    m_FeaturesEngine.SortFriends(comboBoxSortingOptions.SelectedIndex);
+                    m_FeaturesEngine.Sort(comboBoxSortingOptions.SelectedIndex);
                     clearButtonsEvents(buttonNextPlaceHolder, buttonPrevPlaceHolder, buttonNextPicture, buttonPrevPicture);
                     fetchFriends();
                     disableFirstFeatureControls();
