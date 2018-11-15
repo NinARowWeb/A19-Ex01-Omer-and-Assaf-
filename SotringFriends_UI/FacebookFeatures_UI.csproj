@@ -44,6 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consts.cs" />
+    <Compile Include="FindBestFriendControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FindBestFriendControl.Designer.cs">
+      <DependentUpon>FindBestFriendControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FacebookFeaturesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,6 +59,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortingFriendsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SortingFriendsControl.Designer.cs">
+      <DependentUpon>SortingFriendsControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FindBestFriendControl.resx">
+      <DependentUpon>FindBestFriendControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FacebookFeaturesForm.resx">
+      <DependentUpon>FacebookFeaturesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,10 +81,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="FacebookFeaturesForm.resx">
-      <DependentUpon>FacebookFeaturesForm.cs</DependentUpon>
+    <EmbeddedResource Include="SortingFriendsControl.resx">
+      <DependentUpon>SortingFriendsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -83,9 +101,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\OnlineStatus.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\red light.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +110,15 @@
     <None Include="Resources\facebook logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Welcome.jpg" />
+    <None Include="Resources\welcome.png" />
+    <None Include="Resources\facebook-sign-in-button.png" />
+    <None Include="Resources\bye bye.jpg" />
     <Content Include="Resources\green circle.png" />
+    <None Include="Resources\login.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\next arrow.png" />
+    <None Include="Resources\prev arrow.png" />
     <Content Include="Resources\red light no background.png" />
     <None Include="Resources\red_noBackground.bmp" />
   </ItemGroup>

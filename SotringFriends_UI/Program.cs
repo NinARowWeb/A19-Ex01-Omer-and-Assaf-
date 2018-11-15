@@ -15,7 +15,7 @@ namespace SotringFriends_UI
           {
                Application.EnableVisualStyles();
                Application.SetCompatibleTextRenderingDefault(false);
-               Application.Run(new FacebookFeatures());
+               Application.Run(new FacebookFeaturesForm());
           }
      }
 }
