@@ -20,7 +20,6 @@ C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\bin\De
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\bin\Debug\SortingFriends_Engine.pdb
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\FacebookFeatures_UI.csprojResolveAssemblyReference.cache
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.Properties.Resources.resources
-C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.FacebookFeatures.resources
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\FacebookFeatures_UI.csproj.GenerateResource.Cache
 C:\Users\user\Desktop\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.exe
 C:\Users\user\Desktop\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.pdb
@@ -50,3 +49,6 @@ C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\A19-Ex01-Omer-and-Assaf-
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.Properties.Resources.resources
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.SortingFriendsControl.resources
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\FacebookFeatures_UI.csproj.GenerateResource.Cache
+C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.FindBestFriendControl.resources
+C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.FacebookFeaturesForm.resources
+C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.SortingFriendsControl.resources

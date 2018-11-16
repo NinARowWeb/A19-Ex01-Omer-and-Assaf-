@@ -104,7 +104,7 @@
             this.buttonFindBestFriend.TabIndex = 1;
             this.buttonFindBestFriend.Text = "Find Best Friend";
             this.buttonFindBestFriend.UseVisualStyleBackColor = true;
-            this.buttonFindBestFriend.Click += new System.EventHandler(this.findBestFriendButton_Click);
+            this.buttonFindBestFriend.Click += new System.EventHandler(this.buttonFindBestFriend_Click);
             // 
             // buttonSortingFriends
             // 
@@ -118,7 +118,7 @@
             this.buttonSortingFriends.TabIndex = 0;
             this.buttonSortingFriends.Text = "Sorting Friends";
             this.buttonSortingFriends.UseVisualStyleBackColor = true;
-            this.buttonSortingFriends.Click += new System.EventHandler(this.sortingFriendsButton_Click);
+            this.buttonSortingFriends.Click += new System.EventHandler(this.buttonSortingFriends_Click);
             // 
             // panelFacebookAppScreen
             // 
@@ -168,9 +168,10 @@
             // 
             // pictureBoxMainScreen
             // 
+            this.pictureBoxMainScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxMainScreen.Location = new System.Drawing.Point(572, 56);
             this.pictureBoxMainScreen.Name = "pictureBoxMainScreen";
-            this.pictureBoxMainScreen.Size = new System.Drawing.Size(300, 144);
+            this.pictureBoxMainScreen.Size = new System.Drawing.Size(344, 144);
             this.pictureBoxMainScreen.TabIndex = 3;
             this.pictureBoxMainScreen.TabStop = false;
             // 

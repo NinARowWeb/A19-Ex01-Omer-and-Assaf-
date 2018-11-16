@@ -110,10 +110,11 @@
     <None Include="Resources\facebook logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Welcome.png" />
     <None Include="Resources\Welcome.jpg" />
-    <None Include="Resources\welcome.png" />
     <None Include="Resources\facebook-sign-in-button.png" />
-    <None Include="Resources\bye bye.jpg" />
+    <None Include="Resources\bye.jpg" />
+    <None Include="Resources\bye.png" />
     <Content Include="Resources\green circle.png" />
     <None Include="Resources\login.png" />
     <None Include="Resources\logout.png" />

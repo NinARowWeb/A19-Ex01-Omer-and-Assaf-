@@ -49,7 +49,7 @@
             // 
             this.labelPhotoTitle.AutoSize = true;
             this.labelPhotoTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelPhotoTitle.Location = new System.Drawing.Point(659, 411);
+            this.labelPhotoTitle.Location = new System.Drawing.Point(671, 411);
             this.labelPhotoTitle.Name = "labelPhotoTitle";
             this.labelPhotoTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelPhotoTitle.Size = new System.Drawing.Size(104, 24);
@@ -60,43 +60,75 @@
             // 
             // buttonNextPlaceHolder
             // 
+            this.buttonNextPlaceHolder.BackColor = System.Drawing.Color.Transparent;
+            this.buttonNextPlaceHolder.BackgroundImage = global::SotringFriends_UI.Properties.Resources.next_arrow;
+            this.buttonNextPlaceHolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonNextPlaceHolder.FlatAppearance.BorderSize = 0;
+            this.buttonNextPlaceHolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonNextPlaceHolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonNextPlaceHolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonNextPlaceHolder.Location = new System.Drawing.Point(750, 284);
             this.buttonNextPlaceHolder.Name = "buttonNextPlaceHolder";
-            this.buttonNextPlaceHolder.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextPlaceHolder.Size = new System.Drawing.Size(95, 37);
             this.buttonNextPlaceHolder.TabIndex = 72;
-            this.buttonNextPlaceHolder.UseVisualStyleBackColor = true;
+            this.buttonNextPlaceHolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonNextPlaceHolder.UseVisualStyleBackColor = false;
             this.buttonNextPlaceHolder.Visible = false;
             this.buttonNextPlaceHolder.Click += new System.EventHandler(this.buttonNextAlbum_Click);
             // 
             // buttonPrevPlaceHolder
             // 
+            this.buttonPrevPlaceHolder.BackColor = System.Drawing.Color.Transparent;
+            this.buttonPrevPlaceHolder.BackgroundImage = global::SotringFriends_UI.Properties.Resources.prev_arrow;
+            this.buttonPrevPlaceHolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonPrevPlaceHolder.FlatAppearance.BorderSize = 0;
+            this.buttonPrevPlaceHolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonPrevPlaceHolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonPrevPlaceHolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPrevPlaceHolder.Location = new System.Drawing.Point(604, 284);
             this.buttonPrevPlaceHolder.Name = "buttonPrevPlaceHolder";
-            this.buttonPrevPlaceHolder.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevPlaceHolder.Size = new System.Drawing.Size(95, 37);
             this.buttonPrevPlaceHolder.TabIndex = 71;
-            this.buttonPrevPlaceHolder.UseVisualStyleBackColor = true;
+            this.buttonPrevPlaceHolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonPrevPlaceHolder.UseVisualStyleBackColor = false;
             this.buttonPrevPlaceHolder.Visible = false;
             this.buttonPrevPlaceHolder.Click += new System.EventHandler(this.buttonPrevAlbum_Click);
             // 
             // buttonNextPicture
             // 
+            this.buttonNextPicture.BackColor = System.Drawing.Color.Transparent;
+            this.buttonNextPicture.BackgroundImage = global::SotringFriends_UI.Properties.Resources.next_arrow;
+            this.buttonNextPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonNextPicture.FlatAppearance.BorderSize = 0;
+            this.buttonNextPicture.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonNextPicture.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonNextPicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonNextPicture.Location = new System.Drawing.Point(750, 364);
             this.buttonNextPicture.Name = "buttonNextPicture";
-            this.buttonNextPicture.Size = new System.Drawing.Size(75, 23);
+            this.buttonNextPicture.Size = new System.Drawing.Size(95, 37);
             this.buttonNextPicture.TabIndex = 70;
             this.buttonNextPicture.Text = "Next Picture";
-            this.buttonNextPicture.UseVisualStyleBackColor = true;
+            this.buttonNextPicture.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonNextPicture.UseVisualStyleBackColor = false;
             this.buttonNextPicture.Visible = false;
             this.buttonNextPicture.Click += new System.EventHandler(this.buttonNextPicture_Click);
             // 
             // buttonPrevPicture
             // 
+            this.buttonPrevPicture.BackColor = System.Drawing.Color.Transparent;
+            this.buttonPrevPicture.BackgroundImage = global::SotringFriends_UI.Properties.Resources.prev_arrow;
+            this.buttonPrevPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonPrevPicture.FlatAppearance.BorderSize = 0;
+            this.buttonPrevPicture.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonPrevPicture.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonPrevPicture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPrevPicture.Location = new System.Drawing.Point(604, 364);
             this.buttonPrevPicture.Name = "buttonPrevPicture";
-            this.buttonPrevPicture.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrevPicture.Size = new System.Drawing.Size(95, 37);
             this.buttonPrevPicture.TabIndex = 69;
             this.buttonPrevPicture.Text = "Prev Picture";
-            this.buttonPrevPicture.UseVisualStyleBackColor = true;
+            this.buttonPrevPicture.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonPrevPicture.UseVisualStyleBackColor = false;
             this.buttonPrevPicture.Visible = false;
             this.buttonPrevPicture.Click += new System.EventHandler(this.buttonPrevPicture_Click);
             // 
@@ -104,7 +136,7 @@
             // 
             this.labelAttributePlaceHolder.AutoSize = true;
             this.labelAttributePlaceHolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelAttributePlaceHolder.Location = new System.Drawing.Point(604, 324);
+            this.labelAttributePlaceHolder.Location = new System.Drawing.Point(616, 324);
             this.labelAttributePlaceHolder.Name = "labelAttributePlaceHolder";
             this.labelAttributePlaceHolder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelAttributePlaceHolder.Size = new System.Drawing.Size(202, 24);
@@ -175,7 +207,7 @@
             // 
             // pictureBoxAlbumPhoto
             // 
-            this.pictureBoxAlbumPhoto.Location = new System.Drawing.Point(604, 107);
+            this.pictureBoxAlbumPhoto.Location = new System.Drawing.Point(616, 107);
             this.pictureBoxAlbumPhoto.Name = "pictureBoxAlbumPhoto";
             this.pictureBoxAlbumPhoto.Size = new System.Drawing.Size(221, 171);
             this.pictureBoxAlbumPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

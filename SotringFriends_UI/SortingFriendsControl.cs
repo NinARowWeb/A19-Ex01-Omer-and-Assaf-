@@ -35,20 +35,6 @@ namespace SotringFriends_UI
         {
             disableFirstFeatureControls();
         }
-        
-
-        private void clearEvents(Control i_Control)
-        {
-            const string k_EventClick = "EventClick", k_Events = "Events";
-
-            FieldInfo fieldInfo = typeof(Control).GetField(k_EventClick,
-            BindingFlags.Static | BindingFlags.NonPublic);
-            object obj = fieldInfo.GetValue(i_Control);
-            PropertyInfo property = i_Control.GetType().GetProperty(k_Events,
-                BindingFlags.NonPublic | BindingFlags.Instance);
-            EventHandlerList list = (EventHandlerList)property.GetValue(i_Control, null);
-            list.RemoveHandler(obj, list[obj]);
-        }
 
         private void fetchFriends()
         {
@@ -89,6 +75,11 @@ namespace SotringFriends_UI
             {
                 labelAttributePlaceHolder.Text = tag;
             }
+            else
+            {
+                labelAttributePlaceHolder.Text = " ";
+            }
+
             return tag;
         }
 
@@ -100,6 +91,11 @@ namespace SotringFriends_UI
             {
                 labelAttributePlaceHolder.Text = checkin;
             }
+            else
+            {
+                labelAttributePlaceHolder.Text = " ";
+            }
+
             return checkin;
         }
 
@@ -121,7 +117,7 @@ namespace SotringFriends_UI
         {
             foreach (Button currentButton in i_ListButtons)
             {
-                clearEvents(currentButton);
+                CommonEventsWrapper.ClearEvents(currentButton);
             }
         }
 
@@ -183,6 +179,7 @@ namespace SotringFriends_UI
             const string k_MoreThanAPersonSelectedError = "You can select only one person to show";
             if (listBoxFriends.SelectedItems.Count == 1)
             {
+                clearButtonsEvents(buttonNextPicture, buttonPrevPicture, buttonNextPlaceHolder, buttonPrevPlaceHolder);
                 string friendImageURL = m_FeaturesEngine.GetFriendPicture(listBoxFriends.SelectedIndex);
                 if (friendImageURL != null)
                 {
@@ -195,7 +192,7 @@ namespace SotringFriends_UI
                     pictureBoxFriend.Image = pictureBoxFriend.ErrorImage;
                 }
             }
-            else
+            else if(listBoxFriends.SelectedItems.Count > 1)
             {
                 MessageBox.Show(k_MoreThanAPersonSelectedError);
             }
@@ -218,8 +215,8 @@ namespace SotringFriends_UI
 
         private void setTagsAttributes()
         {
-            const string k_TagsWerentFoundMessage = "The user doesn't have Tags";
             const string k_PrevTag = "Prev Tag", k_NextTag = "Next Tag";
+            string tagsWerentFoundMessage = $"{m_FeaturesEngine.GetFriendFirstName(listBoxFriends.SelectedIndex)} doesn't have Tags";
 
             if (getTags() != null)
             {
@@ -231,7 +228,7 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show(k_TagsWerentFoundMessage);
+                MessageBox.Show(tagsWerentFoundMessage);
                 setVisibilityControls(false, buttonPrevPicture, buttonNextPicture);
             }
         }
@@ -239,7 +236,8 @@ namespace SotringFriends_UI
 
         private void setCheckInsAttributes()
         {
-            const string k_PrevCheckin = "Prev Checkin", k_NextCheckin = "Next Checkin", k_CheckinsWerentFound = "The user doesn't have checkins";
+            const string k_PrevCheckin = "Prev Checkin", k_NextCheckin = "Next Checkin";
+            string checkinsWerentFound = $"{m_FeaturesEngine.GetFriendFirstName(listBoxFriends.SelectedIndex)} doesn't have checkins";
             if (getCheckin() != null)
             {
                 buttonPrevPlaceHolder.Text = k_PrevCheckin;
@@ -250,14 +248,15 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show(k_CheckinsWerentFound);
+                MessageBox.Show(checkinsWerentFound);
                 setVisibilityControls(false, buttonPrevPicture, buttonNextPicture);
             }
         }
 
         private void setPostsAttributes()
         {
-            const string k_PrevPost = "Prev Post", k_NextPost = "Next Post", k_PostsWerentFound = "The user doesn't have posts";
+            const string k_PrevPost = "Prev Post", k_NextPost = "Next Post";
+            string postsWerentFound = $"{m_FeaturesEngine.GetFriendFirstName(listBoxFriends.SelectedIndex)} doesn't have posts";
             if (getPosts() != null)
             {
                 buttonPrevPlaceHolder.Text = k_PrevPost;
@@ -268,15 +267,15 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show(k_PostsWerentFound);
+                MessageBox.Show(postsWerentFound);
                 setVisibilityControls(false, labelAttributePlaceHolder, buttonPrevPicture, buttonNextPicture);
             }
         }
 
         private void setAlbumsAttributes()
         {
-            const string prevAlbum = "Prev Album", nextAlbum = "Next Album",
-                k_AlbumsWerentFoundMessage = "The user selected doesn't have albums";
+            const string prevAlbum = "Prev Album", nextAlbum = "Next Album";
+            string albumsWerentFoundMessage = $"{m_FeaturesEngine.GetFriendFirstName(listBoxFriends.SelectedIndex)} selected doesn't have albums";
             if (getAlbumDetails() != null)
             {
                 buttonNextPlaceHolder.Text = nextAlbum;
@@ -289,7 +288,7 @@ namespace SotringFriends_UI
             }
             else
             {
-                disableAlbum(k_AlbumsWerentFoundMessage);
+                disableAlbum(albumsWerentFoundMessage);
             }
         }
 
@@ -299,7 +298,7 @@ namespace SotringFriends_UI
             {
                 if (m_FeaturesEngine.UserConnected())
                 {
-                    m_FeaturesEngine.SortFriends(comboBoxSortingOptions.SelectedIndex);
+                    m_FeaturesEngine.Sort(comboBoxSortingOptions.SelectedIndex);
                     clearButtonsEvents(buttonNextPlaceHolder, buttonPrevPlaceHolder, buttonNextPicture, buttonPrevPicture);
                     fetchFriends();
                     disableFirstFeatureControls();

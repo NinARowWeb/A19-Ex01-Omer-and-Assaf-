@@ -1,12 +1,8 @@
 ﻿using SortingFriends_Engine;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SotringFriends_UI
@@ -22,6 +18,8 @@ namespace SotringFriends_UI
             InitializeComponent();
             pictureBoxLoginStatus.BackgroundImage = Properties.Resources.red_light_no_background;
             pictureBoxLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
+            m_SortingFriends = new SortingFriendsControl(m_FeaturesEngine);
+            m_FindBestFriend = new FindBestFriendControl(m_FeaturesEngine);
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -34,15 +32,12 @@ namespace SotringFriends_UI
                 if (m_FeaturesEngine.UserConnected())
                 {
                     changeButtonMeaning(Properties.Resources.green_circle, logoutButton_Click, loginButton_Click, Properties.Resources.logout);
-                    m_SortingFriends = new SortingFriendsControl(m_FeaturesEngine);
-                    m_FindBestFriend = new FindBestFriendControl(m_FeaturesEngine);
-                    buttonSortingFriends.Click += sortingFriendsButton_Click;
-                    buttonFindBestFriend.Click += findBestFriendButton_Click;
+                    buttonSortingFriends.Click += buttonSortingFriends_Click;
+                    buttonFindBestFriend.Click += buttonFindBestFriend_Click;
                     addDefualtControls();
                     labelFirstUserMessage.Text = $"Hi {m_FeaturesEngine.GetLoginUserName()}";
                     labelSecondUserMessage.Text = $"We invite you to select a feature";
                     pictureBoxMainScreen.BackgroundImage = Properties.Resources.Welcome;
-
                 }
                 else
                 {
@@ -62,7 +57,7 @@ namespace SotringFriends_UI
             panelFacebookAppScreen.Controls.Add(pictureBoxMainScreen);
         }
 
-        private void sortingFriendsButton_Click(object sender, EventArgs e)
+        private void buttonSortingFriends_Click(object sender, EventArgs e)
         {
             if (m_FeaturesEngine.UserConnected())
             {
@@ -73,10 +68,9 @@ namespace SotringFriends_UI
             {
                 MessageBox.Show(Consts.k_NoConnectionToFacebook);
             }
-
         }
 
-        private void findBestFriendButton_Click(object sender, EventArgs e)
+        private void buttonFindBestFriend_Click(object sender, EventArgs e)
         {
             if (m_FeaturesEngine.UserConnected())
             {
@@ -96,12 +90,13 @@ namespace SotringFriends_UI
                 labelFirstUserMessage.Text = $"Bye {m_FeaturesEngine.GetLoginUserName()}";
                 m_FeaturesEngine.LogoutUser();
                 changeButtonMeaning(Properties.Resources.red_light_no_background, loginButton_Click, logoutButton_Click, Properties.Resources.login);
-                buttonFindBestFriend.Click -= findBestFriendButton_Click;
-                buttonSortingFriends.Click -= findBestFriendButton_Click;
+                buttonFindBestFriend.Click -= buttonFindBestFriend_Click;
+                buttonSortingFriends.Click -= buttonSortingFriends_Click;
                 panelFacebookAppScreen.Controls.Clear();
                 addDefualtControls();
                 labelSecondUserMessage.Text = $"Hope to see you again!";
-                pictureBoxMainScreen.BackgroundImage = Properties.Resources.bye_bye;
+                pictureBoxMainScreen.BackgroundImage = Properties.Resources.bye;
+                pictureBoxMainScreen.BackgroundImageLayout = ImageLayout.Stretch;
             }
             catch (Exception)
             {
@@ -113,7 +108,7 @@ namespace SotringFriends_UI
         {
             pictureBoxLoginStatus.BackgroundImage = i_PictureLight;
             pictureBoxLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
-            clearEvents(buttonLogin);
+            CommonEventsWrapper.ClearEvents(buttonLogin);
             buttonLogin.Click += i_EventToAdd;
             buttonLogin.BackgroundImage = i_PictureButton;
         }
