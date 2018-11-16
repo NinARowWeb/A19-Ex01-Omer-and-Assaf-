@@ -74,7 +74,7 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show(Consts.k_NoConnectionToFacebook);
+                MessageBox.Show(Common.r_NoConnectionToFacebook);
             }
         }
 
@@ -125,7 +125,7 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show(Consts.k_NoConnectionToFacebook);
+                MessageBox.Show(Common.r_NoConnectionToFacebook);
             }
         }
 

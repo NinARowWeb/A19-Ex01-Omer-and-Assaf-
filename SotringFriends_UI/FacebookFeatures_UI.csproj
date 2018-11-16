@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consts.cs" />
+    <Compile Include="Common.cs" />
     <Compile Include="FindBestFriendControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,6 +84,7 @@
     <EmbeddedResource Include="SortingFriendsControl.resx">
       <DependentUpon>SortingFriendsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram3.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

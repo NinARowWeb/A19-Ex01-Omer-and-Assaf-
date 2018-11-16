@@ -46,7 +46,7 @@ namespace SotringFriends_UI
             }
             catch (Exception)
             {
-               MessageBox.Show(Consts.k_FacebookError);
+               MessageBox.Show(Common.r_FacebookError);
             }
         }
 
@@ -66,7 +66,7 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show(Consts.k_NoConnectionToFacebook);
+                MessageBox.Show(Common.r_NoConnectionToFacebook);
             }
         }
 
@@ -79,7 +79,7 @@ namespace SotringFriends_UI
             }
             else
             {
-                MessageBox.Show(Consts.k_NoConnectionToFacebook);
+                MessageBox.Show(Common.r_NoConnectionToFacebook);
             }
         }
 
@@ -100,7 +100,7 @@ namespace SotringFriends_UI
             }
             catch (Exception)
             {
-                MessageBox.Show(Consts.k_FacebookError);
+                MessageBox.Show(Common.r_FacebookError);
             }
         }
 
@@ -108,22 +108,9 @@ namespace SotringFriends_UI
         {
             pictureBoxLoginStatus.BackgroundImage = i_PictureLight;
             pictureBoxLoginStatus.BackgroundImageLayout = ImageLayout.Stretch;
-            CommonEventsWrapper.ClearEvents(buttonLogin);
+            Common.ClearEvents(buttonLogin);
             buttonLogin.Click += i_EventToAdd;
             buttonLogin.BackgroundImage = i_PictureButton;
-        }
-
-        private void clearEvents(Control i_Control)
-        {
-            const string k_EventClick = "EventClick", k_Events = "Events";
-
-            FieldInfo fieldInfo = typeof(Control).GetField(k_EventClick,
-            BindingFlags.Static | BindingFlags.NonPublic);
-            object obj = fieldInfo.GetValue(i_Control);
-            PropertyInfo property = i_Control.GetType().GetProperty(k_Events,
-                BindingFlags.NonPublic | BindingFlags.Instance);
-            EventHandlerList list = (EventHandlerList)property.GetValue(i_Control, null);
-            list.RemoveHandler(obj, list[obj]);
         }
     }
 }

@@ -117,7 +117,7 @@ namespace SotringFriends_UI
         {
             foreach (Button currentButton in i_ListButtons)
             {
-                CommonEventsWrapper.ClearEvents(currentButton);
+                Common.ClearEvents(currentButton);
             }
         }
 
@@ -307,14 +307,14 @@ namespace SotringFriends_UI
                 {
                     if (comboBoxSortingOptions.SelectedIndex != k_InitialValue)
                     {
-                        MessageBox.Show(Consts.k_NoConnectionToFacebook);
+                        MessageBox.Show(Common.r_NoConnectionToFacebook);
                     }
                     comboBoxSortingOptions.SelectedIndex = k_InitialValue;
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show(Consts.k_FacebookError);
+                MessageBox.Show(Common.r_FacebookError);
             }
         }
 

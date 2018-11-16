@@ -8,8 +8,11 @@ using System.Windows.Forms;
 
 namespace SotringFriends_UI
 {
-    public static class CommonEventsWrapper
+    public class Common
     {
+        public static readonly string r_NoConnectionToFacebook = "First you need to connect to your facebook account";
+        public static readonly string r_FacebookError = "facebook Internal Error";
+
         public static void ClearEvents(Control i_Control)
         {
             const string k_EventClick = "EventClick", k_Events = "Events";
