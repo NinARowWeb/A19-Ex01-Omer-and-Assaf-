@@ -30,32 +30,32 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacebookFeaturesForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBoxLoginStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBoxFacebook = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.buttonFindBestFriend = new System.Windows.Forms.Button();
             this.buttonSortingFriends = new System.Windows.Forms.Button();
             this.panelFacebookAppScreen = new System.Windows.Forms.Panel();
+            this.pictureBoxMainScreen = new System.Windows.Forms.PictureBox();
             this.labelSecondUserMessage = new System.Windows.Forms.Label();
             this.labelSubWelcome = new System.Windows.Forms.Label();
             this.labelFirstUserMessage = new System.Windows.Forms.Label();
-            this.pictureBoxMainScreen = new System.Windows.Forms.PictureBox();
-            this.buttonLogin = new System.Windows.Forms.Button();
-            this.pictureBoxLoginStatus = new System.Windows.Forms.PictureBox();
-            this.pictureBoxFacebook = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebook)).BeginInit();
             this.panel3.SuspendLayout();
             this.panelFacebookAppScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMainScreen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebook)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel1.Controls.Add(this.buttonLogin);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel2);
@@ -65,6 +65,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1294, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonLogin
+            // 
+            this.buttonLogin.BackgroundImage = global::SotringFriends_UI.Properties.Resources.login;
+            this.buttonLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonLogin.FlatAppearance.BorderSize = 0;
+            this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLogin.Location = new System.Drawing.Point(1114, 12);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(165, 31);
+            this.buttonLogin.TabIndex = 65;
+            this.buttonLogin.UseVisualStyleBackColor = true;
+            this.buttonLogin.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // panel4
             // 
@@ -79,6 +92,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 503);
             this.panel2.TabIndex = 1;
+            // 
+            // pictureBoxLoginStatus
+            // 
+            this.pictureBoxLoginStatus.Location = new System.Drawing.Point(79, 18);
+            this.pictureBoxLoginStatus.Name = "pictureBoxLoginStatus";
+            this.pictureBoxLoginStatus.Size = new System.Drawing.Size(22, 20);
+            this.pictureBoxLoginStatus.TabIndex = 64;
+            this.pictureBoxLoginStatus.TabStop = false;
+            // 
+            // pictureBoxFacebook
+            // 
+            this.pictureBoxFacebook.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebook.BackgroundImage")));
+            this.pictureBoxFacebook.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebook.Image")));
+            this.pictureBoxFacebook.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebook.InitialImage")));
+            this.pictureBoxFacebook.Location = new System.Drawing.Point(9, 5);
+            this.pictureBoxFacebook.Name = "pictureBoxFacebook";
+            this.pictureBoxFacebook.Size = new System.Drawing.Size(50, 45);
+            this.pictureBoxFacebook.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxFacebook.TabIndex = 63;
+            this.pictureBoxFacebook.TabStop = false;
             // 
             // panel3
             // 
@@ -135,6 +168,15 @@
             this.panelFacebookAppScreen.Size = new System.Drawing.Size(1089, 505);
             this.panelFacebookAppScreen.TabIndex = 2;
             // 
+            // pictureBoxMainScreen
+            // 
+            this.pictureBoxMainScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxMainScreen.Location = new System.Drawing.Point(572, 56);
+            this.pictureBoxMainScreen.Name = "pictureBoxMainScreen";
+            this.pictureBoxMainScreen.Size = new System.Drawing.Size(344, 144);
+            this.pictureBoxMainScreen.TabIndex = 3;
+            this.pictureBoxMainScreen.TabStop = false;
+            // 
             // labelSecondUserMessage
             // 
             this.labelSecondUserMessage.AutoSize = true;
@@ -166,48 +208,6 @@
             this.labelFirstUserMessage.TabIndex = 0;
             this.labelFirstUserMessage.Text = "Welcome To Our Application!";
             // 
-            // pictureBoxMainScreen
-            // 
-            this.pictureBoxMainScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxMainScreen.Location = new System.Drawing.Point(572, 56);
-            this.pictureBoxMainScreen.Name = "pictureBoxMainScreen";
-            this.pictureBoxMainScreen.Size = new System.Drawing.Size(344, 144);
-            this.pictureBoxMainScreen.TabIndex = 3;
-            this.pictureBoxMainScreen.TabStop = false;
-            // 
-            // buttonLogin
-            // 
-            this.buttonLogin.BackgroundImage = global::SotringFriends_UI.Properties.Resources.login;
-            this.buttonLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonLogin.FlatAppearance.BorderSize = 0;
-            this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogin.Location = new System.Drawing.Point(1114, 12);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(165, 31);
-            this.buttonLogin.TabIndex = 65;
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += new System.EventHandler(this.loginButton_Click);
-            // 
-            // pictureBoxLoginStatus
-            // 
-            this.pictureBoxLoginStatus.Location = new System.Drawing.Point(79, 18);
-            this.pictureBoxLoginStatus.Name = "pictureBoxLoginStatus";
-            this.pictureBoxLoginStatus.Size = new System.Drawing.Size(22, 20);
-            this.pictureBoxLoginStatus.TabIndex = 64;
-            this.pictureBoxLoginStatus.TabStop = false;
-            // 
-            // pictureBoxFacebook
-            // 
-            this.pictureBoxFacebook.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebook.BackgroundImage")));
-            this.pictureBoxFacebook.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebook.Image")));
-            this.pictureBoxFacebook.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxFacebook.InitialImage")));
-            this.pictureBoxFacebook.Location = new System.Drawing.Point(9, 5);
-            this.pictureBoxFacebook.Name = "pictureBoxFacebook";
-            this.pictureBoxFacebook.Size = new System.Drawing.Size(50, 45);
-            this.pictureBoxFacebook.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxFacebook.TabIndex = 63;
-            this.pictureBoxFacebook.TabStop = false;
-            // 
             // FacebookFeaturesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,14 +218,14 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FacebookFeaturesForm";
-            this.Text = "Form1";
+            this.Text = "Facebook Application";
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebook)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panelFacebookAppScreen.ResumeLayout(false);
             this.panelFacebookAppScreen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMainScreen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoginStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebook)).EndInit();
             this.ResumeLayout(false);
 
         }
