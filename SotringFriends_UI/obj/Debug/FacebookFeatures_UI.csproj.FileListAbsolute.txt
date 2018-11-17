@@ -52,3 +52,6 @@ C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\A19-Ex01-Omer-and-Assaf-
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.FindBestFriendControl.resources
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.FacebookFeaturesForm.resources
 C:\Users\user\Documents\GitHub\A19-Ex01-Omer-and-Assaf-\SotringFriends_UI\obj\Debug\SotringFriends_UI.SortingFriendsControl.resources
+C:\Users\omer\Documents\Visual Studio 2015\Projects\Design Pattern\A19 Ex01 Omer 205706278 Assaf 311305098\SotringFriends_UI\obj\Debug\SotringFriends_UI.FindBestFriendControl.resources
+C:\Users\omer\Documents\Visual Studio 2015\Projects\Design Pattern\A19 Ex01 Omer 205706278 Assaf 311305098\SotringFriends_UI\obj\Debug\SotringFriends_UI.FacebookFeaturesForm.resources
+C:\Users\omer\Documents\Visual Studio 2015\Projects\Design Pattern\A19 Ex01 Omer 205706278 Assaf 311305098\SotringFriends_UI\obj\Debug\SotringFriends_UI.SortingFriendsControl.resources

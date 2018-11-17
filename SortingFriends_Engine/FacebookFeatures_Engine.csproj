@@ -47,7 +47,9 @@
     <Compile Include="FacebookUser.cs" />
     <Compile Include="ISortable.cs" />
     <Compile Include="SortingBy.cs" />
-    <Compile Include="FeaturesEngine.cs" />
+    <Compile Include="FeaturesEngine.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
